@@ -14,7 +14,7 @@ const Document = () => {
                 <div className='contentleft'>
                     <p>Dear Student,</p>
 
-                    <p>    Greetings from ICT Academy of Kerala...!!</p>
+                    <p>Greetings from ICT Academy of Kerala...!!</p>
 
                     <p>Thank you for enrolling in ICT Academy of Kerala's Internship program.</p>
 

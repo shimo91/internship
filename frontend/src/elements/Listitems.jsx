@@ -34,9 +34,7 @@ export const mainListItems = (
 
 export const secondaryListItems = (
   <React.Fragment>
-    {/* <ListSubheader component="div" inset>
-      Tasks
-    </ListSubheader> */}
+   
     <ListItemButton>
       <ListItemIcon>
         <AssignmentIcon />

@@ -11,7 +11,7 @@ function App() {
       <Routes>
         <Route path='/dashboard' element={<Dashboard child={<Overview />} title={'Project Overview'}/>}/>
         <Route path='/reference' element={<Dashboard child={<Reference />} title={'Reference Material'}/>}/>
-      
+        <Route path=''/>
       </Routes>
     </div>
   );

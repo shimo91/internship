@@ -170,7 +170,6 @@ export default function Dashboard(props) {
                            
             {props.child}
                 
-              
             </Grid>
             <Grid container spacing={3}>
             <Copyright   />

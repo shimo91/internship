@@ -13,8 +13,7 @@ const Overview = () => {
     <Grid container spacing={2} direction="row"  justifyContent="center"  alignItems="center" >
     <Grid item xs={12} md={12} lg={12}>
                 <Paper
-                  sx={{
-                    pt: 2,
+                  sx={{  pt: 2,
                     pb:2,
                     pr:2,
                     display: 'flex',
