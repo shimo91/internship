@@ -17,7 +17,7 @@ const Document = () => {
 
                     <p>Thank you for enrolling in ICT Academy of Kerala's Internship program.</p>
 
-                    <p>You can download our detailed documentation of the project from below link </p>
+                    <p>You can download your detailed documentation of the project from below link </p>
                     <p className='iconalignleft'><AttachFileSharpIcon/> <Link component="button"  variant="body2"  > topic name </Link></p>
                 </div>
             </Grid>

@@ -9,11 +9,12 @@ import ArticleIcon from '@mui/icons-material/Article';
 import AssessmentIcon from '@mui/icons-material/Assessment';
 import ForumIcon from '@mui/icons-material/Forum';
 import '../css/Dashboard.css'
-import { Link } from '@mui/material';
+import { Link } from 'react-router-dom';
 
 export const mainListItems = (
   <React.Fragment>
-    <Link href='/dashboard' sx={{textDecoration:'none'}}><ListItemButton className='activatedLink' >
+    <Link to={'/dashboard'}  sx={{textDecoration:'none'}}>
+    <ListItemButton className='activatedLink' >
       <ListItemIcon>
         <DashboardIcon />
       </ListItemIcon>

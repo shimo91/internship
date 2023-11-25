@@ -13,7 +13,6 @@ import Badge from '@mui/material/Badge';
 import Container from '@mui/material/Container';
 import Grid from '@mui/material/Grid';
 import Paper from '@mui/material/Paper';
-import Link from '@mui/material/Link';
 import MenuIcon from '@mui/icons-material/Menu';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 // import NotificationsIcon from '@mui/icons-material/Notifications';
@@ -22,12 +21,14 @@ import { mainListItems, secondaryListItems } from './Listitems'
 import Overview from './Overview';
 import Document from './Document';
 import '../css/Dashboard.css'
+import { Link } from 'react-router-dom';
 
 function Copyright(props) {
   return (
     <Typography variant="body2" color="text.secondary" align="center" {...props}>
       {'Copyright © '}
-      <Link color="inherit" href="/dashboard">
+      
+        <Link to={'/dashboard'} color="inherit">
       ICTAK Internship Portal
       </Link>{' '}
       {new Date().getFullYear()}
