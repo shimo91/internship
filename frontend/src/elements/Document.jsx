@@ -1,4 +1,4 @@
-import { Grid, Link, Typography } from '@mui/material'
+import { Grid, Link, Paper, Typography } from '@mui/material'
 import React from 'react'
 import AttachFileSharpIcon from '@mui/icons-material/AttachFileSharp';
 import '../css/Overview.css'
@@ -6,8 +6,9 @@ import { lightBlue } from '@mui/material/colors';
 
 const Document = () => {
   return (
-    <div>
-        <Grid container spacing={2} direction="row"  justifyContent="center"  alignItems="center" >
+    <Grid item xs={12}>
+    <Paper sx={{ p: 2, display: 'flex', flexDirection: 'column',paddingLeft:'25px' }}>
+        <Grid container spacing={2} direction="row"  justifyContent="center"  alignItems="center" paddingLeft={'20px'} >
             <Grid item xs={12}   >
                 <Typography variant='h4' color= {lightBlue[800]}>Topic Name</Typography>
                 <div className='contentleft'>
@@ -23,7 +24,9 @@ const Document = () => {
             </Grid>
         
         </Grid>
-    </div>
+      </Paper>
+  </Grid>
+    
   )
 }
 

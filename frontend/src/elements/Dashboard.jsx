@@ -19,13 +19,13 @@ import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import LogoutIcon from '@mui/icons-material/Logout';
 import { mainListItems, secondaryListItems } from './Listitems'
 import Overview from './Overview';
-import Document from './Document';
 import '../css/Dashboard.css'
 import { Link } from 'react-router-dom';
 
 function Copyright(props) {
   return (
-    <Typography variant="body2" color="text.secondary" align="center" {...props}>
+    <Grid item xs={12}>
+    <Typography variant="body2" color="text.secondary" align="center" className='footer'>
       {'Copyright © '}
       
         <Link to={'/dashboard'} color="inherit">
@@ -33,7 +33,7 @@ function Copyright(props) {
       </Link>{' '}
       {new Date().getFullYear()}
       {'.'}
-    </Typography>
+    </Typography></Grid>
   );
 }
 
@@ -86,7 +86,7 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
 // TODO remove, this demo shouldn't need to reset the theme.
 const defaultTheme = createTheme();
 
-export default function Dashboard() {
+export default function Dashboard(props) {
   const [open, setOpen] = React.useState(true);
   const toggleDrawer = () => {
     setOpen(!open);
@@ -122,7 +122,7 @@ export default function Dashboard() {
               noWrap
               sx={{ flexGrow: 1 }}
             >
-              Project Overview
+              {props.title}
             </Typography>
             <Typography sx={{ marginRight:1 }}>Username</Typography> 
             <IconButton color="inherit">
@@ -166,42 +166,15 @@ export default function Dashboard() {
         >
           <Toolbar />
           <Container maxWidth="lg" sx={{ mt: 4, mb: 4 }}>
-            <Grid container spacing={3}>
-              {/* Overview */}
-              <Grid item xs={12} md={12} lg={12}>
-                <Paper
-                  sx={{
-                    p: 2,
-                    display: 'flex',
-                    flexDirection: 'column',
-                    backgroundColor: 'transparent',
-                    boxShadow:'none'
-                  }}
-                >
-                  <Overview />
-                </Paper>
-              </Grid>
-              {/* Recent Deposits */}
-              {/* <Grid item xs={12} md={4} lg={3}>
-                <Paper
-                  sx={{
-                    p: 2,
-                    display: 'flex',
-                    flexDirection: 'column',
-                    height: 240,
-                  }}
-                >
-                   <Deposits /> 
-                </Paper>
-              </Grid> */}
-              {/* Project Topic Document */}
-              <Grid item xs={12}>
-                <Paper sx={{ p: 2, display: 'flex', flexDirection: 'column' }}>
-                  <Document/>
-                </Paper>
-              </Grid>
+            <Grid container spacing={3} sx={{ml:0, width:'100%'}}>
+                           
+            {props.child}
+                
+              
             </Grid>
-            <Copyright sx={{ pt: 4 }} />
+            <Grid container spacing={3}>
+            <Copyright   />
+            </Grid>
           </Container>
         </Box>
       </Box>

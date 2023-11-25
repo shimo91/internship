@@ -20,13 +20,14 @@ export const mainListItems = (
       </ListItemIcon>
       <ListItemText primary="Overview" />
     </ListItemButton></Link>
+    <Link to={'/reference'}  sx={{textDecoration:'none'}}>
     <ListItemButton>
       <ListItemIcon>
         <ArticleIcon />
       </ListItemIcon>
       <ListItemText primary="Reference Materials" />
     </ListItemButton>
-    
+    </Link>
     
   </React.Fragment>
 );

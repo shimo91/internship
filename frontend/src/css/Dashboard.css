@@ -5,4 +5,14 @@
 nav a
 {
     text-decoration: none!important;
+    color: black;
+}
+.footer
+{
+    position: fixed;
+    bottom: 0!important;
+    padding: 10px 0px !important;
+    text-align: center;
+    justify-content: center!important;
+    width: 75%;
 }
