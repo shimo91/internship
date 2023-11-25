@@ -1,0 +1,34 @@
+.iconalign
+{
+    display: flex;
+    justify-content: center;
+}
+.iconalignleft
+{
+    display: flex;
+    justify-content: left;
+}
+.cardbutton
+{
+    justify-content: center;
+}
+.bg-gradient-danger {
+    background: -webkit-gradient(linear, left top, right top, from(#4fbadb), to(#a6e78c)) !important;
+    background: linear-gradient(to right, #4fbadb, #a6e78c) !important;
+}
+.carddiv
+{
+    min-width: 200px ;
+    background-color:transparent;
+    padding:20px;
+}
+.fontIcon{
+    font-size: 40px!important;
+}
+.fontIconText{
+    font-size: 30px!important;
+}
+.contentleft
+{
+    text-align: left;
+}
