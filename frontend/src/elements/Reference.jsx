@@ -4,7 +4,7 @@ import AccordionSummary from '@mui/material/AccordionSummary';
 import AccordionDetails from '@mui/material/AccordionDetails';
 import Typography from '@mui/material/Typography';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
-import { Grid } from '@mui/material';
+import { Grid, Link } from '@mui/material';
 
 const Reference = () => {
   return (
@@ -20,8 +20,9 @@ const Reference = () => {
         </AccordionSummary>
         <AccordionDetails>
           <Typography>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
+          The API reference documentation provides detailed information about a function or object in Node.js. This documentation indicates what arguments a method ... 
           </Typography>
+          <Link href='https://nodejs.org/en/docs' target='_blank'>Fullstack</Link>
         </AccordionDetails>
       </Accordion>
       <Accordion>

@@ -127,7 +127,7 @@ export default function Dashboard(props) {
             <Typography sx={{ marginRight:1 }}>Username</Typography> 
             <IconButton color="inherit">
               <Badge color="secondary">
-               <LogoutIcon />
+               <Link to={'/'} style={{textDecoration:'none',color:'white'}}><LogoutIcon /></Link>
               </Badge>
             </IconButton>
           </Toolbar>

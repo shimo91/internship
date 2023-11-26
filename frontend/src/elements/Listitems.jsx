@@ -53,11 +53,13 @@ export const secondaryListItems = (
       </ListItemIcon>
       <ListItemText primary="Viva Voce" />
     </ListItemButton>
+    <Link to={'/forum'}  sx={{textDecoration:'none'}}>
     <ListItemButton>
       <ListItemIcon>
         <ForumIcon />
       </ListItemIcon>
       <ListItemText primary="Discussion Forum" />
     </ListItemButton>
+    </Link>
   </React.Fragment>
 );

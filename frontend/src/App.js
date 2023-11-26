@@ -7,6 +7,7 @@ import Overview from './elements/Overview';
 import Login from './elements/Login';
 import Home from './elements/Home';
 import Signup from './elements/Signup';
+import Forum from './elements/Forum';
 
 
 function App() {
@@ -18,7 +19,7 @@ function App() {
         <Route path='/signup' element={<Signup/>}></Route>
         <Route path='/dashboard' element={<Dashboard child={<Overview />} title={'Project Overview'}/>}/>
         <Route path='/reference' element={<Dashboard child={<Reference />} title={'Reference Material'}/>}/>
-        <Route path=''/>
+        <Route path='/forum' element={<Dashboard child={<Forum />} title={'Discussion Forum'}/>}/>
       </Routes>
     </div>
   );

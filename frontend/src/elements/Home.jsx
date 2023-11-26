@@ -52,7 +52,7 @@ const defaultTheme = createTheme();
           ICT Internship Portal
           </Typography>
           <Button color="inherit"><Link to={'/login'} style={{textDecoration:'none',color:'white'}}>Login</Link></Button>
-          <Button color="inherit">Register</Button>
+          <Button color="inherit"><Link to={'/signup'} style={{textDecoration:'none',color:'white'}}>Register</Link></Button>
           
         </Toolbar>
       </AppBar>

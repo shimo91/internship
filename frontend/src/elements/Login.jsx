@@ -1,13 +1,40 @@
-import { Box, Button, TextField } from '@mui/material';
+import { AppBar, Box, Button, IconButton, TextField, Toolbar } from '@mui/material';
 import '../css/style.css'
 import React from 'react';
 import { Grid} from '@mui/material'
 import Typography from '@mui/material/Typography';
-
+import { Link } from 'react-router-dom';
+import MenuIcon from '@mui/icons-material/Menu';
 
 const Login = () => {
     
     return(
+      <div>
+<Box sx={{ flexGrow: 1 }}>
+        <AppBar position="static">
+        <Toolbar>
+          <IconButton
+            size="large"
+            edge="start"
+            color="#00838f"
+            aria-label="menu"
+            sx={{ mr: 2 }}
+          >
+            <MenuIcon />
+          </IconButton>
+          <Typography align="left" variant="h6" component="div" sx={{ flexGrow: 1 }}>
+          
+          ICT Internship Portal
+          </Typography>
+          <Button color="inherit"><Link to={'/'} style={{textDecoration:'none',color:'white'}}>Home</Link></Button>
+          <Button color="inherit"><Link to={'/signup'} style={{textDecoration:'none',color:'white'}}>Register</Link></Button>
+          
+        </Toolbar>
+      </AppBar>
+      </Box>
+
+
+
     <div className='EmpForm'>
     <Box
     component="form"
@@ -54,7 +81,9 @@ const Login = () => {
                
             /> <br /><br /><br />
    <div style={{paddingLeft:"2%"}}>
-   <Button variant="contained" className='buttonStyleMui' sx={{ backgroundColor: '#00838f' }}>Login</Button>
+   <Button variant="contained" className='buttonStyleMui' sx={{ backgroundColor: '#00838f' }}>
+   <Link to={'/dashboard'} style={{textDecoration:'none',color:'white'}}>Login</Link>
+    </Button>
    </div>
    </Grid>
    <Grid item xs={6}>
@@ -63,6 +92,7 @@ const Login = () => {
    </Grid>
       
         </Box>
+      </div>
       </div>
     );
 
