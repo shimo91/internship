@@ -1,5 +1,5 @@
 .quote{
-    background-image: url("../Images/home.jpg");
+    background-image: url("../images/home.jpg");
     height: 100%;
     background-position: center;
     background-repeat: no-repeat; 
@@ -15,7 +15,7 @@
   
   }
   .bg-img{
-    background-image: url("../Images/Login.jpg"); 
+    background-image: url("../images/Login.jpg"); 
     min-height:500px;
     background-position: center;
     background-repeat: no-repeat;
