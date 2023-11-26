@@ -1,0 +1,24 @@
+.quote{
+    background-image: url("../Images/home.jpg");
+    height: 100%;
+    background-position: center;
+    background-repeat: no-repeat; 
+    background-size: cover;
+  }
+  .title{
+    font-family: 'Brush Script MT', cursive;
+  }
+  
+  .alumini
+  {
+    font-family: 'Georgia', cursive;
+  
+  }
+  .bg-img{
+    background-image: url("../Images/Login.jpg"); 
+    min-height:500px;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+  }
