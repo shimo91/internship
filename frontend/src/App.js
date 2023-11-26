@@ -6,7 +6,7 @@ import Reference from './elements/Reference';
 import Overview from './elements/Overview';
 import Login from './elements/Login';
 import Home from './elements/Home';
-import Signup from './elements/Home';
+import Signup from './elements/Signup';
 
 
 function App() {
