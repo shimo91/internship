@@ -17,8 +17,8 @@ import MenuIcon from '@mui/icons-material/Menu';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 // import NotificationsIcon from '@mui/icons-material/Notifications';
 import LogoutIcon from '@mui/icons-material/Logout';
-import { mainListItems, secondaryListItems } from './Listitems'
-import Overview from './Overview';
+import { mainListItems, secondaryListItems } from '../elements/Listitems'
+import Overview from '../elements/Overview';
 import '../css/Dashboard.css'
 import { Link } from 'react-router-dom';
 

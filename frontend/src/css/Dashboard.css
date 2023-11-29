@@ -16,3 +16,8 @@ nav a
     justify-content: center!important;
     width: 75%;
 }
+.editor-input
+{
+    height: 200px;
+    width: 100%;
+}
