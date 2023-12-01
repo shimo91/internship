@@ -1,13 +1,23 @@
-.quote{
-    background-image: url("../images/home.jpg");
-    height: 100%;
-    background-position: center;
-    background-repeat: no-repeat; 
-    background-size: cover;
-  }
-  .title{
-    font-family: 'Brush Script MT', cursive;
-  }
+.title{
+  font-family: 'Brush Script MT', cursive;
+  color:color-mix(in srgb, color percentage, color percentage);
+}
+.subtitle{
+  font-family: 'Courier New';
+  color:black;
+}
+.image{
+  font-family: 'Courier New';
+  color:black;
+  
+  background-image: linear-gradient(rgba(255,255,255,0.75), rgba(255,255,255,0.75)), url("../images/intro.jpg");
+  min-height:500px;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
+  
+}
   
   .alumini
   {

@@ -10,13 +10,17 @@ import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
-
+import HomeIcon from '@mui/icons-material/Home';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { Copyright } from '@mui/icons-material';
 import '../css/style.css'
 import { Button, IconButton } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
 import { Link } from 'react-router-dom';
+
+import LoginSharpIcon from '@mui/icons-material/LoginSharp';
+import HowToRegSharpIcon from '@mui/icons-material/HowToRegSharp';
+
 
 const Home = () => {
   <Typography variant="body2" style={{ background: '#01579b' }} align="center">
@@ -33,32 +37,34 @@ const cards = [1, 2, 3];
 // TODO remove, this demo shouldn't need to reset the theme.
 const defaultTheme = createTheme();
   return (
-    <Box style={{background: 'linear-gradient(45deg, #18ffff 30%, #ccff90 90%)'}}
+    <Box 
     >
-      <Box sx={{ flexGrow: 1 }}>
-        <AppBar position="static">
+      {/* <ParticlesBg type="circle" bg={true} /> */}
+      
+      <Box sx={{ flexGrow: 1 }} >
+        <AppBar position="static" sx={{ backgroundColor: '#146e87' }}>
         <Toolbar>
           <IconButton
             size="large"
             edge="start"
-            color="#00838f"
+            color="#146e87"
             aria-label="menu"
             sx={{ mr: 2 }}
           >
-            <MenuIcon />
+            <HomeIcon/>
           </IconButton>
           <Typography align="left" variant="h6" component="div" sx={{ flexGrow: 1 }}>
           
           ICT Internship Portal
           </Typography>
-          <Button color="inherit"><Link to={'/login'} style={{textDecoration:'none',color:'white'}}>Login</Link></Button>
-          <Button color="inherit"><Link to={'/signup'} style={{textDecoration:'none',color:'white'}}>Register</Link></Button>
+          
           
         </Toolbar>
       </AppBar>
       </Box>
       
       <main>
+      <div className='image'>
         {/* Hero unit */}
         <Box
           sx={{
@@ -67,6 +73,7 @@ const defaultTheme = createTheme();
             pb: 6,
           }}
         >
+          
           <Container maxWidth="sm">
             <Typography
               component="h1"
@@ -79,40 +86,37 @@ const defaultTheme = createTheme();
               CareerCatalyst
               </div>
             </Typography>
-            <Typography>
-            <div className='quote'></div>
-            </Typography>
-            <Stack
-              sx={{ pt: 2}}
-              direction="row"
-              spacing={2}
-              justifyContent="center"
-            >
-            </Stack>
           </Container>
-          <div className='quote'>
           <Container maxWidth="sm">
-            {/* <Typography
+            <Typography
               component="h1"
               variant="h2"
               align="center"
               color="text.primary"
               gutterBottom
-            >
-              CareerCatalyst
-            </Typography> */}
-            <Typography>
-            <div className='quote'></div>
-            </Typography>
-            <Stack
-              sx={{ pt: 20 }}
-              direction="row"
-              spacing={2}
-              justifyContent="center"
-            >
-            </Stack>
+            ></Typography>
+          <Typography  align="center" color="text.secondary" paragraph >
+            <div className='subtitle'  style={{style:"font-size:40px"}} >
+           <h3> Experience the workplace of tomorrow today - our internships provide a glimpse into the future of your career, offering exposure to cutting-edge technologies and industry trends </h3>
+            </div>
+          </Typography>
           </Container>
-          </div>
+         
+          <Container maxWidth="sm">
+          <Stack direction="row" spacing={8} paddingLeft={'90px'}>
+      <Button  variant="contained" startIcon={<HowToRegSharpIcon />} sx={{ backgroundColor: '#146e87' }}  style={{maxWidth: '150px', maxHeight: '50px', minWidth: '150px', minHeight: '50px'}}>
+      <Link to={'/signup'} style={{textDecoration:'none',color:'white'}}>
+      Signup
+        </Link>
+      </Button>
+      <Button variant="contained" endIcon={<LoginSharpIcon />} sx={{ backgroundColor: '#146e87' }} style={{maxWidth: '150px', maxHeight: '50px', minWidth: '150px', minHeight: '50px'}}>
+      <Link to={'/login'} style={{textDecoration:'none',color:'white'}}>
+        Login
+        </Link>
+      </Button>
+    </Stack>
+          </Container>
+          
           <Container maxWidth="sm">
             <Typography
               component="h1"
@@ -123,11 +127,14 @@ const defaultTheme = createTheme();
             ></Typography>
           <Typography variant="h5" align="center" color="text.secondary" paragraph >
             <div className='title'  style={{style:"font-size:40px"}} >
-            "Learning is not attained by chance, it must be sought for with ardor and attended to with diligence." - Abigail Adams
+           <h2> "Learning is not attained by chance, it must be sought for with ardor and attended to with diligence." - Abigail Adams </h2>
             </div>
           </Typography>
           </Container>
         </Box>
+        
+</div>
+
         <h1 className='alumini'>Our Proud Alumini</h1>
         <Container sx={{ py: 8 }} maxWidth="md">
           {/* End hero unit */}
@@ -202,10 +209,14 @@ const defaultTheme = createTheme();
           </Grid>
         </Container>
       </main>
+
+
+      
+
       {/* Footer */}
       <Box style={{ background: '#01579b' }} component="footer">
         <Typography variant="h6" align="center" gutterBottom color="#f9fbe7" p={2}>
-         2023 ICT Internship Portal
+        Copyright <Copyright /> 2023 ICT_Internship,Inc.
         </Typography>
         <Typography
           variant="subtitle1"
@@ -213,11 +224,8 @@ const defaultTheme = createTheme();
           color="#f9fbe7"
           component="p"
         >
-          <Button color="inherit"><Link to={'/'} style={{textDecoration:'none',color:'white'}}>Contact Us</Link></Button>
-          <Button color="inherit"><Link to={'/'} style={{textDecoration:'none',color:'white'}}>About Us</Link></Button>
-          <Button color="inherit"><Link to={'/'} style={{textDecoration:'none',color:'white'}}>FAQ</Link></Button>
         </Typography>
-        <Copyright />
+       
       </Box>
       {/* End footer */}
     {/* </ThemeProvider> */}
