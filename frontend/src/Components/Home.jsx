@@ -214,9 +214,9 @@ const defaultTheme = createTheme();
       
 
       {/* Footer */}
-      <Box style={{ background: '#01579b' }} component="footer">
-        <Typography variant="h6" align="center" gutterBottom color="#f9fbe7" p={2}>
-        Copyright <Copyright /> 2023 ICT_Internship,Inc.
+      <Box style={{ background: '#146e87' }} component="footer">
+        <Typography variant="h6" align="center" gutterBottom color="#f9fbe7" p={2} style={{fontSize:'14px'}}>
+        {'Copyright © '} 2023 ICT_Internship,Inc.
         </Typography>
         <Typography
           variant="subtitle1"

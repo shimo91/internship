@@ -21,18 +21,18 @@ import { mainListItems, secondaryListItems } from '../elements/Listitems'
 import Overview from '../elements/Overview';
 import '../css/Dashboard.css'
 import { Link } from 'react-router-dom';
+import { red } from '@mui/material/colors';
 
 function Copyright(props) {
   return (
-    <Grid item xs={12}>
-    <Typography variant="body2" color="text.secondary" align="center" className='footer'>
+    <Grid item xs={12}  className='footerdiv'>
+    <Typography variant="body2" align="center" className='footer'>
       {'Copyright © '}
       
-        <Link to={'/dashboard'} color="inherit">
+        <Link to={'/dashboard'} color="inherit" style={{textDecoration:'none', color:'#fff'}}>
       ICTAK Internship Portal
       </Link>{' '}
       {new Date().getFullYear()}
-      {'.'}
     </Typography></Grid>
   );
 }
@@ -127,7 +127,7 @@ export default function Dashboard(props) {
             <Typography sx={{ marginRight:1 }}>Username</Typography> 
             <IconButton color="inherit">
               <Badge color="secondary">
-               <Link to={'/'} style={{textDecoration:'none',color:'white'}}><LogoutIcon /></Link>
+               <Link to={'/logout'} style={{textDecoration:'none',color:'white'}}><LogoutIcon /></Link>
               </Badge>
             </IconButton>
           </Toolbar>
@@ -171,8 +171,8 @@ export default function Dashboard(props) {
             {props.child}
                 
             </Grid>
-            <Grid container spacing={3}>
-            <Copyright   />
+            <Grid container spacing={3} className='footerContainer'>
+            <Copyright  />
             </Grid>
           </Container>
         </Box>

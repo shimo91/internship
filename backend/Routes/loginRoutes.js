@@ -31,10 +31,10 @@ router.post('/', async (req, res) => {
             const user = await userData.findOne({ username, password });
 
         if (user) {
-            console.log('User found');
+            //console.log('User found'+user._id);
 
             // Generate token with a unique identifier (e.g., user ID)
-            let payload = { username: username, password: password };
+            let payload = { username: username, password: password ,userid : user._id};
             const token = jwt.sign(payload, 'yourSecretKey');
 
             // Send success response with token

@@ -13,7 +13,7 @@ const Navbar = () => {
   return (
     <Box sx={{ flexGrow: 1 }}>
     <AppBar position="static" style={{ background: '#146e87' }}>
-    <Toolbar>
+    <Link to={'/'} style={{textDecoration:'none',color:'#fff'}}><Toolbar>
       <IconButton
         size="large"
         edge="start"
@@ -27,10 +27,9 @@ const Navbar = () => {
       
       ICT Internship Portal
       </Typography>
-      <Button color="inherit"><Link to={'/'} style={{textDecoration:'none',color:'white'}}>Logout</Link></Button>
      
       
-    </Toolbar>
+    </Toolbar></Link>
   </AppBar>
   </Box>
   )
