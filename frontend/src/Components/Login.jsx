@@ -1,41 +1,38 @@
-import { AppBar, Box, Button, IconButton, TextField, Toolbar } from '@mui/material';
-import '../css/style.css'
-import React from 'react';
+import { Box, Button, TextField } from '@mui/material';
+import axios from 'axios';
+import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { Grid} from '@mui/material'
-import Typography from '@mui/material/Typography';
-import { Link } from 'react-router-dom';
-import MenuIcon from '@mui/icons-material/Menu';
 
 const Login = () => {
-    
-    return(
-      <div>
-<Box sx={{ flexGrow: 1 }}>
-        <AppBar position="static">
-        <Toolbar>
-          <IconButton
-            size="large"
-            edge="start"
-            color="#00838f"
-            aria-label="menu"
-            sx={{ mr: 2 }}
-          >
-            <MenuIcon />
-          </IconButton>
-          <Typography align="left" variant="h6" component="div" sx={{ flexGrow: 1 }}>
-          
-          ICT Internship Portal
-          </Typography>
-          <Button color="inherit"><Link to={'/'} style={{textDecoration:'none',color:'white'}}>Home</Link></Button>
-          <Button color="inherit"><Link to={'/signup'} style={{textDecoration:'none',color:'white'}}>Register</Link></Button>
-          
-        </Toolbar>
-      </AppBar>
-      </Box>
-
-
-
-    <div className='EmpForm'>
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
+  const navigate=useNavigate();
+   
+    function submitForm() {
+      {
+        console.log('Entered Username:', username);
+        console.log('Entered Password:', password);
+        axios.post('http://localhost:4000/login', {username,password})
+        .then((res) => {
+          alert(res.data.message);
+          if (res.data.message === 'success') {
+            sessionStorage.setItem("userToken", res.data.token);
+            navigate('/dashboard')
+          }
+        })
+        .catch((error) => {
+          if (error.response && error.response.status === 401) {
+            alert('Invalid credentials. Please try again.');
+          } else {
+            console.error('Error during login:', error);
+            alert('An error occurred. Please try again later.');
+          }
+        });
+       
+      }
+    }
+    return(<div className='EmpForm'>
     <Box
     component="form"
     sx={{
@@ -47,43 +44,34 @@ const Login = () => {
     
     <Grid container spacing={2} >
       <Grid item xs={6}>
-       <Typography
-              component="h1"
-              variant="h2"
-              align="center"
-              color="#00838f"
-              gutterBottom
-              fontFamily={'Brush Script MT'}
-            >
-              Welcome Back ..!!
-            </Typography> 
+      <div className='heading'><h4>Employee Form</h4></div>
      </Grid>
    </Grid>
    
    <Grid container spacing={2} >
    <Grid item xs={6}>
-   <TextField
-              className='textFieldStyleMui'
-              id="standard-basic"
-              variant="standard"
-              label="Email"
-              name='email' 
-             
-            />
+            <input
+        type="text"
+        id="username"
+        name="username"
+        value={username}
+        onChange={(e) => setUsername(e.target.value)}
+        required
+      />
             <br /><br /><br />
-            <TextField
-              className='textFieldStyleMui'
-              id="standard-basic"
-              variant="standard"
-              label="Password"
-              type='password'
-              name='password'
-               
-            /> <br /><br /><br />
-   <div style={{paddingLeft:"2%"}}>
-   <Button variant="contained" className='buttonStyleMui' sx={{ backgroundColor: '#00838f' }}>
-   <Link to={'/dashboard'} style={{textDecoration:'none',color:'white'}}>Login</Link>
-    </Button>
+
+            <input
+        type="password"
+        id="password"
+        name="password"
+        value={password}
+        onChange={(e) => setPassword(e.target.value)}
+        
+        
+        required
+      /> <br /><br /><br /> 
+   <div style={{paddingLeft:"25%"}}>
+   <Button variant="contained" className='buttonStyleMui' sx={{ backgroundColor: '#5f44a3' }} onClick={submitForm}>Login</Button>
    </div>
    </Grid>
    <Grid item xs={6}>
@@ -93,8 +81,7 @@ const Login = () => {
       
         </Box>
       </div>
-      </div>
     );
-
-}
+  }
+  
   export default Login;

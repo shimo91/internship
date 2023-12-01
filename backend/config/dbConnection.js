@@ -1,13 +1,8 @@
-const mongoose = require("mongoose")
-
-const connectDb = async () =>{
-    try {
-        const connection = await mongoose.connect(process.env.CONNECTION_STRING)
-        console.log("database connected", connection.connection.host, connection.connection.name )
-    } catch (error) {
-        console.log(error)
-        process.exit(1)
-    }
-}
-
-module.exports = connectDb
+const { default: mongoose } = require("mongoose");
+mongoose.connect('mongodb+srv://ayanagangadharan1402:Ayana123@cluster0.egurskh.mongodb.net/UserDB?retryWrites=true&w=majority')
+.then(()=>{
+    console.log("Connected")
+})
+.catch(()=>{
+    console.log(" Not Connected")
+})
