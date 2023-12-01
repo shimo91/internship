@@ -32,3 +32,9 @@
     background-size: cover;
     position: relative;
   }
+  .heading{
+    font-family: Copperplate, Papyrus, fantasy;
+    padding-left: 5%;
+    font-size: larger;
+    padding-bottom: 10%;
+  }

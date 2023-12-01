@@ -42,36 +42,39 @@ const Login = () => {
     noValidate
     >
     
-    <Grid container spacing={2} >
+    <Grid container spacing={10} >
       <Grid item xs={6}>
-      <div className='heading'><h4>Employee Form</h4></div>
+      <div className='heading'><h2>Welcome Back User!!</h2></div>
      </Grid>
    </Grid>
    
    <Grid container spacing={2} >
    <Grid item xs={6}>
-            <input
-        type="text"
-        id="username"
-        name="username"
-        value={username}
-        onChange={(e) => setUsername(e.target.value)}
-        required
-      />
+           
+       <TextField
+              className='textFieldStyleMui'
+              id="username"
+              name="username"
+              value={username}
+             onChange={(e) => setUsername(e.target.value)}
+             required
+             
+            />
             <br /><br /><br />
 
-            <input
-        type="password"
-        id="password"
-        name="password"
-        value={password}
-        onChange={(e) => setPassword(e.target.value)}
-        
-        
-        required
-      /> <br /><br /><br /> 
-   <div style={{paddingLeft:"25%"}}>
-   <Button variant="contained" className='buttonStyleMui' sx={{ backgroundColor: '#5f44a3' }} onClick={submitForm}>Login</Button>
+           
+      <TextField
+              className='textFieldStyleMui'
+              type='password'
+              id="password"
+              name="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              required
+            />
+      <br /><br /><br /> 
+   <div style={{paddingLeft:"4%"}}>
+   <Button variant="contained" className='buttonStyleMui' sx={{ backgroundColor: '#146e87' }} onClick={submitForm}>Login</Button>
    </div>
    </Grid>
    <Grid item xs={6}>

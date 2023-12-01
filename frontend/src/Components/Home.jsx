@@ -153,7 +153,7 @@ const defaultTheme = createTheme();
                   />
                   <CardContent sx={{ flexGrow: 1 }}>
                     <Typography gutterBottom variant="h5" component="h2">
-                      Cristina Yang
+                      Chaitra Chandran
                     </Typography>
                     <Typography>
                     "I owe a significant part of my career success to the internship in IOT I completed at ICT.
@@ -175,7 +175,7 @@ const defaultTheme = createTheme();
                   />
                   <CardContent sx={{ flexGrow: 1 }}>
                     <Typography gutterBottom variant="h5" component="h2">
-                      Merideth Grey
+                      Kavya P C
                     </Typography>
                     <Typography>
                     "Interning at ICT was an eye-opening experience. The collaborative environment and mentorship I received helped me apply theoretical knowledge to practical scenarios." 
@@ -197,7 +197,7 @@ const defaultTheme = createTheme();
                   />
                   <CardContent sx={{ flexGrow: 1 }}>
                     <Typography gutterBottom variant="h5" component="h2">
-                      Derek Shepered
+                      Rahul Ramesh
                     </Typography>
                     <Typography>
                     "The projects I undertook were directly applicable to the job I secured at Google. This internship truly prepared me for the dynamic challenges of the ICT industry"
