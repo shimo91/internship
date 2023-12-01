@@ -99,6 +99,17 @@ export default function SignUp() {
                 <TextField
                   required
                   fullWidth
+                  id="number"
+                  label="Phone Number"
+                  name="phoneNumber"
+                  autoComplete="phone-number"
+                />
+              </Grid>
+{/* made changes here */}
+              <Grid item xs={12}>
+                <TextField
+                  required
+                  fullWidth
                   name="password"
                   label="Password"
                   type="password"
@@ -106,6 +117,7 @@ export default function SignUp() {
                   autoComplete="new-password"
                 />
               </Grid>
+{/* change ends here */}
             </Grid>
             <Button
               type="submit"
