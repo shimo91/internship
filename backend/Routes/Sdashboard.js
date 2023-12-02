@@ -2,7 +2,7 @@ const express=require('express')
 const mongoose=require('mongoose');
 const router = express.Router()
 const cors = require('cors');
-const student=require('../Models/Studentdata.js');
+const student=require('../Models/StudentTopic');
 const app=new express();
 const jwt = require('jsonwebtoken');
 
