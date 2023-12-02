@@ -8,7 +8,8 @@ const PORT = process.env.PORT
 const morgan= require('morgan');
 app.use(morgan('dev'));
 
-require('./config/dbConnection')
+require('./config/dbConnection') // calling
+
 const loginRoutes = require('./Routes/loginRoutes')
 app.use('/login',loginRoutes)
 
@@ -17,6 +18,9 @@ app.use('/discussion',routerFile);
 
 const routerCommentFile = require('./Routes/comment');
 app.use('/comment',routerCommentFile);
+
+const routerstudent = require('./Routes/Sdashboard');
+app.use('/sdashbaord',routerstudent);
 
 
 app.listen(PORT,()=>{
