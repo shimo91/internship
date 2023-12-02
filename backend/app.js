@@ -22,6 +22,10 @@ app.use('/comment',routerCommentFile);
 const routerstudent = require('./Routes/Sdashboard');
 app.use('/sdashbaord',routerstudent);
 
+const routerweek = require('./Routes/Week');
+app.use('/week',routerweek);
+
+
 
 app.listen(PORT,()=>{
     console.log('Listening to '+ PORT)
