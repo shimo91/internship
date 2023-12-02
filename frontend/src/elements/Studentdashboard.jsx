@@ -5,6 +5,7 @@ import axiosInstance from '../Axiosinterceptor';
 import { Box, CssBaseline, AppBar, Toolbar, Typography, IconButton, Card, CardContent, CardMedia, CardActions, Button, Container, Grid, Paper, TextField, Modal } from '@mui/material';
 import ExitToAppIcon from '@mui/icons-material/ExitToApp';
 import { Link } from 'react-router-dom';
+import MenuBookIcon from '@mui/icons-material/MenuBook';
 
 
 
@@ -156,15 +157,29 @@ const Studentdashboard = (props) => {
       <CssBaseline />
       
       <AppBar position="fixed" style={{ background: '#146e87' }}>
-        <Toolbar>
-          <Typography variant="h6" noWrap component="div" sx={{ flexGrow: 1, textAlign: 'center' }}>
+      <Toolbar>
+        <IconButton
+          size="large"
+          edge="start"
+          color="inherit"
+          aria-label="menu"
+          sx={{ mr: 2 }}
+        >
+          <MenuBookIcon />
+        </IconButton>
+        <Typography align="left" variant="h6" component="div" sx={{ flexGrow: 1 }}>
+          ICT Internship Portal
+        </Typography>
+        <Grid container justifyContent="center" alignItems="center" sx={{ flexGrow: 1 }}>
+          <Typography variant="h6" noWrap>
             Student Dashboard
           </Typography>
-          <IconButton color="inherit" aria-label="Logout">
-            Exit<ExitToAppIcon />
-          </IconButton>
-        </Toolbar>
-      </AppBar>
+        </Grid>
+        <IconButton color="inherit" aria-label="Logout">
+          Exit<ExitToAppIcon />
+        </IconButton>
+      </Toolbar>
+    </AppBar>
       
       <Container sx={{ flexGrow: 1, bgcolor: 'background.default', p: 3, paddingTop: '80px' }}>
         <Typography variant="h6" noWrap component="div" sx={{ textAlign: 'center', fontSize: '40px',color:'#146e87'}}>
