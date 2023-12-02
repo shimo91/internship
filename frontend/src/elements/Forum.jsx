@@ -11,6 +11,7 @@ import { green } from '@mui/material/colors';
 import { blue } from '@mui/material/colors';
 import { indigo } from '@mui/material/colors';
 import axios from 'axios';
+import { useData } from '../context/DataContext';
 
 const style = {
   width: '100%',
@@ -37,21 +38,26 @@ const Forum = () => {
     setAnchorEl(null);
   };
 
+  var { datauserId } = useData();
+
   const [list,setlist]=useState([]);
 
   useEffect(()=>{
 
-    axios.get('http://127.0.0.1:4000/discussion/getUserlist').then((res)=>{
+    axios.get('http://127.0.0.1:4000/discussion/getUserlist/'+datauserId).then((res)=>{
       setlist(...list,res.data);
       console.log(list);
     })
   },[]);
 
   const [mylist,setmylist]=useState([]);
+ 
 
   useEffect(()=>{
 
-    axios.get('http://127.0.0.1:4000/discussion/getmylist').then((res)=>{
+   
+
+    axios.get('http://127.0.0.1:4000/discussion/getmylist/'+datauserId).then((res)=>{
       setmylist(...mylist,res.data);
       console.log(mylist);
     })
