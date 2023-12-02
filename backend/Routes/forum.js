@@ -17,32 +17,25 @@ router.get('/get/:id',async(req,res)=>{
     }
 })
 
-router.get('/getUserlist',async(req,res)=>{
+
+
+router.get('/getUserlist/:id',async(req,res)=>{
     try {
         const id=req.params.id;
-        const data = await DisData.find();
-        //console.log("data is "+data)
+        console.log("userlist id :"+id);
+        const data = await DisData.find({userid: { $nin: [ id ] }});
+        
         res.status(200).send(data);
     } catch (error) {
         res.status(400).send(error);
     }
 })
-
-router.get('/getUserlist',async(req,res)=>{
+ 
+router.get('/getmylist/:id',async(req,res)=>{
     try {
         const id=req.params.id;
-        const data = await DisData.find();
-        //console.log("data is "+data)
-        res.status(200).send(data);
-    } catch (error) {
-        res.status(400).send(error);
-    }
-})
-
-router.get('/getmylist',async(req,res)=>{
-    try {
-        const id=req.params.id;
-        const data = await DisData.find();
+        console.log("get my list id is : "+id)
+        const data = await DisData.find({"userid": id});
         //console.log("data is "+data)
         res.status(200).send(data);
     } catch (error) {

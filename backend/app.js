@@ -10,10 +10,12 @@ app.use(morgan('dev'));
 
 require('./config/dbConnection') // calling
 
+
+
 const loginRoutes = require('./Routes/loginRoutes')
 app.use('/login',loginRoutes)
 
-const routerFile = require('./Routes/discussion');
+const routerFile = require('./Routes/forum');
 app.use('/discussion',routerFile);
 
 const routerCommentFile = require('./Routes/comment');
