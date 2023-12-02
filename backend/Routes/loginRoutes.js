@@ -3,6 +3,7 @@ const router = express.Router()
 const userData = require('../Models/UserData')
 const jwt = require('jsonwebtoken')
 const cors = require('cors')
+const bcrypt = require('bcryptjs')
 
 
 router.use(express.json())
@@ -28,18 +29,26 @@ router.post('/', async (req, res) => {
         console.log(req.body)
 
         
-            const user = await userData.findOne({ username, password });
+            const user = await userData.findOne({username});
+
 
         if (user) {
             //console.log('User found'+user._id);
+            // checking the passwords by decrypting stored password with input password
+            const matchPassword = bcrypt.compareSync(password, user.password)
+            if (!matchPassword) {
+                res.status(401).send('Invalid credentials')
+            }else{
+                
+                // Generate token with a unique identifier (e.g., user ID)
+                let payload = { username: username, password: password ,userid : user._id};
+                const token = jwt.sign(payload, 'yourSecretKey');
+    
+                // Send success response with token
+             res.status(200).json({ message: 'success', token });
+                // res.status(200).json(user);
+            }
 
-            // Generate token with a unique identifier (e.g., user ID)
-            let payload = { username: username, password: password ,userid : user._id};
-            const token = jwt.sign(payload, 'yourSecretKey');
-
-            // Send success response with token
-         res.status(200).json({ message: 'success', token });
-            // res.status(200).json(user);
 
         } else {
             console.log('User not found');

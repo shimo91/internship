@@ -1,4 +1,5 @@
 import * as React from 'react';
+import {useState} from 'react'
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -12,6 +13,8 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { grey } from '@mui/material/colors';
 import Alert from '@mui/material/Alert';
 import { Link } from 'react-router-dom';
+import axios from 'axios'
+import {useNavigate} from 'react-router-dom'
 
 function Copyright(props) {
   return (
@@ -31,13 +34,100 @@ function Copyright(props) {
 const defaultTheme = createTheme();
 
 export default function SignUp() {
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    console.log({
-      email: data.get('email'),
-      password: data.get('password'),
+  const navigate = useNavigate()
+
+  // State to manage form data
+  const [formData, setFormData] = useState({
+    firstName: '',
+    lastName: '',
+    email: '',
+    phoneNumber: '',
+    password: '',
+  });
+
+  // State to manage form errors
+  const [formErrors, setFormErrors] = useState({
+    firstName: '',
+    lastName: '',
+    email: '',
+    phoneNumber: '',
+    password: '',
+  });
+
+  // Function to handle input changes and update form data
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({
+      ...formData,
+      [name]: value,
     });
+  };
+  // Function to perform form validation
+  const validateForm = () => {
+    const errors = {};
+    // Add validation rules for each field
+    if (formData.firstName.trim() === '') {
+      errors.firstName = 'First Name is required';
+    }
+
+    if (formData.lastName.trim() === '') {
+      errors.lastName = 'Last Name is required';
+    }
+
+    // Add email validation
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(formData.email)) {
+      errors.email = 'Invalid email address';
+    }
+
+    // Add phone number validation
+    const phoneRegex = /^\d{10}$/;
+    if (!phoneRegex.test(formData.phoneNumber)) {
+      errors.phoneNumber = 'Invalid phone number';
+    }
+
+    // Add password validation
+    if (formData.password.length < 6) {
+      errors.password = 'Password must be at least 6 characters';
+    }
+
+    setFormErrors(errors);
+    console.log("errors",errors)
+    console.log("form errors",formErrors)
+
+    // Return true if there are no errors, false otherwise
+    return Object.values(errors).every((error) => error === '');
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const data = new FormData(e.currentTarget);
+    console.log("form data",data)
+    const formData = {
+      username: data.get('email'),
+      password: data.get('password'),
+      phone: data.get('number'),
+      first_name: data.get('firstName'),
+      last_name: data.get('lastName')
+    }
+    if(!formErrors.email && !formErrors.password && !formErrors.phoneNumber && !formErrors.firstName && !formErrors.lastName ){
+       try {   
+        const response = await axios.post('http://localhost:4000/signup', formData)
+        alert(response.data.message)
+        navigate('/login')
+      } catch (error) {
+        console.log("error", error)
+        alert(error.response.data.message)
+      }
+    }
+    // setFormData({
+    //   firstName: '',
+    //   lastName: '',
+    //   email: '',
+    //   phoneNumber: '',
+    //   password: '',
+    // })
+
   };
 
   return (
@@ -59,7 +149,7 @@ export default function SignUp() {
           <Typography component="h1" variant="h5">
             Sign up
           </Typography>
-          <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 3 }}>
+          <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 3 }}>
             <Grid container spacing={2}>
               <Grid item xs={12} sm={6}>
                 <TextField
@@ -70,6 +160,9 @@ export default function SignUp() {
                   id="firstName"
                   label="First Name"
                   autoFocus
+                  onChange={handleInputChange}
+                  error={!!formErrors.firstName}
+                  helperText={formErrors.firstName}
                 />
               </Grid>
               <Grid item xs={12} sm={6}>
@@ -80,6 +173,9 @@ export default function SignUp() {
                   label="Last Name"
                   name="lastName"
                   autoComplete="family-name"
+                  onChange={handleInputChange}
+                  error={!!formErrors.lastName}
+                  helperText={formErrors.lastName}
                 />
               </Grid>
               <Grid item xs={12}>
@@ -93,6 +189,9 @@ export default function SignUp() {
                   label="Email Address"
                   name="email"
                   autoComplete="email"
+                  onChange={handleInputChange}
+                  error={!!formErrors.email}
+                  helperText={formErrors.email}
                 />
               </Grid>
               <Grid item xs={12}>
@@ -103,6 +202,9 @@ export default function SignUp() {
                   label="Phone Number"
                   name="phoneNumber"
                   autoComplete="phone-number"
+                  onChange={handleInputChange}
+                  error={!!formErrors.phoneNumber}
+                  helperText={formErrors.phoneNumber}
                 />
               </Grid>
 {/* made changes here */}
@@ -115,6 +217,9 @@ export default function SignUp() {
                   type="password"
                   id="password"
                   autoComplete="new-password"
+                  onChange={handleInputChange}
+                  error={!!formErrors.password}
+                  helperText={formErrors.password}
                 />
               </Grid>
 {/* change ends here */}
@@ -124,6 +229,7 @@ export default function SignUp() {
               fullWidth
               variant="contained"
               sx={{ mt: 3, mb: 2, bgcolor: 'limegreen', color: 'Black' }}
+              onClick={()=>validateForm() && handleSubmit}
             >
               Sign Up
             </Button>
