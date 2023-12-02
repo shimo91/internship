@@ -26,6 +26,9 @@ app.use('/discussion',routerFile);
 const routerCommentFile = require('./Routes/comment');
 app.use('/comment',routerCommentFile);
 
+const routerstudent = require('./Routes/Sdashboard');
+app.use('/sdashbaord',routerstudent);
+
 
 app.listen(PORT,()=>{
     console.log('Listening to '+ PORT)

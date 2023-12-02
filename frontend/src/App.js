@@ -12,6 +12,8 @@ import Discussion from './elements/Discussion';
 import ViewDiscussion from './elements/ViewDiscussion';
 import Main from './Components/Main';
 import { Logout } from './elements/Logout';
+import Studentdashboard from './elements/Studentdashboard';
+import Week from './elements/Week';
 
 
 function App() {
@@ -29,6 +31,8 @@ function App() {
         <Route path='/discussion' element={<Dashboard child={<Discussion />} title={'Discussion Forum'}/>}/>
         <Route path='/viewdiscussion/:id' element={<Dashboard child={<ViewDiscussion />} title={'Discussion Forum'}/>}/>
         <Route path="/logout" element={<Logout/>}/>
+        <Route path="/sdashboard" element={<Studentdashboard />} />
+        <Route path='/week' element={<Dashboard child={<Week />} title={'Weekly reports'}/>}/>
       </Routes>
     </div>
   );
