@@ -4,6 +4,8 @@ import React, { useState } from 'react'; // Import React and the hooks from 'rea
 import axiosInstance from '../Axiosinterceptor';
 import { Box, CssBaseline, AppBar, Toolbar, Typography, IconButton, Card, CardContent, CardMedia, CardActions, Button, Container, Grid, Paper, TextField, Modal } from '@mui/material';
 import ExitToAppIcon from '@mui/icons-material/ExitToApp';
+import { Link } from 'react-router-dom';
+
 
 
 const topics = [
@@ -78,7 +80,7 @@ const Studentdashboard = (props) => {
 
 
  
-
+ 
 
 
   const handleCancel = () => {
@@ -117,6 +119,7 @@ const Studentdashboard = (props) => {
       studentId: formData.studentId,
       selectedTopic: selectedTopic, // Send the entire selected topic object
     };
+   
   
     axiosInstance.post('http://localhost:4000/sdashbaord/add', dataToSend)
     .then((response) => {
@@ -141,12 +144,15 @@ const Studentdashboard = (props) => {
 
 
   return (
-    <Box sx={{ 
+    <Box   sx={{
       display: 'flex',
       minHeight: '100vh',
-      
-      
-    }}>
+      position: 'relative',
+      backgroundImage: `url('./src/images/intro.jpg')`,
+      backgroundRepeat: 'no-repeat',
+    backgroundSize: 'cover',
+    }}
+  >
       <CssBaseline />
       
       <AppBar position="fixed" style={{ background: '#146e87' }}>
@@ -161,7 +167,7 @@ const Studentdashboard = (props) => {
       </AppBar>
       
       <Container sx={{ flexGrow: 1, bgcolor: 'background.default', p: 3, paddingTop: '80px' }}>
-        <Typography variant="h6" noWrap component="div" sx={{ textAlign: 'center', fontSize: '50px',color:'Highlight' }}>
+        <Typography variant="h6" noWrap component="div" sx={{ textAlign: 'center', fontSize: '40px',color:'#146e87'}}>
           Main Topics
         </Typography>
         <br/>
@@ -188,7 +194,8 @@ const Studentdashboard = (props) => {
                     <Button size="small" onClick={() => handleSelectTopic(topic)} disabled={disabledTopics.includes(topic.title)}>
                       Select topic
                     </Button>
-                    <Button size="small">View More</Button>
+                    <Button size="small" component={Link} to={`/topic/${index}`}>View More</Button>
+
                   </CardActions>
                 </Card>
               </Paper>
