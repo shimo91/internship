@@ -3,12 +3,20 @@ const app = new express()
 require('dotenv').config()
 const cors = require('cors')
 app.use(cors());
+app.use(express.json())
+app.use(express.urlencoded({extended:true}))
+
 const PORT = process.env.PORT
 
 const morgan= require('morgan');
 app.use(morgan('dev'));
 
 require('./config/dbConnection')
+
+// signup route
+const signupRoutes = require('./Routes/signupRoutes')
+app.use('/signup', signupRoutes)
+
 const loginRoutes = require('./Routes/loginRoutes')
 app.use('/login',loginRoutes)
 
