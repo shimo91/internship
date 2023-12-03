@@ -6,7 +6,7 @@ import { Box, CssBaseline, AppBar, Toolbar, Typography, IconButton, Card, CardCo
 import ExitToAppIcon from '@mui/icons-material/ExitToApp';
 import { Link } from 'react-router-dom';
 import MenuBookIcon from '@mui/icons-material/MenuBook';
-
+import { useNavigate } from 'react-router-dom';
 
 
 const topics = [
@@ -66,7 +66,7 @@ const Studentdashboard = (props) => {
     // Add other fields from props if needed
   });
   
-  
+  const navigate=useNavigate();
 
   const [errors, setErrors] = useState({});
   const [disabledTopics, setDisabledTopics] = useState([]);
@@ -120,7 +120,7 @@ const Studentdashboard = (props) => {
       studentId: formData.studentId,
       selectedTopic: selectedTopic, // Send the entire selected topic object
     };
-   
+    
   
     axiosInstance.post('http://localhost:4000/sdashbaord/add', dataToSend)
     .then((response) => {
@@ -129,6 +129,7 @@ const Studentdashboard = (props) => {
       setSelectedTopic(null);
       setFormData({ studentId: '' });
       alert(response.data);
+      navigate('/dashboard')
     })
     .catch((error) => {
       console.error('Error submitting data:', error);

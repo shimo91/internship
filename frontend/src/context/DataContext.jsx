@@ -10,7 +10,7 @@ export const DataProvider = ({ children }) => {
   console.log("token : "+decodeToken.userid+" username :"+decodeToken.username)
   const loginedUser=decodeToken.username;
   const loginedId=decodeToken.userid;
-
+  const stdname=decodeToken.stdname;
   const [datauserId, setDataId] = useState(loginedId);
 
   // const setNewDataId = (id) => {
@@ -18,7 +18,7 @@ export const DataProvider = ({ children }) => {
   // };
 
   return (
-    <DataContext.Provider value={{ datauserId, loginedUser }}>
+    <DataContext.Provider value={{ datauserId, loginedUser,stdname }}>
       {children}
     </DataContext.Provider>
   );
@@ -27,3 +27,4 @@ export const DataProvider = ({ children }) => {
 export const useData = () => {
   return useContext(DataContext);
 };
+

@@ -34,13 +34,14 @@ export const mainListItems = (
 
 export const secondaryListItems = (
   <React.Fragment>
-   
+   <Link to={'/week'}  sx={{textDecoration:'none'}}>
     <ListItemButton>
       <ListItemIcon>
         <AssignmentIcon />
       </ListItemIcon>
       <ListItemText primary="Weekly Reports" />
     </ListItemButton>
+    </Link>
     <ListItemButton>
       <ListItemIcon>
         <AssessmentIcon />

@@ -64,6 +64,8 @@ const Forum = () => {
   },[]);
 
 
+
+
   return (
     <Grid container spacing={2} direction="row" justifyContent="center" alignItems="center" paddingTop={'20px'}>
       <Grid item xs={12} md={12} lg={12}>
