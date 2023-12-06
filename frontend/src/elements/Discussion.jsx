@@ -38,7 +38,7 @@ const Discussion = () => {
     var dis_id;
 
     const { datauserId } = useData();
-    const { loginedUser } = useData();
+    const { stdname } = useData();
 
     const addHandler = ()=>{
         console.log('clicked addHandler : ');
@@ -46,7 +46,7 @@ const Discussion = () => {
         const dataToSend = {
             ...disData,
             description: htmlValue,
-            username:loginedUser,
+            username:stdname,
             userid:datauserId
             // other data if needed
           };
@@ -57,7 +57,7 @@ const Discussion = () => {
             {
                 // alert(res.data);
                dis_id=res.data.id;
-               console.log("data id :"+dis_id)
+               //console.log("data id :"+dis_id)
                 setOpen(true);
                 
                 //setNewDataId(dis_id);

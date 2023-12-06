@@ -7,7 +7,7 @@ export const DataProvider = ({ children }) => {
 
   const token = sessionStorage.getItem("userToken");
   const decodeToken =jwtDecode(token);
-  console.log("token : "+decodeToken.userid+" username :"+decodeToken.username)
+ // console.log("token : "+decodeToken.userid+" username :"+decodeToken.username)
   const loginedUser=decodeToken.username;
   const loginedId=decodeToken.userid;
   const stdname=decodeToken.stdname;

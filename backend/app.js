@@ -34,7 +34,8 @@ app.use('/sdashbaord',routerstudent);
 const routerweek = require('./Routes/Week');
 app.use('/week',routerweek);
 
-
+const routerReplyFile = require('./Routes/reply');
+app.use('/reply',routerReplyFile);
 
 app.listen(PORT,()=>{
     console.log('Listening to '+ PORT)
