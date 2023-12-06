@@ -41,18 +41,21 @@ export const secondaryListItems = (
       </ListItemIcon>
       <ListItemText primary="Weekly Reports" />
     </ListItemButton>
+    <Link to={'/report'}  sx={{textDecoration:'none'}}>
     <ListItemButton>
       <ListItemIcon>
         <AssessmentIcon />
       </ListItemIcon>
       <ListItemText primary="Final Reports" />
     </ListItemButton>
+    </Link>
     <ListItemButton>
       <ListItemIcon>
         <PeopleIcon />
       </ListItemIcon>
       <ListItemText primary="Viva Voce" />
     </ListItemButton>
+    
     <Link to={'/forum'}  sx={{textDecoration:'none'}}>
     <ListItemButton>
       <ListItemIcon>

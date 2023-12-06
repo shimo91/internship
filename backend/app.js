@@ -20,6 +20,11 @@ app.use('/signup', signupRoutes)
 const loginRoutes = require('./Routes/loginRoutes')
 app.use('/login',loginRoutes)
 
+const reprotRoutes = require('./Routes/reportRoutes')
+app.use('/report',reprotRoutes)
+
+
+
 const routerFile = require('./Routes/discussion');
 app.use('/discussion',routerFile);
 
