@@ -84,4 +84,21 @@ router.delete('/remove/:id',async(req,res)=>{
     }
 })
 
+router.get('/total/:id', async (req, res) => {
+    try 
+    {
+        const id=req.params.id;
+        const totalDocuments  = await DisData.countDocuments({"userid": id});
+        //console.log("total :"+totalDocuments)
+        res.status(200).send({message:'total',total:totalDocuments});
+    }
+    catch (error) 
+    {
+        console.log("error is :"+error)
+        res.status(404).send('Error!!');
+    }
+})
+
+
+
 module.exports=router;

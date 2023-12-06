@@ -28,7 +28,7 @@ function App() {
         <Route path='/login' element={<Main child={<Login />} />} />
 
         <Route path='/signup' element={<Main child={<Signup />} />}></Route>
-        <Route path='/dashboard' element={<Dashboard child={<Overview />} title={'Project Overview'} />} />
+        <Route path='/dashboard' element={<Dashboard child={<DataProvider><Overview /></DataProvider>} title={'Project Overview'} />} />
         <Route path='/reference' element={<Dashboard child={<Reference />} title={'Reference Material'} />} />
         <Route path='/forum' element={<Dashboard child={<DataProvider><Forum /></DataProvider>} title={'Discussion Forum'} />} />
         <Route path='/discussion' element={<Dashboard child={<DataProvider><Discussion /></DataProvider>} title={'Discussion Forum'} />} />
