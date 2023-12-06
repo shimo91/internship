@@ -39,9 +39,9 @@ router.post('/', async (req, res) => {
             if (!matchPassword) {
                 res.status(401).send('Invalid credentials')
             }else{
-                
+                const std_name=user.first_name+" "+user.last_name;
                 // Generate token with a unique identifier (e.g., user ID)
-                let payload = { username: username, password: password ,userid : user._id};
+                let payload = { username: username, password: password ,userid : user._id,stdname : std_name};
                 const token = jwt.sign(payload, 'yourSecretKey');
     
                 // Send success response with token
@@ -61,4 +61,20 @@ router.post('/', async (req, res) => {
         return;
     }
 })
+
+
+router.get('/getuser/:id',async(req,res)=>{
+    try {
+        const id=req.params.id;
+        console.log('id is '+id)
+        const data = await userData.findById(id);
+        console.log("data is "+data)
+        res.status(200).send(data);
+    } catch (error) {
+        console.log("error is :"+error)
+        res.status(400).send(error);
+    }
+})
+
+
 module.exports = router;

@@ -6,7 +6,6 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { useData } from '../context/DataContext';
 
-
 const modules = {
     toolbar: [
         [{header : [1,2,3,4,5,6, false] }],
@@ -38,12 +37,17 @@ const Discussion = () => {
     //console.log("value is :"+value)
     var dis_id;
 
+    const { datauserId } = useData();
+    const { stdname } = useData();
+
     const addHandler = ()=>{
         console.log('clicked addHandler : ');
 
         const dataToSend = {
             ...disData,
             description: htmlValue,
+            username:stdname,
+            userid:datauserId
             // other data if needed
           };
 
@@ -53,7 +57,7 @@ const Discussion = () => {
             {
                 // alert(res.data);
                dis_id=res.data.id;
-               console.log("data id :"+dis_id)
+               //console.log("data id :"+dis_id)
                 setOpen(true);
                 
                 //setNewDataId(dis_id);
