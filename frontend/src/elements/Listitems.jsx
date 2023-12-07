@@ -60,28 +60,18 @@ const Listitems = () => {
       </ListItemIcon>
       <ListItemText primary="Weekly Reports" />
     </ListItemButton>
-<<<<<<< HEAD
-    <Link to={'/report'}  sx={{textDecoration:'none'}}>
-    <ListItemButton>
-=======
     </Link>
-    <ListItemButton 
-    className={path === '/final' ? 'activatedLink' : ''}
+    <Link to={'/report'}  sx={{textDecoration:'none'}}>
+    <ListItemButton
+    className={path === '/report' ? 'activatedLink' : ''}
     >
->>>>>>> 49634681a42a8f82226683db02a49e62b706d98b
       <ListItemIcon>
         <AssessmentIcon />
       </ListItemIcon>
       <ListItemText primary="Final Reports" />
     </ListItemButton>
-<<<<<<< HEAD
     </Link>
     <ListItemButton>
-=======
-    <ListItemButton 
-    className={path === '/viva' ? 'activatedLink' : ''}
-    >
->>>>>>> 49634681a42a8f82226683db02a49e62b706d98b
       <ListItemIcon>
         <PeopleIcon />
       </ListItemIcon>
