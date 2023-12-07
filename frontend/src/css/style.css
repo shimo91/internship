@@ -32,9 +32,31 @@
     background-size: cover;
     position: relative;
   }
+  .repo-img{
+    background-image: url("../images/report.jpg"); 
+    min-height:500px;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+    padding-top: 2%;
+  }
   .heading{
     font-family: Copperplate, Papyrus, fantasy;
     padding-left: 5%;
     font-size: larger;
     padding-bottom: 10%;
   }
+  .report_heading{
+    font-family: Copperplate, Papyrus, fantasy;
+    padding-left: 5%;
+    font-size: larger;
+    padding-bottom: 2%;
+  }
+  .report{
+    font-family: Copperplate, Papyrus, fantasy;
+    padding-left: 5%;
+    font-size: larger;
+    text-align: center
+  }
+  

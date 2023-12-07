@@ -18,6 +18,8 @@ const Login = () => {
           alert(res.data.message);
           if (res.data.message === 'success') {
             sessionStorage.setItem("userToken", res.data.token);
+            sessionStorage.setItem('username', username)
+            console.log(username)
             navigate('/dashboard')
           }
         })
