@@ -19,8 +19,10 @@ import Week from './elements/Week';
 import Vivavoce from './elements/Vivavoce';
 import View from './elements/View';
 import Topicdetails from './elements/Topicdetails';
+
 import EditDiscussion from './elements/EditDiscussion';
 import { DiscussionProvider } from './context/DiscussionContext';
+
 
 function App() {
   return (
@@ -38,11 +40,15 @@ function App() {
         <Route path='/discussion' element={<Dashboard child={<DataProvider><Discussion /></DataProvider>} title={'Discussion Forum'} />} />
         <Route path='/viewdiscussion/:id' element={<Dashboard child={<DataProvider><ViewDiscussion /></DataProvider>} title={'Discussion Forum'} />} />
         <Route path="/sdashboard" element={<Studentdashboard />} />
+
         <Route path='/week' element={<Dashboard child={<Week />} title={'Weekly reports'}/>}/>
         <Route path='/vivavoce' element={<Dashboard child={<Vivavoce />} title={'Viva Voce'}/>}/>
         <Route path="/topic/:topicId" element={<Topicdetails />} />
+
+
         <Route path='/week' element={<Dashboard child={<Week />} title={'Weekly reports'} />} />
         <Route path='/editdiscussion' element={<Dashboard child={<DataProvider><EditDiscussion /></DataProvider>} title={'Edit Discussion'} />} />
+
         
       </Routes>
       </DiscussionProvider>

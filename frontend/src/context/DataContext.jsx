@@ -9,24 +9,13 @@ export const DataProvider = ({ children }) => {
   const [stdname, setStdName] = useState('');
 
   useEffect(() => {
-
-  const token = sessionStorage.getItem("userToken");
-  const decodeToken =jwtDecode(token);
- // console.log("token : "+decodeToken.userid+" username :"+decodeToken.username)
-  const loginedUser=decodeToken.username;
-  const loginedId=decodeToken.userid;
-  const stdname=decodeToken.stdname;
-  const [datauserId, setDataId] = useState(loginedId);
-
+    const token = sessionStorage.getItem("userToken");
     if (!token) {
-      // Handle the case where the token is not present or invalid
       console.error("Token not found or invalid.");
-      // Perform necessary actions like redirecting to login or setting default values.
+      // Handle the case where the token is not present or invalid
     } else {
       try {
-        // Decode the token and extract necessary information
         const decodeToken = jwtDecode(token);
-        console.log("Decoded token:", decodeToken);
 
         const userId = decodeToken.userid;
         const userName = decodeToken.username;
@@ -37,7 +26,7 @@ export const DataProvider = ({ children }) => {
         setStdName(studentName);
       } catch (error) {
         console.error("Error decoding token:", error);
-        // Handle token decoding errors (e.g., invalid token format)
+        // Handle token decoding errors
       }
     }
   }, []);
