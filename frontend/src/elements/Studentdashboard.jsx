@@ -94,13 +94,16 @@ const Studentdashboard = () => {
         </Toolbar>
       </AppBar>
       <Container  sx={{
-    flexGrow: 1,
-    bgcolor: 'background.default',
-    p: 3,
-    paddingTop: '80px',
-    overflow: 'auto', // Enable scrolling
-    maxHeight: 'calc(100vh - 80px)', // Adjust height based on your needs
-  }}>
+  flexGrow: 1,
+  bgcolor: 'background.default',
+  p: 3,
+  paddingTop: '80px',
+  overflowY: 'scroll', // Use 'scroll' to enable scrolling
+  maxHeight: 'calc(100vh - 80px)', // Adjust height based on your needs
+  '&::-webkit-scrollbar': {
+    display: 'none', // Hide the scrollbar
+  },
+}}>
         <Typography variant="h6" noWrap component="div" sx={{ textAlign: 'center', fontSize: '40px', color: '#146e87' }}>
           Main Topics
         </Typography>

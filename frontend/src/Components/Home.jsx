@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react';
 import AppBar from '@mui/material/AppBar';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
@@ -36,6 +36,25 @@ const cards = [1, 2, 3];
 
 // TODO remove, this demo shouldn't need to reset the theme.
 const defaultTheme = createTheme();
+useEffect(() => {
+  // Load Tawk.to script when the component mounts
+  const s1 = document.createElement('script');
+  const s0 = document.getElementsByTagName('script')[0];
+  s1.async = true;
+  s1.src = 'https://embed.tawk.to/65720788bfb79148e59b549f/1hh2mqs16';
+  s1.charset = 'UTF-8';
+  s1.setAttribute('crossorigin', '*');
+  s1.setAttribute('tawk-color', '#01579b');
+  s0.parentNode.insertBefore(s1, s0);
+
+  // Clean up: unload Tawk.to script when the component unmounts
+  return () => {
+    const tawkScript = document.querySelector('script[src="https://embed.tawk.to/64e73a7394cf5d49dc6c4018/1h8jjol78"]');
+    if (tawkScript) {
+      tawkScript.remove();
+    }
+  };
+}, []);
   return (
     <Box 
     >
