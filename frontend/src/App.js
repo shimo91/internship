@@ -15,6 +15,8 @@ import { Logout } from './elements/Logout';
 import Studentdashboard from './elements/Studentdashboard';
 import { DataProvider } from './context/DataContext';
 import Week from './elements/Week';
+import View from './elements/View';
+import Topicdetails from './elements/Topicdetails';
 
 function App() {
   return (
@@ -33,6 +35,9 @@ function App() {
         <Route path="/logout" element={<Logout/>}/>
         <Route path="/sdashboard" element={<Studentdashboard />} />
         <Route path='/week' element={<Dashboard child={<Week />} title={'Weekly reports'}/>}/>
+        <Route path="/topic/:topicId" element={<Topicdetails />} />
+
+        
       </Routes>
     </div>
   );

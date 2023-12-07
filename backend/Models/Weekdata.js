@@ -10,5 +10,5 @@ const weekDataSchema = new mongoose.Schema({
   // Other fields related to the uploaded file or report, if needed
 });
 
-const Weekdata = mongoose.model('Weekdata', weekDataSchema);
+const Weekdata = mongoose.model('Weekdatas', weekDataSchema);
 module.exports = Weekdata;

@@ -29,11 +29,13 @@ const routerCommentFile = require('./Routes/comment');
 app.use('/comment',routerCommentFile);
 
 const routerstudent = require('./Routes/Sdashboard');
-app.use('/sdashbaord',routerstudent);
+app.use('/sdashboard',routerstudent);
 
 const routerweek = require('./Routes/Week');
 app.use('/week',routerweek);
 
+const routertopic = require('./Routes/topic');
+app.use('/topic', routertopic);
 
 
 app.listen(PORT,()=>{
