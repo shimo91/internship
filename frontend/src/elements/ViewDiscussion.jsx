@@ -56,7 +56,7 @@ const ViewDiscussion = () => {
     const addHandler = ()=>{
 
       const commentLabelDiv = document.getElementById("commentLabel");
-      if(comData.comment === undefined && comData.comment === null)
+      if(comData.comment === undefined || comData.comment === null || comData.comment === '')
       {
         if (commentLabelDiv) {
           // Modify the style of the div as needed
@@ -160,7 +160,7 @@ const ViewDiscussion = () => {
   const addReplyHandler = (id,i)=>{
 
       const replyLabelDiv = document.getElementById("replyLabel"+i);
-      if(repData.reply === undefined && repData.reply === null)
+      if(repData.reply === undefined || repData.reply === null || repData.reply === '' )
       {
         if (replyLabelDiv) {
           // Modify the style of the div as needed
