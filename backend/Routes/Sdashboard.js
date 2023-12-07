@@ -2,11 +2,8 @@ const express=require('express')
 const mongoose=require('mongoose');
 const router = express.Router()
 const cors = require('cors');
-<<<<<<< HEAD
-const student=require('../Models/Studentdata');
-=======
+//const student=require('../Models/Studentdata');
 const student=require('../Models/StudentTopic');
->>>>>>> 49634681a42a8f82226683db02a49e62b706d98b
 const app=new express();
 const jwt = require('jsonwebtoken');
 
