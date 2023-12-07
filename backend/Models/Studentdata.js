@@ -1,8 +1,16 @@
-const mongoose=require('mongoose');
-const student=mongoose.Schema({
-   studentId:String,
-   selectedTopicTitle: String, 
-   disabledTopics: [String],
+const mongoose = require("mongoose")
+const studentSchema = mongoose.Schema({
+    username: {
+        type:String,
+        required: true,
+        unique:true,
+        lowercase: true,
+        // index: true 
+    },
+    exit_score:{
+        type: Number,
+    }
 })
-const data=mongoose.model('students',student);
-module.exports=data
+const StudentData = mongoose.model('studentdatas',studentSchema)
+module.exports = StudentData
+

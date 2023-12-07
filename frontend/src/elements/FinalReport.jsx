@@ -72,6 +72,7 @@ const FinalReport = () => {
       
       setHasUploaded(true);
       alert('Final Report successfully submitted');
+      window.location.reload(false);
     } catch (error) {
       console.error('Error uploading file:', error);
       setHasUploaded(false);
