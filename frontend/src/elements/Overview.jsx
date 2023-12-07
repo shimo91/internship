@@ -1,13 +1,30 @@
 import { Button, Card, CardActions, CardContent, Grid, Paper, Typography } from '@mui/material'
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import SummarizeIcon from '@mui/icons-material/Summarize';
 import '../css/Overview.css'
 import {  green, purple, red } from '@mui/material/colors';
 import PendingActionsIcon from '@mui/icons-material/PendingActions';
 import ConfirmationNumberIcon from '@mui/icons-material/ConfirmationNumber';
 import Document from './Document';
+import { Link } from 'react-router-dom';
+import { useData } from '../context/DataContext';
+import axios from 'axios';
 
 const Overview = () => {
+    
+    var { datauserId } = useData();
+
+    const [dtotal, setDtoatl] = useState('');
+
+    useEffect(() => {
+
+        axios.get('http://127.0.0.1:4000/discussion/total/'+datauserId).then((res) => {
+            if (res.data.message === 'total') {
+                setDtoatl(res.data.total);
+              }
+        })
+      }, []);
+   
     
   return (
     <Grid container spacing={2} direction="row"  justifyContent="center"  alignItems="center" >
@@ -57,14 +74,14 @@ const Overview = () => {
             <Grid item xs={12} md={4} >
                 
                 <Card className='carddiv bg-gradient-danger' >
-                <div className='iconalign'><ConfirmationNumberIcon className='fontIcon' style={{ color: purple[500] }}/><Typography className='fontIconText'> 0</Typography></div>
+                <div className='iconalign'><ConfirmationNumberIcon className='fontIcon' style={{ color: purple[500] }}/><Typography className='fontIconText'> {dtotal}</Typography></div>
                 <CardContent>
                     <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
-                    Open Tickets
+                    Total Discussion
                     </Typography>
                 </CardContent>
                 <CardActions justifyContent="center"  alignItems="center" className='cardbutton'>
-                    <Button size="small" >View More</Button>
+                    <Link to={'/forum'}><Button size="small" >View More</Button></Link>
                 </CardActions>
                 </Card>
             </Grid>

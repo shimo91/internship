@@ -8,8 +8,18 @@ export const DataProvider = ({ children }) => {
   const [loginedUser, setLoginedUser] = useState('');
   const [stdname, setStdName] = useState('');
 
+<<<<<<< HEAD
   useEffect(() => {
     const token = sessionStorage.getItem("userToken");
+=======
+  const token = sessionStorage.getItem("userToken");
+  const decodeToken =jwtDecode(token);
+ // console.log("token : "+decodeToken.userid+" username :"+decodeToken.username)
+  const loginedUser=decodeToken.username;
+  const loginedId=decodeToken.userid;
+  const stdname=decodeToken.stdname;
+  const [datauserId, setDataId] = useState(loginedId);
+>>>>>>> 281e8007c06a50cdd406d76cfcb541903b5d3308
 
     if (!token) {
       // Handle the case where the token is not present or invalid

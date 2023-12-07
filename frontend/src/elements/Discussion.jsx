@@ -1,4 +1,4 @@
-import { Alert, Box, Button, Collapse, Grid, IconButton, TextField, Typography } from '@mui/material'
+import { Alert, Box, Button, Collapse, Grid, IconButton, InputLabel, TextField, Typography } from '@mui/material'
 import React, { useEffect, useState } from 'react'
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
@@ -38,45 +38,90 @@ const Discussion = () => {
     var dis_id;
 
     const { datauserId } = useData();
-    const { loginedUser } = useData();
+    const { stdname } = useData();
 
     const addHandler = ()=>{
         console.log('clicked addHandler : ');
-
-        const dataToSend = {
-            ...disData,
-            description: htmlValue,
-            username:loginedUser,
-            userid:datauserId
-            // other data if needed
-          };
-
-        axios.post('http://127.0.0.1:4000/discussion/add',dataToSend).then((res)=>{
-            //alert(res.data.message);
-            if(res.data.message=="saved")
-            {
-                // alert(res.data);
-               dis_id=res.data.id;
-               console.log("data id :"+dis_id)
-                setOpen(true);
-                
-                //setNewDataId(dis_id);
-                // Automatically close the alert after 3000 milliseconds (3 seconds)
-                setTimeout(() => {
-                    setOpen(false);
-                    navigate(`/viewdiscussion/${dis_id}`);
-                  }, 3000);
-                
-                   
+        const titleLabelDiv = document.getElementById("titleLabel");
+        const contentLabelDiv = document.getElementById("contentLabel");
+        console.log("disdata title :"+disData.title+" htmlvalue : "+htmlValue)
+        
+        if(disData.title === undefined || disData.title === null || disData.title==='')
+        {
+            console.log("inside if ")
+            if (titleLabelDiv) {
+            // Modify the style of the div as needed
+            titleLabelDiv.style.display = '';
+            // Add more style modifications as needed
             }
-            else{
-                alert("Invalid");
+            if (contentLabelDiv) {
+                // Modify the style of the div as needed
+                contentLabelDiv.style.display = 'none';
+                // Add more style modifications as needed
             }
+        }
+        else if(htmlValue === '' || htmlValue === null || htmlValue === undefined)
+        {
+            console.log("inside else if ")
+            if (contentLabelDiv) {
+            // Modify the style of the div as needed
+            contentLabelDiv.style.display = '';
+            // Add more style modifications as needed
+            }
+            if (titleLabelDiv) {
+                // Modify the style of the div as needed
+                titleLabelDiv.style.display = 'none';
+                // Add more style modifications as needed
+                }
+        }
+        else
+        {
+            console.log("inside else")
+            if (titleLabelDiv) {
+            // Modify the style of the div as needed
+            titleLabelDiv.style.display = 'none';
+            // Add more style modifications as needed
+            }
+            if (contentLabelDiv) {
+                // Modify the style of the div as needed
+                contentLabelDiv.style.display = 'none';
+                // Add more style modifications as needed
+            }
+
+            const dataToSend = {
+                ...disData,
+                description: htmlValue,
+                username:stdname,
+                userid:datauserId
+                // other data if needed
+            };
+
+            axios.post('http://127.0.0.1:4000/discussion/add',dataToSend).then((res)=>{
+                //alert(res.data.message);
+                if(res.data.message=="saved")
+                {
+                    // alert(res.data);
+                dis_id=res.data.id;
+                //console.log("data id :"+dis_id)
+                    setOpen(true);
+                    
+                    //setNewDataId(dis_id);
+                    // Automatically close the alert after 3000 milliseconds (3 seconds)
+                    setTimeout(() => {
+                        setOpen(false);
+                        navigate(`/viewdiscussion/${dis_id}`);
+                    }, 3000);
+                    
+                    
+                }
+                else{
+                    alert("Invalid");
+                }
             }).catch(()=>{
                 console.log('Error!! No connection');
                 alert('Invalid');
             })
-        
+        }
     }
 
    
@@ -92,12 +137,14 @@ const Discussion = () => {
             <Grid item xs={12} md={12} lg={12}>
                 <TextField id="outlined-basic" label="Title" variant="outlined" sx={{width:'100%'}} name='title' onChange={inputHandler} 
                  />
-
+                <InputLabel id={"titleLabel"} style={{ color: "red", marginTop:'5px',display:'none' }} className='textAlignLeft' >Please write a title</InputLabel>
             </Grid>
             <Grid item xs={12} md={12} lg={12} sx={{height:'100%'}}>
-                <ReactQuill theme="snow" value={htmlValue} className='editor-input' placeholder='content here' onChange={handleQuillChange}  />;
+                <ReactQuill theme="snow" value={htmlValue} className='editor-input' placeholder='content here' onChange={handleQuillChange}  />
+                 
             </Grid> 
-            <Grid item xs={12} md={12} lg={12}>
+            <Grid item xs={12} md={12} lg={12} sx={{mt:3}}>
+            <InputLabel id={"contentLabel"} style={{ color: "red", marginTop:'10px',display:'none' }} className='textAlignLeft' >Please write a content</InputLabel>
                 <Button variant='contained' sx={{mt:2}} onClick={addHandler} className='commonButton'>Create Discussion</Button>
             </Grid>
         </Grid>

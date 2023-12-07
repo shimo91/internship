@@ -10,7 +10,7 @@ import { styled, createTheme, ThemeProvider } from '@mui/material/styles';
 import MuiDrawer from '@mui/material/Drawer';
 import MuiAppBar from '@mui/material/AppBar';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
-import { mainListItems, secondaryListItems } from '../elements/Listitems'
+import Listitems, { mainListItems, secondaryListItems } from '../elements/Listitems'
 import Divider from '@mui/material/Divider';
 import List from '@mui/material/List';
 import { jwtDecode } from "jwt-decode";
@@ -129,9 +129,10 @@ const Dashnav = (props) => {
      </Toolbar>
      <Divider />
      <List component="nav">
-       {mainListItems}
+       {/* {mainListItems}
        <Divider sx={{ my: 1 }} />
-       {secondaryListItems}
+       {secondaryListItems} */}
+       <Listitems/>
      </List>
    </Drawer>
    </>

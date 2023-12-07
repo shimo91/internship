@@ -8,6 +8,7 @@ import Login from './Components/Login';
 import Home from './Components/Home';
 import Signup from './Components/Signup';
 import Forum from './elements/Forum';
+import FinalReport from './elements/FinalReport';
 import Discussion from './elements/Discussion';
 import ViewDiscussion from './elements/ViewDiscussion';
 import Main from './Components/Main';
@@ -15,30 +16,41 @@ import { Logout } from './elements/Logout';
 import Studentdashboard from './elements/Studentdashboard';
 import { DataProvider } from './context/DataContext';
 import Week from './elements/Week';
+<<<<<<< HEAD
 import View from './elements/View';
 import Topicdetails from './elements/Topicdetails';
+=======
+import EditDiscussion from './elements/EditDiscussion';
+import { DiscussionProvider } from './context/DiscussionContext';
+>>>>>>> 281e8007c06a50cdd406d76cfcb541903b5d3308
 
 function App() {
   return (
     <div className="App">
+      <DiscussionProvider>
       <Routes>
-        <Route path='/' element={<Home/>}></Route>
-        {/* <Route path='/login' element={<Login/>}></Route> */}
+        <Route path='/' element={<Home />}></Route>
         <Route path='/login' element={<Main child = {<Login/>}/>}/>
-       
+        <Route path='/report' element={<Dashboard child={<FinalReport/>} title={'FinalReport'}/>}/>
         <Route path='/signup' element={<Main child = {<Signup/>}/>}></Route>
-        <Route path='/dashboard' element={<Dashboard child={<Overview />} title={'Project Overview'}/>}/>
-        <Route path='/reference' element={<Dashboard child={<Reference />} title={'Reference Material'}/>}/>
-        <Route path='/forum' element={<Dashboard child={<DataProvider><Forum /></DataProvider>} title={'Discussion Forum'}/>}/>
-        <Route path='/discussion' element={<Dashboard child={<DataProvider><Discussion /></DataProvider>} title={'Discussion Forum'}/>}/>
-        <Route path='/viewdiscussion/:id' element={<Dashboard child={<DataProvider><ViewDiscussion /></DataProvider>} title={'Discussion Forum'}/>}/>
         <Route path="/logout" element={<Logout/>}/>
+        <Route path='/dashboard' element={<Dashboard child={<DataProvider><Overview /></DataProvider>} title={'Project Overview'} />} />
+        <Route path='/reference' element={<Dashboard child={<Reference />} title={'Reference Material'} />} />
+        <Route path='/forum' element={<Dashboard child={<DataProvider><Forum /></DataProvider>} title={'Discussion Forum'} />} />
+        <Route path='/discussion' element={<Dashboard child={<DataProvider><Discussion /></DataProvider>} title={'Discussion Forum'} />} />
+        <Route path='/viewdiscussion/:id' element={<Dashboard child={<DataProvider><ViewDiscussion /></DataProvider>} title={'Discussion Forum'} />} />
         <Route path="/sdashboard" element={<Studentdashboard />} />
+<<<<<<< HEAD
         <Route path='/week' element={<Dashboard child={<Week />} title={'Weekly reports'}/>}/>
         <Route path="/topic/:topicId" element={<Topicdetails />} />
 
+=======
+        <Route path='/week' element={<Dashboard child={<Week />} title={'Weekly reports'} />} />
+        <Route path='/editdiscussion' element={<Dashboard child={<DataProvider><EditDiscussion /></DataProvider>} title={'Edit Discussion'} />} />
+>>>>>>> 281e8007c06a50cdd406d76cfcb541903b5d3308
         
       </Routes>
+      </DiscussionProvider>
     </div>
   );
 }

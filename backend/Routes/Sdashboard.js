@@ -1,7 +1,14 @@
 const express = require('express');
 const router = express.Router();
 const cors = require('cors');
+<<<<<<< HEAD
 const student = require('../Models/StudentTopic');
+=======
+//const student=require('../Models/Studentdata');
+const student=require('../Models/StudentTopic');
+const app=new express();
+const jwt = require('jsonwebtoken');
+>>>>>>> 281e8007c06a50cdd406d76cfcb541903b5d3308
 
 router.use(express.json());
 router.use(express.urlencoded({ extended: true }));

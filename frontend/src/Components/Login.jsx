@@ -18,7 +18,9 @@ const Login = () => {
           alert(res.data.message);
           if (res.data.message === 'success') {
             sessionStorage.setItem("userToken", res.data.token);
-            navigate('/sdashboard')
+            sessionStorage.setItem('username', username)
+            console.log(username)
+            navigate('/dashboard')
           }
         })
         .catch((error) => {
