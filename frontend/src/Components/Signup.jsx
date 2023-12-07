@@ -10,26 +10,10 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import { grey } from '@mui/material/colors';
 import Alert from '@mui/material/Alert';
-import { Link } from 'react-router-dom';
 import axios from 'axios'
 import {useNavigate} from 'react-router-dom'
 
-function Copyright(props) {
-  return (
-    <Typography variant="body2" color="text.secondary" align="center" {...props}>
-      {'Copyright © '}
-      <Link to={'/'} color="inherit" href="">
-      ICT Internship Portal
-      </Link>{' '}
-      {new Date().getFullYear()}
-      {'.'}
-    </Typography>
-  );
-}
-
-// TODO remove, this demo shouldn't need to reset the theme.
 
 const defaultTheme = createTheme();
 
@@ -132,6 +116,13 @@ export default function SignUp() {
 
   return (
     <ThemeProvider theme={defaultTheme}>
+    <div className='signup'>
+        <Box
+          sx={{
+            pt:6,
+            pb: 10,
+          }}
+        >
       <Container component="main" maxWidth="xs" >
         <CssBaseline />
         <Box
@@ -143,8 +134,8 @@ export default function SignUp() {
             justify:"center"
           }}
         >
-          <Avatar sx={{ m: 1, bgcolor: 'limegreen' }}>
-            <LockOutlinedIcon sx={{color: grey[900]}} />
+          <Avatar sx={{ m: 1, bgcolor: '#146e87' }}>
+            <LockOutlinedIcon sx={{color: (255,255,255)}} />
           </Avatar>
           <Typography component="h1" variant="h5">
             Sign up
@@ -228,22 +219,39 @@ export default function SignUp() {
               type="submit"
               fullWidth
               variant="contained"
-              sx={{ mt: 3, mb: 2, bgcolor: 'limegreen', color: 'Black' }}
+              sx={{ mt: 3, mb: 2, bgcolor: '#146e87', color: (255,255,255) }}
               onClick={()=>validateForm() && handleSubmit}
             >
               Sign Up
             </Button>
-            <Grid container justifyContent="flex-end">
+            <Grid container justifyContent="center">
               <Grid item>
-                <Link to={'/login'}>
-                  Already have an account? Sign in
-                  </Link>
+              
+              <Button sx={{color: '#f9fbe7'}} style={{textTransform: 'none'}} href="/login">
+              Already have an account? Sign in
+              </Button>
+              
               </Grid>
             </Grid>
           </Box>
         </Box>
-        <Copyright sx={{ mt: 5 }} />
+
       </Container>
+       </Box>
+      </div>
+      <Box style={{ background: '#146e87' }} component="footer">
+        <Typography variant="h6" align="center" gutterBottom color="#f9fbe7" p={2} style={{fontSize:'14px'}}>
+        {'Copyright © '} 2023 ICT_Internship,Inc.
+        </Typography>
+        <Typography
+          variant="subtitle1"
+          align="center"
+          color="#f9fbe7"
+          component="p"
+        >
+        </Typography>
+       
+      </Box>
     </ThemeProvider>
   );
 }

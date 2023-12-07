@@ -16,13 +16,11 @@ import { Logout } from './elements/Logout';
 import Studentdashboard from './elements/Studentdashboard';
 import { DataProvider } from './context/DataContext';
 import Week from './elements/Week';
-<<<<<<< HEAD
+import Vivavoce from './elements/Vivavoce';
 import View from './elements/View';
 import Topicdetails from './elements/Topicdetails';
-=======
 import EditDiscussion from './elements/EditDiscussion';
 import { DiscussionProvider } from './context/DiscussionContext';
->>>>>>> 281e8007c06a50cdd406d76cfcb541903b5d3308
 
 function App() {
   return (
@@ -40,14 +38,11 @@ function App() {
         <Route path='/discussion' element={<Dashboard child={<DataProvider><Discussion /></DataProvider>} title={'Discussion Forum'} />} />
         <Route path='/viewdiscussion/:id' element={<Dashboard child={<DataProvider><ViewDiscussion /></DataProvider>} title={'Discussion Forum'} />} />
         <Route path="/sdashboard" element={<Studentdashboard />} />
-<<<<<<< HEAD
         <Route path='/week' element={<Dashboard child={<Week />} title={'Weekly reports'}/>}/>
+        <Route path='/vivavoce' element={<Dashboard child={<Vivavoce />} title={'Viva Voce'}/>}/>
         <Route path="/topic/:topicId" element={<Topicdetails />} />
-
-=======
         <Route path='/week' element={<Dashboard child={<Week />} title={'Weekly reports'} />} />
         <Route path='/editdiscussion' element={<Dashboard child={<DataProvider><EditDiscussion /></DataProvider>} title={'Edit Discussion'} />} />
->>>>>>> 281e8007c06a50cdd406d76cfcb541903b5d3308
         
       </Routes>
       </DiscussionProvider>

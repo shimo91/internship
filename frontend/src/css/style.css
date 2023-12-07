@@ -59,4 +59,11 @@
     font-size: larger;
     text-align: center
   }
+
+  .signup{
+    background-image: url('../images/signupimg.png');
+    background-position: center;
+    background-size: cover;
+    position: relative;
+  }
   

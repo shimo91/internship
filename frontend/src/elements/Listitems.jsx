@@ -70,12 +70,14 @@ const Listitems = () => {
       <ListItemText primary="Final Reports" />
     </ListItemButton>
     </Link>
+    <Link to={'/vivavoce'}  sx={{textDecoration:'none'}}>
     <ListItemButton>
       <ListItemIcon>
         <PeopleIcon />
       </ListItemIcon>
       <ListItemText primary="Viva Voce" />
     </ListItemButton>
+    </Link>
     
     <Link to={'/forum'}  sx={{textDecoration:'none'}}>
     <ListItemButton 
