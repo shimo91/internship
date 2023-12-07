@@ -4,12 +4,12 @@ const router=express.Router();
 router.use(express.json());
 router.use(express.urlencoded({extended:true}))
 
-const ComData=require('../Models/CommentData');
+const RepData=require('../Models/ReplyData');
 
 router.get('/get/:id',async(req,res)=>{
     try {
         const id=req.params.id;
-        const data = await ComData.find({discussionid:id}).sort({_id:-1});
+        const data = await RepData.find({commentid:id});
         console.log("data is "+data)
         res.status(200).send(data);
     } catch (error) {
@@ -21,7 +21,7 @@ router.get('/get/:id',async(req,res)=>{
 router.post('/add',async(req,res)=>{
     try {
         var item=req.body;
-        const Data = new ComData(item);
+        const Data = new RepData(item);
         const saveData= await Data.save();
         console.log("saveed : "+saveData);
         // res.status(200).send({message:'success',id:insertedId});
@@ -32,22 +32,10 @@ router.post('/add',async(req,res)=>{
     }
 })
 
-router.put('/update/:id',async(req,res)=>{
-    try {
-        var item=req.body;
-        console.log("item for update"+item);
-       const data= await ComData.findByIdAndUpdate(req.params.id,item);
-        res.status(200).send('Updated successfully');
-    } catch (error) {
-        res.status(404).send('Update not working');
-    }
-})
-
-
 router.delete('/remove/:id',async(req,res)=>{
     try {
         const id=req.params.id;
-        const savedata= await ComData.findByIdAndDelete(id);
+        const savedata= await RepData.findByIdAndDelete(id);
         res.status(200).send('Deleted Successfully')
     } catch (error) {
         res.status(404).send('Error!!');

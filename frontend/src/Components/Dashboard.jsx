@@ -22,6 +22,9 @@ import Overview from '../elements/Overview';
 import '../css/Dashboard.css'
 import { Link } from 'react-router-dom';
 import { red } from '@mui/material/colors';
+import Dashnav from '../elements/Dashnav';
+import { DataProvider } from '../context/DataContext';
+
 
 function Copyright(props) {
   return (
@@ -96,62 +99,9 @@ export default function Dashboard(props) {
     <ThemeProvider theme={defaultTheme}>
       <Box sx={{ display: 'flex' }}>
         <CssBaseline />
-        <AppBar position="absolute" open={open}>
-          <Toolbar
-            sx={{
-              pr: '24px', // keep right padding when drawer closed
-              backgroundColor:'#146e87'
-            }}
-          >
-            <IconButton
-              edge="start"
-              color="inherit"
-              aria-label="open drawer"
-              onClick={toggleDrawer}
-              sx={{
-                marginRight: '36px',
-                ...(open && { display: 'none' }),
-              }}
-            >
-              <MenuIcon />
-            </IconButton>
-            <Typography
-              component="h1"
-              variant="h6"
-              color="inherit"
-              noWrap
-              sx={{ flexGrow: 1 }}
-            >
-              {props.title}
-            </Typography>
-            <Typography sx={{ marginRight:1 }}>Username</Typography> 
-            <IconButton color="inherit">
-              <Badge color="secondary">
-               <Link to={'/logout'} style={{textDecoration:'none',color:'white'}}><LogoutIcon /></Link>
-              </Badge>
-            </IconButton>
-          </Toolbar>
-        </AppBar>
-        <Drawer variant="permanent" open={open}>
-          <Toolbar
-            sx={{
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'flex-end',
-              px: [1],
-            }}
-          >
-            <IconButton onClick={toggleDrawer}>
-              <ChevronLeftIcon />
-            </IconButton>
-          </Toolbar>
-          <Divider />
-          <List component="nav">
-            {mainListItems}
-            <Divider sx={{ my: 1 }} />
-            {secondaryListItems}
-          </List>
-        </Drawer>
+        
+        <DataProvider><Dashnav title={props.title}/></DataProvider>
+
         <Box
           component="main"
           sx={{

@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react'
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
@@ -9,19 +9,39 @@ import ArticleIcon from '@mui/icons-material/Article';
 import AssessmentIcon from '@mui/icons-material/Assessment';
 import ForumIcon from '@mui/icons-material/Forum';
 import '../css/Dashboard.css'
-import { Link } from 'react-router-dom';
+import { Link, matchPath, useLocation } from 'react-router-dom';
+import { Divider } from '@mui/material';
 
-export const mainListItems = (
-  <React.Fragment>
+
+
+const Listitems = () => {
+  const location=useLocation();
+  const path=location.pathname;
+ 
+
+  // Split the path based on "/"
+  const pathParts = path.split("/");
+
+  // Get the starting path (index 1)
+  const startingPath = pathParts[1];
+  console.log("match : "+startingPath)
+
+  return (
+    <React.Fragment>
     <Link to={'/dashboard'}  sx={{textDecoration:'none'}}>
-    <ListItemButton className='activatedLink' >
+    <ListItemButton 
+    className={path === '/dashboard' ? 'activatedLink' : ''}
+    >
       <ListItemIcon>
         <DashboardIcon />
       </ListItemIcon>
       <ListItemText primary="Overview" />
-    </ListItemButton></Link>
+    </ListItemButton>
+    </Link>
     <Link to={'/reference'}  sx={{textDecoration:'none'}}>
-    <ListItemButton>
+    <ListItemButton 
+    className={path === '/reference' ? 'activatedLink' : ''}
+    >
       <ListItemIcon>
         <ArticleIcon />
       </ListItemIcon>
@@ -29,19 +49,18 @@ export const mainListItems = (
     </ListItemButton>
     </Link>
     
-  </React.Fragment>
-);
+    <Divider sx={{ my: 1 }} />
 
-export const secondaryListItems = (
-  <React.Fragment>
-   
-    <ListItemButton>
+
+   <Link to={'/week'}  sx={{textDecoration:'none'}}>
+    <ListItemButton 
+    className={path === '/week' ? 'activatedLink' : ''}
+    >
       <ListItemIcon>
         <AssignmentIcon />
       </ListItemIcon>
       <ListItemText primary="Weekly Reports" />
     </ListItemButton>
-    <Link to={'/report'}  sx={{textDecoration:'none'}}>
     <ListItemButton>
       <ListItemIcon>
         <AssessmentIcon />
@@ -57,7 +76,10 @@ export const secondaryListItems = (
     </ListItemButton>
     
     <Link to={'/forum'}  sx={{textDecoration:'none'}}>
-    <ListItemButton>
+    <ListItemButton 
+    className={ (startingPath && path.startsWith('/viewdiscussion/')) || 
+    path === '/forum' || path === '/discussion' || path === '/viewdiscussion' || path=== '/editdiscussion' ? 'activatedLink' : '' }
+    >
       <ListItemIcon>
         <ForumIcon />
       </ListItemIcon>
@@ -65,4 +87,9 @@ export const secondaryListItems = (
     </ListItemButton>
     </Link>
   </React.Fragment>
-);
+
+  )
+}
+
+export default Listitems
+

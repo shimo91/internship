@@ -17,6 +17,8 @@ require('./config/dbConnection')
 const signupRoutes = require('./Routes/signupRoutes')
 app.use('/signup', signupRoutes)
 
+
+
 const loginRoutes = require('./Routes/loginRoutes')
 app.use('/login',loginRoutes)
 
@@ -25,7 +27,12 @@ app.use('/report',reprotRoutes)
 
 
 
-const routerFile = require('./Routes/discussion');
+const reprotRoutes = require('./Routes/reportRoutes')
+app.use('/report',reprotRoutes)
+
+
+
+const routerFile = require('./Routes/forum');
 app.use('/discussion',routerFile);
 
 const routerCommentFile = require('./Routes/comment');
@@ -34,6 +41,11 @@ app.use('/comment',routerCommentFile);
 const routerstudent = require('./Routes/Sdashboard');
 app.use('/sdashbaord',routerstudent);
 
+const routerweek = require('./Routes/Week');
+app.use('/week',routerweek);
+
+const routerReplyFile = require('./Routes/reply');
+app.use('/reply',routerReplyFile);
 
 app.listen(PORT,()=>{
     console.log('Listening to '+ PORT)
