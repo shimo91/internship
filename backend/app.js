@@ -27,10 +27,6 @@ app.use('/report',reprotRoutes)
 
 
 
-const reprotRoutes = require('./Routes/reportRoutes')
-app.use('/report',reprotRoutes)
-
-
 
 const routerFile = require('./Routes/forum');
 app.use('/discussion',routerFile);

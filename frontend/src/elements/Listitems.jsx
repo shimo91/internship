@@ -61,6 +61,8 @@ const Listitems = () => {
       </ListItemIcon>
       <ListItemText primary="Weekly Reports" />
     </ListItemButton>
+    </Link>
+    <Link to={'/report'}  sx={{textDecoration:'none'}}>
     <ListItemButton>
       <ListItemIcon>
         <AssessmentIcon />
