@@ -76,5 +76,19 @@ router.get('/getuser/:id',async(req,res)=>{
     }
 })
 
+router.get('/gettopic/:id',async(req,res)=>{
+    try {
+        const id=req.params.id;
+        //console.log('userid is '+id)
+        const data = await userData.findById(id);
+        //console.log("gettopic data :"+data)
+        //console.log("gettopic data :"+data.topic_id)
+        res.status(200).send(data);
+    } catch (error) {
+        console.log("error is :"+error)
+        res.status(400).send(error);
+    }
+})
+
 
 module.exports = router;
