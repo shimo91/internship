@@ -58,7 +58,7 @@ function Vivavoce() {
   return (
     <ThemeProvider theme={theme}>
       {submitted === false && <Container component="main" maxWidth="md" >
-          <Typography variant="h5" align='left' >Submit Google Doc Link</Typography>
+          <Typography variant="h4" align='left' >Submit Google Doc Link</Typography>
           <TextField
             variant="outlined"
             margin="normal"
@@ -100,7 +100,7 @@ function Vivavoce() {
       </Container>
       }
       { submitted === true && <div>
-        <h2> Report already submitted </h2>
+        <Typography variant='h4' align='left' style={{ marginTop: theme.spacing(3)}}> Report submitted  </Typography> 
       </div>
       }
     </ThemeProvider>
