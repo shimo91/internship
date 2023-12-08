@@ -24,7 +24,7 @@ router.get('/getUserlist/:id',async(req,res)=>{
         const id=req.params.id;
        // console.log("userlist id :"+id);
         const data = await DisData.find({userid: { $nin: [ id ] }}).sort({_id:-1});
-        
+       // console.log("description :"+data)
         res.status(200).send(data);
     } catch (error) {
         res.status(400).send(error);

@@ -21,6 +21,7 @@ import { useDiscussion } from '../context/DiscussionContext';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import CustomPagination from './CustomPagination';
+import { jwtDecode } from "jwt-decode";
 
 const style = {
   width: '100%',
@@ -45,8 +46,12 @@ const Forum = () => {
   //   //setAnchorEl(event.currentTarget);
   //   setAnchorEl(event.target);
   // };
+  
+  const token = sessionStorage.getItem("userToken");
+    const decodeToken = jwtDecode(token);
+    const datauserId = decodeToken.userid;
 
-  var { datauserId } = useData();
+  //var { datauserId } = useData();
 
   const [list, setlist] = useState([]);
 

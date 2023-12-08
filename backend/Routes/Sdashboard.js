@@ -52,9 +52,9 @@ router.post('/topic', async (req, res) => {
 router.get('/getData/:id',async(req,res)=>{
   try {
       const id=req.params.id;
-      console.log('topicid is '+id)
+      //console.log('topicid is '+id)
       const data = await student.findById(id);
-      console.log("topic data is:"+data)
+      //console.log("topic data is:"+data)
       res.status(200).send(data);
   } catch (error) {
       console.log("error is :"+error)

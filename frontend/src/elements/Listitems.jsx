@@ -24,7 +24,7 @@ const Listitems = () => {
 
   // Get the starting path (index 1)
   const startingPath = pathParts[1];
-  console.log("match : "+startingPath)
+  //console.log("match : "+startingPath)
 
   return (
     <React.Fragment>
