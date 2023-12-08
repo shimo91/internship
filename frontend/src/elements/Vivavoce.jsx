@@ -15,9 +15,34 @@ function Vivavoce() {
   const [finalReport, setFinalReport] = useState(null)
   const email = sessionStorage.getItem('username');
 
+  const [formErrors, setFormErrors] = useState({
+    reportName: '',
+    doclink: ''
+  });
+
   useEffect(() => {
     checkSubmission() 
   })
+
+  const validateForm = () => {
+    const errors = {};
+    // Add validation rules for each field
+    const linkRegex = /(https:\/\/www\.|http:\/\/www\.|https:\/\/|http:\/\/)?[a-zA-Z]{2,}(\.[a-zA-Z]{2,})(\.[a-zA-Z]{2,})?\/[a-zA-Z0-9]{2,}|((https:\/\/www\.|http:\/\/www\.|https:\/\/|http:\/\/)?[a-zA-Z]{2,}(\.[a-zA-Z]{2,})(\.[a-zA-Z]{2,})?)|(https:\/\/www\.|http:\/\/www\.|https:\/\/|http:\/\/)?[a-zA-Z0-9]{2,}\.[a-zA-Z0-9]{2,}\.[a-zA-Z0-9]{2,}(\.[a-zA-Z0-9]{2,})?/
+    if (!linkRegex.test(docLink)) {
+      errors.doclink = 'Doc link is required';
+    }
+
+    if (reportName.trim() === '') {
+      errors.reportName = 'Report name is required';
+    }
+
+    setFormErrors(errors);
+    console.log("errors",errors)
+    console.log("form errors",formErrors)
+
+    // Return true if there are no errors, false otherwise
+    return Object.values(errors).every((error) => error === '');
+  };
 
   const checkSubmission = async () => {
     try {
@@ -70,6 +95,8 @@ function Vivavoce() {
             autoFocus
             value={docLink}
             onChange={(e) => setDocLink(e.target.value)}
+            error={!!formErrors.doclink}
+            helperText={formErrors.doclink}
           />
           <TextField
             variant="outlined"
@@ -81,13 +108,15 @@ function Vivavoce() {
             name="reportName"
             value={reportName}
             onChange={(e) => setReportName(e.target.value)}
+            error={!!formErrors.reportName}
+            helperText={formErrors.reportName}
           />
           {finalReport === true && <Button
             type="button"
             fullWidth
             variant="contained"
             sx={{ mt: 3, mb: 2, bgcolor: '#146e87', color: (255,255,255) }}
-            onClick={handleSubmission}
+            onClick={() => validateForm() && handleSubmission}
           >
             Submit
           </Button>
