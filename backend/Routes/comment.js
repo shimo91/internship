@@ -9,7 +9,7 @@ const ComData=require('../Models/CommentData');
 router.get('/get/:id',async(req,res)=>{
     try {
         const id=req.params.id;
-        const data = await ComData.find({discussionid:id}).sort({_id:-1});
+        const data = await ComData.find({discussionid:id});
         console.log("data is "+data)
         res.status(200).send(data);
     } catch (error) {
