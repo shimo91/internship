@@ -13,12 +13,18 @@ import { blue } from '@mui/material/colors';
 import { visuallyHidden } from '@mui/utils';
 import Reply from './Reply';
 import CustomPagination from './CustomPagination';
+import { jwtDecode } from "jwt-decode";
 
 const ViewDiscussion = () => {
 
-  var { stdname } = useData();
-  var { datauserId } = useData();
+  // var { stdname } = useData();
+  // var { datauserId } = useData();
  
+  const token = sessionStorage.getItem("userToken");
+    const decodeToken = jwtDecode(token);
+    const datauserId = decodeToken.userid;
+    const userName = decodeToken.username;
+    const stdname = decodeToken.stdname;
 
   const navigate = useNavigate();
   //var { dataId } = useData();
@@ -119,7 +125,7 @@ const ViewDiscussion = () => {
         axios.get('http://127.0.0.1:4000/comment/get/'+id).then((res)=>{
         
           setcomlist(res.data);
-          console.log(comlist);
+         // console.log(comlist);
         })
       } catch (error) {
         console.error('Error fetching replies:', error);

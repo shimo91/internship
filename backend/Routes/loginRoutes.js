@@ -81,8 +81,6 @@ router.get('/gettopic/:id',async(req,res)=>{
         const id=req.params.id;
         //console.log('userid is '+id)
         const data = await userData.findById(id);
-        //console.log("gettopic data :"+data)
-        //console.log("gettopic data :"+data.topic_id)
         res.status(200).send(data);
     } catch (error) {
         console.log("error is :"+error)

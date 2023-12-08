@@ -43,4 +43,26 @@ router.post('/upload', upload.single('file'), async (req, res) => {
   });
   
 
+ 
+
+router.get('/submission/:id', async (req, res) => {
+  try 
+  {
+      const id=req.params.id;
+      //console.log('Query:', await Weekdata.find({ userid: id }));
+      const totalDocuments  = await Weekdata.countDocuments({"userid": id});
+      //const userIdExists = totalDocuments > 0;
+
+      //console.log("total submsn :"+totalDocuments)
+      res.status(200).send({message:'total',total:totalDocuments});
+  }
+  catch (error) 
+  {
+      console.log("error is :"+error)
+      res.status(404).send('Error!!');
+  }
+})
+
+
+
 module.exports = router;

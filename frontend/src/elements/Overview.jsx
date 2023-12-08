@@ -16,28 +16,37 @@ const Overview = () => {
     const token = sessionStorage.getItem("userToken");
     const decodeToken = jwtDecode(token);
     const userId = decodeToken.userid;
-   // var { datauserId } = useData();
-    //console.log("userid is iiiiiiiiiiiiiiiiiiiiii :"+userId);
-
-
-
-    const [dtotal, setDtoatl] = useState('');
+    var total_pending=3;
+    const [donesub, setDonesub] = useState(0);
+    const [pending, setPending] = useState(total_pending);
+    const [dtotal, setDtoatl] = useState(0);
     
-
-
+    
+    
     useEffect(() => {
-
+        console.log("sdsdsdsd")
+       
         axios.get('http://127.0.0.1:4000/discussion/total/'+userId).then((res) => {
             if (res.data.message === 'total') {
                 setDtoatl(res.data.total);
                
               }
         })
-      }, []);
+
+        axios.get('http://127.0.0.1:4000/week/submission/'+userId).then((res) => {
+            if (res.data.message === 'total') {
+                setDonesub(res.data.total);
+                setPending(total_pending-res.data.total);
+               
+              }
+        })
+
+
+      }, [total_pending]);
    
     
   return (
-    <Grid container spacing={2} direction="row"  justifyContent="center"  alignItems="center" >
+    <Grid container spacing={2} direction="row"  justifycontent="center"  alignitems="center" >
     <Grid item xs={12} md={12} lg={12}>
                 <Paper
                   sx={{  pt: 2,
@@ -52,32 +61,32 @@ const Overview = () => {
 
 
 
-        <Grid container spacing={2} direction="row"  justifyContent="center"  alignItems="center" >
+        <Grid container spacing={2} direction="row"  justifycontent="center"  alignitems="center" >
             <Grid item xs={12} md={4}  >
                 
                 <Card className='carddiv bg-gradient-danger' >
-                <div className='iconalign'><SummarizeIcon className='fontIcon' style={{ color: green[500] }}/><Typography className='fontIconText'> 0</Typography></div>
+                <div className='iconalign'><SummarizeIcon className='fontIcon' style={{ color: green[500] }}/><Typography className='fontIconText'> {donesub}</Typography></div>
                     <CardContent>
                         <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
                         Done Submissions
                         </Typography>
                     </CardContent>
-                    <CardActions justifyContent="center"  alignItems="center" className='cardbutton'>
-                        <Button size="small">View More</Button>
+                    <CardActions justifycontent="center"  alignitems="center" className='cardbutton'>
+                        <Link to={'/week'}><Button size="small">View More</Button></Link>
                     </CardActions>
                 </Card>                    
             </Grid>
             <Grid item xs={12} md={4} >
                 
                 <Card className='carddiv bg-gradient-danger' >
-                <div className='iconalign'><PendingActionsIcon className='fontIcon' style={{ color: red[500] }}/><Typography className='fontIconText'> 0</Typography></div>
+                <div className='iconalign'><PendingActionsIcon className='fontIcon' style={{ color: red[500] }}/><Typography className='fontIconText'>{pending}</Typography></div>
                 <CardContent>
                     <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
                     Pending submissions
                     </Typography>
                 </CardContent>
-                <CardActions justifyContent="center"  alignItems="center" className='cardbutton'>
-                    <Button size="small">View More</Button>
+                <CardActions justifycontent="center"  alignitems="center" className='cardbutton'>
+                    <Link to={'/week'}><Button size="small">View More</Button></Link>
                 </CardActions>
                 </Card>
             </Grid>
@@ -90,7 +99,7 @@ const Overview = () => {
                     Total Discussion
                     </Typography>
                 </CardContent>
-                <CardActions justifyContent="center"  alignItems="center" className='cardbutton'>
+                <CardActions justifycontent="center"  alignitems="center" className='cardbutton'>
                     <Link to={'/forum'}><Button size="small" >View More</Button></Link>
                 </CardActions>
                 </Card>
