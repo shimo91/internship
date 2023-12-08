@@ -1,6 +1,6 @@
 const express = require('express')
 const router = express.Router()
-const StudentData = require("../Models/Studentdata")
+const StudentData = require("../Models/StudentData")
 const UserData = require("../Models/UserData")
 const bcrypt = require("bcryptjs")
 

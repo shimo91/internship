@@ -98,11 +98,11 @@ export default function SignUp() {
     if(!formErrors.email && !formErrors.password && !formErrors.phoneNumber && !formErrors.firstName && !formErrors.lastName ){
        try {   
         const response = await axios.post('http://localhost:4000/signup', formData)
-        alert(response.data.message)
+        // alert(response.data.message)
         navigate('/login')
       } catch (error) {
         console.log("error", error)
-        alert(error.response.data.message)
+        // alert(error.response.data.message)
       }
     }
     // setFormData({
