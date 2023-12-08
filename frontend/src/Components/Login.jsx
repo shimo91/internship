@@ -4,34 +4,54 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Grid} from '@mui/material'
 
+
 const Login = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const [usernameError, setUsernameError] = useState('');
+  const [passwordError, setPasswordError] = useState('');
   const navigate=useNavigate();
+  function validateForm() {
+    let isValid = true;
+    if (!username) {
+      setUsernameError('Please enter your username.');
+      isValid = false;
+    } else {
+      setUsernameError('');
+    }
+    if (!password) {
+      setPasswordError('Please enter your password.');
+      isValid = false;
+    } else {
+      setPasswordError('');
+    }
+    return isValid;
+  }
+
    
     function submitForm() {
-      {
+      if (validateForm()) {
         console.log('Entered Username:', username);
         console.log('Entered Password:', password);
-        axios.post('http://localhost:4000/login', {username,password})
-        .then((res) => {
-          alert(res.data.message);
-          if (res.data.message === 'success') {
-            sessionStorage.setItem("userToken", res.data.token);
-            sessionStorage.setItem('username', username)
-            console.log(username)
-            navigate('/dashboard')
-          }
-        })
-        .catch((error) => {
-          if (error.response && error.response.status === 401) {
-            alert('Invalid credentials. Please try again.');
-          } else {
-            console.error('Error during login:', error);
-            alert('An error occurred. Please try again later.');
-          }
-        });
-       
+  
+        axios.post('http://localhost:4000/login', { username, password })
+          .then((res) => {
+            alert(res.data.message);
+            if (res.data.message === 'success') {
+              sessionStorage.setItem('userToken', res.data.token);
+              sessionStorage.setItem('username', username);
+              console.log(username);
+              navigate('/dashboard');
+            }
+          })
+          .catch((error) => {
+            if (error.response && error.response.status === 401) {
+              alert('Invalid credentials. Please try again.');
+            } else {
+              console.error('Error during login:', error);
+              alert('An error occurred. Please try again later.');
+            }
+          });
       }
     }
     return(<div className='EmpForm'>
@@ -53,19 +73,20 @@ const Login = () => {
    <Grid container spacing={2} >
    <Grid item xs={6}>
            
-       <TextField
+   <TextField
               className='textFieldStyleMui'
               id="username"
               name="username"
               value={username}
-             onChange={(e) => setUsername(e.target.value)}
-             required
-             
+              onChange={(e) => setUsername(e.target.value)}
+              required
+              error={!!usernameError}
+              helperText={usernameError}
             />
             <br /><br /><br />
 
            
-      <TextField
+            <TextField
               className='textFieldStyleMui'
               type='password'
               id="password"
@@ -73,6 +94,8 @@ const Login = () => {
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               required
+              error={!!passwordError}
+              helperText={passwordError}
             />
       <br /><br /><br /> 
    <div style={{paddingLeft:"4%"}}>
