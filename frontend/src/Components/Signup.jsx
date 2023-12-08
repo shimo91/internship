@@ -92,7 +92,8 @@ export default function SignUp() {
       password: data.get('password'),
       phone: data.get('number'),
       first_name: data.get('firstName'),
-      last_name: data.get('lastName')
+      last_name: data.get('lastName'),
+      topic_status:0
     }
     if(!formErrors.email && !formErrors.password && !formErrors.phoneNumber && !formErrors.firstName && !formErrors.lastName ){
        try {   
