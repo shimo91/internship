@@ -63,7 +63,9 @@ const Listitems = () => {
     </ListItemButton>
     </Link>
     <Link to={'/report'}  sx={{textDecoration:'none'}}>
-    <ListItemButton>
+    <ListItemButton
+    className={path === '/report' ? 'activatedLink' : ''}
+    >
       <ListItemIcon>
         <AssessmentIcon />
       </ListItemIcon>

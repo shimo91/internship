@@ -46,6 +46,8 @@ app.use('/topic', routertopic);
 const routerReplyFile = require('./Routes/reply');
 app.use('/reply',routerReplyFile);
 
+const routerMetFile = require('./Routes/material');
+app.use('/ref',routerMetFile);
 app.listen(PORT,()=>{
     console.log('Listening to '+ PORT)
 })

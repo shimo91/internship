@@ -9,18 +9,28 @@ import Document from './Document';
 import { Link } from 'react-router-dom';
 import { useData } from '../context/DataContext';
 import axios from 'axios';
+import { jwtDecode } from "jwt-decode";
 
 const Overview = () => {
-    
-    var { datauserId } = useData();
+
+    const token = sessionStorage.getItem("userToken");
+    const decodeToken = jwtDecode(token);
+    const userId = decodeToken.userid;
+   // var { datauserId } = useData();
+    //console.log("userid is iiiiiiiiiiiiiiiiiiiiii :"+userId);
+
+
 
     const [dtotal, setDtoatl] = useState('');
+    
+
 
     useEffect(() => {
 
-        axios.get('http://127.0.0.1:4000/discussion/total/'+datauserId).then((res) => {
+        axios.get('http://127.0.0.1:4000/discussion/total/'+userId).then((res) => {
             if (res.data.message === 'total') {
                 setDtoatl(res.data.total);
+               
               }
         })
       }, []);
@@ -91,7 +101,7 @@ const Overview = () => {
         </Paper>
     </Grid>
     
-      <Document/>
+      <Document userid={userId}/>
     </Grid>
   )
 }

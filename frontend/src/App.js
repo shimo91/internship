@@ -31,22 +31,18 @@ function App() {
       <Routes>
         <Route path='/' element={<Home />}></Route>
         <Route path='/login' element={<Main child = {<Login/>}/>}/>
-        <Route path='/report' element={<Dashboard child={<FinalReport/>} title={'FinalReport'}/>}/>
+        <Route path='/report' element={<Dashboard child={<DataProvider><FinalReport/></DataProvider>} title={'FinalReport'}/>}/>
         <Route path='/signup' element={<Main child = {<Signup/>}/>}></Route>
         <Route path="/logout" element={<Logout/>}/>
         <Route path='/dashboard' element={<Dashboard child={<DataProvider><Overview /></DataProvider>} title={'Project Overview'} />} />
-        <Route path='/reference' element={<Dashboard child={<Reference />} title={'Reference Material'} />} />
+        <Route path='/reference' element={<Dashboard child={<DataProvider><Reference /></DataProvider>} title={'Reference Material'} />} />
         <Route path='/forum' element={<Dashboard child={<DataProvider><Forum /></DataProvider>} title={'Discussion Forum'} />} />
         <Route path='/discussion' element={<Dashboard child={<DataProvider><Discussion /></DataProvider>} title={'Discussion Forum'} />} />
         <Route path='/viewdiscussion/:id' element={<Dashboard child={<DataProvider><ViewDiscussion /></DataProvider>} title={'Discussion Forum'} />} />
-        <Route path="/sdashboard" element={<Studentdashboard />} />
-
-        <Route path='/week' element={<Dashboard child={<Week />} title={'Weekly reports'}/>}/>
-        <Route path='/vivavoce' element={<Dashboard child={<Vivavoce />} title={'Viva Voce'}/>}/>
+        <Route path="/sdashboard" element={<DataProvider><Studentdashboard /></DataProvider>} />
+        <Route path='/week' element={<Dashboard child={<DataProvider><Week /></DataProvider>} title={'Weekly reports'}/>}/>
+        <Route path='/vivavoce' element={<Dashboard child={<DataProvider><Vivavoce /></DataProvider>} title={'Viva Voce'}/>}/>
         <Route path="/topic/:topicId" element={<Topicdetails />} />
-
-
-        <Route path='/week' element={<Dashboard child={<Week />} title={'Weekly reports'} />} />
         <Route path='/editdiscussion' element={<Dashboard child={<DataProvider><EditDiscussion /></DataProvider>} title={'Edit Discussion'} />} />
 
         
