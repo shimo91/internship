@@ -97,7 +97,7 @@ const Overview = () => {
                 <div className='iconalign'><ConfirmationNumberIcon className='fontIcon' style={{ color: purple[500] }}/><Typography className='fontIconText'> {dtotal}</Typography></div>
                 <CardContent>
                     <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
-                    Total Discussion
+                    Total Discussions
                     </Typography>
                 </CardContent>
                 <CardActions justifycontent="center"  alignitems="center" className='cardbutton'>
