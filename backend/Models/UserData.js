@@ -22,6 +22,12 @@ const userSchema = mongoose.Schema({
     },
     topic_status: {
         type: Boolean
+    },
+    topic_id: {
+        type: String
+    },
+    start_date: {
+        type: Date
     }
 })
 
