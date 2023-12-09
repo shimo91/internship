@@ -27,7 +27,7 @@ export default function SignUp() {
     email: '',
     phoneNumber: '',
     password: '',
-    topic_status: 'null'
+    topic_status: false
   });
 
   // State to manage form errors
