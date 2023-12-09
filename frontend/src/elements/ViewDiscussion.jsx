@@ -14,6 +14,7 @@ import { visuallyHidden } from '@mui/utils';
 import Reply from './Reply';
 import CustomPagination from './CustomPagination';
 import { jwtDecode } from "jwt-decode";
+import axiosInstance from '../Components/axiosinterceptor'
 
 const ViewDiscussion = () => {
 
@@ -39,7 +40,7 @@ const ViewDiscussion = () => {
   useEffect(()=>{
 
       
-        axios.get('http://127.0.0.1:4000/discussion/get/'+id).then((res)=>{
+    axiosInstance.get('/discussion/get/'+id).then((res)=>{
           setlist(res.data);
           //console.log("list of discussion : "+res.data);
         })
@@ -86,7 +87,7 @@ const ViewDiscussion = () => {
           // other data if needed
         };
 
-        axios.post('http://127.0.0.1:4000/comment/add',dataToSend).then((res)=>{
+        axiosInstance.post('/comment/add',dataToSend).then((res)=>{
           //alert(res.data.message);
           if(res.data.message==="saved")
           {
@@ -122,7 +123,7 @@ const ViewDiscussion = () => {
 
     const fetchComment = async () => {
       try {
-        axios.get('http://127.0.0.1:4000/comment/get/'+id).then((res)=>{
+        axiosInstance.get('/comment/get/'+id).then((res)=>{
         
           setcomlist(res.data);
          // console.log(comlist);
@@ -192,7 +193,7 @@ const ViewDiscussion = () => {
         };
 
    
-        axios.post('http://127.0.0.1:4000/reply/add',dataToSend).then((res)=>{
+        axiosInstance.post('/reply/add',dataToSend).then((res)=>{
         //alert(res.data.message);
           if(res.data.message==="saved")
           {

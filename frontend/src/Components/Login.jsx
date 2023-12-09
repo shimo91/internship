@@ -3,6 +3,7 @@ import axios from 'axios';
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Grid} from '@mui/material'
+import { jwtDecode } from "jwt-decode";
 
 
 const Login = () => {
@@ -11,6 +12,9 @@ const Login = () => {
   const [usernameError, setUsernameError] = useState('');
   const [passwordError, setPasswordError] = useState('');
   const navigate=useNavigate();
+  // const token = sessionStorage.getItem("userToken");
+  // const decodeToken = jwtDecode(token);
+  // const topicstatus = decodeToken.topicstatus;
   function validateForm() {
     let isValid = true;
     if (!username) {
@@ -36,12 +40,24 @@ const Login = () => {
   
         axios.post('http://localhost:4000/login', { username, password })
           .then((res) => {
-            alert(res.data.message);
+            // alert(res.data.message);
             if (res.data.message === 'success') {
               sessionStorage.setItem('userToken', res.data.token);
               sessionStorage.setItem('username', username);
               console.log(username);
-              navigate('/dashboard');
+              // console.log('topicstatus'+topicstatus)
+              const token = sessionStorage.getItem("userToken");
+              const decodeToken = jwtDecode(token);
+              const topicstatus = decodeToken.topicstatus;
+              console.log('topicstatus'+topicstatus)
+              if(topicstatus)
+              {
+                navigate('/dashboard');
+              }
+              else{
+                navigate('/sdashboard');
+              }
+              
             }
           })
           .catch((error) => {

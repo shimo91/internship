@@ -6,6 +6,7 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { useData } from '../context/DataContext';
 import { jwtDecode } from "jwt-decode";
+import axiosInstance from '../Components/axiosinterceptor'
 
 const modules = {
     toolbar: [
@@ -99,7 +100,7 @@ const Discussion = () => {
                 // other data if needed
             };
 
-            axios.post('http://127.0.0.1:4000/discussion/add', dataToSend).then((res) => {
+            axiosInstance.post('/discussion/add', dataToSend).then((res) => {
                 //alert(res.data.message);
                 if (res.data.message == "saved") {
                     // alert(res.data);

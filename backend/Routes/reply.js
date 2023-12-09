@@ -6,7 +6,23 @@ router.use(express.urlencoded({extended:true}))
 
 const RepData=require('../Models/ReplyData');
 
-router.get('/get/:id',async(req,res)=>{
+const jwt = require('jsonwebtoken');
+
+function verifytoken(req,res,next){
+    try {
+        const token = req.headers.token;
+       // console.log("token :"+token)
+        if(!token) throw 'Unauthorized';
+        let payload=jwt.verify(token,'yourSecretKey');
+        if(!payload) throw 'Unauthorized';
+        //res.status(200).send(payload);
+        next();
+    } catch (error) {
+        res.status(401).send('Error')
+    }
+}
+
+router.get('/get/:id',verifytoken,async(req,res)=>{
     try {
         const id=req.params.id;
         const data = await RepData.find({commentid:id});
@@ -18,7 +34,7 @@ router.get('/get/:id',async(req,res)=>{
 })
 
 
-router.post('/add',async(req,res)=>{
+router.post('/add',verifytoken,async(req,res)=>{
     try {
         var item=req.body;
         const Data = new RepData(item);
@@ -32,7 +48,7 @@ router.post('/add',async(req,res)=>{
     }
 })
 
-router.delete('/remove/:id',async(req,res)=>{
+router.delete('/remove/:id',verifytoken,async(req,res)=>{
     try {
         const id=req.params.id;
         const savedata= await RepData.findByIdAndDelete(id);

@@ -6,6 +6,7 @@ import { lightBlue } from '@mui/material/colors';
 import axios from 'axios';
 import { useData } from '../context/DataContext';
 import { jwtDecode } from "jwt-decode";
+import axiosInstance from '../Components/axiosinterceptor'
 
 const Document = ({userid}) => {
 
@@ -18,11 +19,11 @@ useEffect(() => {
   const fetchReplies = async () => {
     try {
           // Assuming useData() returns a Promise
-          axios.get(`http://127.0.0.1:4000/login/gettopic/${userid}`)
+          axiosInstance.get(`/login/getuser/${userid}`)
           .then(res => {
             //setTopic(res.data);
             topic_id=res.data.topic_id;
-            return axios.get(`http://127.0.0.1:4000/sdashboard/getData/${topic_id}`);
+            return axiosInstance.get(`/sdashboard/getData/${topic_id}`);
           })
           .then(res1 => {
             setList(res1.data);

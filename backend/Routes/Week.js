@@ -14,7 +14,23 @@ const upload = multer({
   },
 });
 
-router.post('/upload', upload.single('file'), async (req, res) => {
+const jwt = require('jsonwebtoken');
+
+function verifytoken(req,res,next){
+    try {
+        const token = req.headers.token;
+       // console.log("token :"+token)
+        if(!token) throw 'Unauthorized';
+        let payload=jwt.verify(token,'yourSecretKey');
+        if(!payload) throw 'Unauthorized';
+        //res.status(200).send(payload);
+        next();
+    } catch (error) {
+        res.status(401).send('Error')
+    }
+}
+
+router.post('/upload',verifytoken, upload.single('file'), async (req, res) => {
     if (!req.file) {
       return res.status(400).send('No file uploaded');
     }
@@ -45,7 +61,7 @@ router.post('/upload', upload.single('file'), async (req, res) => {
 
  
 
-router.get('/submission/:id', async (req, res) => {
+router.get('/submission/:id',verifytoken, async (req, res) => {
   try 
   {
       const id=req.params.id;

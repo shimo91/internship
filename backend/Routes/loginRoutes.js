@@ -10,6 +10,20 @@ router.use(express.json())
 router.use(express.urlencoded({extended:true}))
 router.use(cors())
 
+function verifytoken(req,res,next){
+    try {
+        const token = req.headers.token;
+       // console.log("token :"+token)
+        if(!token) throw 'Unauthorized';
+        let payload=jwt.verify(token,'yourSecretKey');
+        if(!payload) throw 'Unauthorized';
+        //res.status(200).send(payload);
+        next();
+    } catch (error) {
+        res.status(401).send('Error')
+    }
+}
+
 router.get('/',async (req, res) => {
     try{
         const data = await userData.find()
@@ -39,13 +53,14 @@ router.post('/', async (req, res) => {
             if (!matchPassword) {
                 res.status(401).send('Invalid credentials')
             }else{
+                var topicstatus = user.topic_status
                 const std_name=user.first_name+" "+user.last_name;
                 // Generate token with a unique identifier (e.g., user ID)
-                let payload = { username: username, password: password ,userid : user._id,stdname : std_name};
+                let payload = { username: username, password: password ,userid : user._id,stdname : std_name,topicstatus:topicstatus};
                 const token = jwt.sign(payload, 'yourSecretKey');
     
                 // Send success response with token
-             res.status(200).json({ message: 'success', token });
+             res.status(200).json({ message: 'success', token});
                 // res.status(200).json(user);
             }
 
@@ -63,7 +78,7 @@ router.post('/', async (req, res) => {
 })
 
 
-router.get('/getuser/:id',async(req,res)=>{
+router.get('/getuser/:id',verifytoken,async(req,res)=>{
     try {
         const id=req.params.id;
         console.log('id is '+id)
@@ -76,17 +91,7 @@ router.get('/getuser/:id',async(req,res)=>{
     }
 })
 
-router.get('/gettopic/:id',async(req,res)=>{
-    try {
-        const id=req.params.id;
-        //console.log('userid is '+id)
-        const data = await userData.findById(id);
-        res.status(200).send(data);
-    } catch (error) {
-        console.log("error is :"+error)
-        res.status(400).send(error);
-    }
-})
+
 
 
 module.exports = router;

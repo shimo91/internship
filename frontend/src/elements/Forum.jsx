@@ -22,6 +22,7 @@ import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import CustomPagination from './CustomPagination';
 import { jwtDecode } from "jwt-decode";
+import axiosInstance from '../Components/axiosinterceptor'
 
 const style = {
   width: '100%',
@@ -57,7 +58,7 @@ const Forum = () => {
 
   useEffect(() => {
 
-    axios.get('http://127.0.0.1:4000/discussion/getUserlist/' + datauserId).then((res) => {
+    axiosInstance.get('/discussion/getUserlist/' + datauserId).then((res) => {
       setlist(...list, res.data);
       //console.log(list);
     })
@@ -68,7 +69,7 @@ const Forum = () => {
 
   useEffect(() => {
 
-    axios.get('http://127.0.0.1:4000/discussion/getmylist/' + datauserId).then((res) => {
+    axiosInstance.get('/discussion/getmylist/' + datauserId).then((res) => {
       setmylist(...mylist, res.data);
      // console.log(mylist);
     })
@@ -110,7 +111,7 @@ const Forum = () => {
     setDialOpen(false);
     const did=delId;
    // console.log("delete id :"+did);
-    axios.delete('http://127.0.0.1:4000/discussion/remove/' + did).then((res) => {
+   axiosInstance.delete('/discussion/remove/' + did).then((res) => {
       setOpen(true);
       
       setTimeout(() => {

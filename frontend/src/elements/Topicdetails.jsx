@@ -3,13 +3,14 @@ import axios from 'axios';
 import { useParams, Link } from 'react-router-dom';
 import YouTubeIcon from '@material-ui/icons/YouTube';
 import PictureAsPdfIcon from '@material-ui/icons/PictureAsPdf';
+import axiosInstance from '../Components/axiosinterceptor'
 
 const Topicdetails = () => {
   const [topicDetails, setTopicDetails] = useState(null);
   const { topicId } = useParams();
 
   useEffect(() => {
-    axios.get(`http://localhost:4000/topic/view/${topicId}`)
+    axiosInstance.get(`/topic/view/${topicId}`)
       .then((response) => {
         if (Array.isArray(response.data) && response.data.length > 0) {
           setTopicDetails(response.data[0]);

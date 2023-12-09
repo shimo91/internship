@@ -7,8 +7,24 @@ router.use(express.json());
 router.use(express.urlencoded({ extended: true }));
 router.use(cors());
 
+const jwt = require('jsonwebtoken');
+
+function verifytoken(req,res,next){
+    try {
+        const token = req.headers.token;
+       // console.log("token :"+token)
+        if(!token) throw 'Unauthorized';
+        let payload=jwt.verify(token,'yourSecretKey');
+        if(!payload) throw 'Unauthorized';
+        //res.status(200).send(payload);
+        next();
+    } catch (error) {
+        res.status(401).send('Error')
+    }
+}
+
 // Fetch all topics
-router.get('/', async (req, res) => {
+router.get('/', verifytoken,async (req, res) => {
   try {
     const topics = await Topic.find();
     res.json(topics);
@@ -19,7 +35,7 @@ router.get('/', async (req, res) => {
 });
 
 // Fetch a specific topic by ID
-router.get('/view/:topicId', async (req, res) => {
+router.get('/view/:topicId',verifytoken, async (req, res) => {
   try {
     const topicId = req.params.topicId;
 

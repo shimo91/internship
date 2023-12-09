@@ -1,4 +1,4 @@
-import { Toolbar, Typography } from '@mui/material'
+import { Toolbar, Tooltip, Typography } from '@mui/material'
 import React, { useEffect, useState } from 'react'
 import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
@@ -14,7 +14,6 @@ import Listitems, { mainListItems, secondaryListItems } from '../elements/Listit
 import Divider from '@mui/material/Divider';
 import List from '@mui/material/List';
 import { jwtDecode } from "jwt-decode";
-import axios from 'axios';
 
 
 const drawerWidth = 240;
@@ -107,11 +106,13 @@ const Dashnav = (props) => {
               {props.title}
             </Typography>
             <Typography sx={{ marginRight:1 }}>{stdname}</Typography> 
-            <IconButton color="inherit">
+            <Tooltip title="Logout">
+            <IconButton color="inherit" >
               <Badge color="secondary">
-               <Link to={'/logout'} style={{textDecoration:'none',color:'white'}}><LogoutIcon /></Link>
+               <Link to={'/logout'} style={{textDecoration:'none',color:'white'}} ><LogoutIcon /></Link>
               </Badge>
             </IconButton>
+            </Tooltip>
           </Toolbar>
     </AppBar>
      <Drawer variant="permanent" open={open}>

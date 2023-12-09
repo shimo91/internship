@@ -10,6 +10,7 @@ import { Link } from 'react-router-dom';
 import { useData } from '../context/DataContext';
 import axios from 'axios';
 import { jwtDecode } from "jwt-decode";
+import axiosInstance from '../Components/axiosinterceptor'
 
 const Overview = () => {
 
@@ -26,14 +27,14 @@ const Overview = () => {
     useEffect(() => {
         console.log("sdsdsdsd")
        
-        axios.get('http://127.0.0.1:4000/discussion/total/'+userId).then((res) => {
+        axiosInstance.get('/discussion/total/'+userId).then((res) => {
             if (res.data.message === 'total') {
                 setDtoatl(res.data.total);
                
               }
         })
 
-        axios.get('http://127.0.0.1:4000/week/submission/'+userId).then((res) => {
+        axiosInstance.get('/week/submission/'+userId).then((res) => {
             if (res.data.message === 'total') {
                 setDonesub(res.data.total);
                 setPending(total_pending-res.data.total);
@@ -68,7 +69,7 @@ const Overview = () => {
                 <div className='iconalign'><SummarizeIcon className='fontIcon' style={{ color: green[500] }}/><Typography className='fontIconText'> {donesub}</Typography></div>
                     <CardContent>
                         <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
-                        Done Submissions
+                        Weekly Done Submissions
                         </Typography>
                     </CardContent>
                     <CardActions justifycontent="center"  alignitems="center" className='cardbutton'>
@@ -82,7 +83,7 @@ const Overview = () => {
                 <div className='iconalign'><PendingActionsIcon className='fontIcon' style={{ color: red[500] }}/><Typography className='fontIconText'>{pending}</Typography></div>
                 <CardContent>
                     <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
-                    Pending submissions
+                    Weekly Pending Submissions
                     </Typography>
                 </CardContent>
                 <CardActions justifycontent="center"  alignitems="center" className='cardbutton'>
@@ -96,7 +97,7 @@ const Overview = () => {
                 <div className='iconalign'><ConfirmationNumberIcon className='fontIcon' style={{ color: purple[500] }}/><Typography className='fontIconText'> {dtotal}</Typography></div>
                 <CardContent>
                     <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
-                    Total Discussion
+                    Total Discussions
                     </Typography>
                 </CardContent>
                 <CardActions justifycontent="center"  alignitems="center" className='cardbutton'>
