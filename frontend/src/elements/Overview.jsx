@@ -69,7 +69,7 @@ const Overview = () => {
                 <div className='iconalign'><SummarizeIcon className='fontIcon' style={{ color: green[500] }}/><Typography className='fontIconText'> {donesub}</Typography></div>
                     <CardContent>
                         <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
-                        Done Submissions
+                        Weekly Done Submissions
                         </Typography>
                     </CardContent>
                     <CardActions justifycontent="center"  alignitems="center" className='cardbutton'>
@@ -83,7 +83,7 @@ const Overview = () => {
                 <div className='iconalign'><PendingActionsIcon className='fontIcon' style={{ color: red[500] }}/><Typography className='fontIconText'>{pending}</Typography></div>
                 <CardContent>
                     <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
-                    Pending submissions
+                    Weekly Pending Submissions
                     </Typography>
                 </CardContent>
                 <CardActions justifycontent="center"  alignitems="center" className='cardbutton'>
