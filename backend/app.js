@@ -20,13 +20,15 @@ app.use('/signup', signupRoutes)
 const submissionRoutes = require('./Routes/googledocSubmissionRoutes');
 app.use(submissionRoutes);
 
+
 const loginRoutes = require('./Routes/loginRoutes')
 app.use('/login',loginRoutes)
 
+const marks = require('./Routes/markRoutes');
+app.use('/marks', marks)
+
 const reprotRoutes = require('./Routes/reportRoutes')
 app.use('/report',reprotRoutes)
-
-
 
 
 const routerFile = require('./Routes/forum');

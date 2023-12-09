@@ -17,6 +17,7 @@ import Studentdashboard from './elements/Studentdashboard';
 import { DataProvider } from './context/DataContext';
 import Week from './elements/Week';
 import Vivavoce from './elements/Vivavoce';
+import Marks from './elements/Marks'
 import View from './elements/View';
 import Topicdetails from './elements/Topicdetails';
 
@@ -42,6 +43,7 @@ function App() {
         <Route path="/sdashboard" element={<DataProvider><Studentdashboard /></DataProvider>} />
         <Route path='/week' element={<Dashboard child={<DataProvider><Week /></DataProvider>} title={'Weekly reports'}/>}/>
         <Route path='/vivavoce' element={<Dashboard child={<DataProvider><Vivavoce /></DataProvider>} title={'Viva Voce'}/>}/>
+        <Route path='/marks' element={<Dashboard child={<DataProvider><Marks /></DataProvider>} title={'Marks'}/>}/>
         <Route path="/topic/:topicId" element={<Topicdetails />} />
         <Route path='/editdiscussion' element={<Dashboard child={<DataProvider><EditDiscussion /></DataProvider>} title={'Edit Discussion'} />} />
 

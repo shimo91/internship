@@ -28,8 +28,23 @@ const userSchema = mongoose.Schema({
     },
     start_date: {
         type: Date
-    }
+    },
+    week_1_marks: {
+        type: Number
+    },
+    week_2_marks: {
+        type: Number
+    },
+    week_3_marks: {
+        type: Number
+    },
+    finalreport_marks: {
+        type: Number
+    },
+    vivavoce_marks: {
+        type: Number
+    },
 })
 
-const UserData = mongoose.model('userdata',userSchema)
+const UserData = mongoose.model('userdatas',userSchema)
 module.exports = UserData

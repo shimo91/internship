@@ -8,6 +8,7 @@ import AssignmentIcon from '@mui/icons-material/Assignment';
 import ArticleIcon from '@mui/icons-material/Article';
 import AssessmentIcon from '@mui/icons-material/Assessment';
 import ForumIcon from '@mui/icons-material/Forum';
+import GradeIcon from '@mui/icons-material/Grade';
 import '../css/Dashboard.css'
 import { Link, matchPath, useLocation } from 'react-router-dom';
 import { Divider } from '@mui/material';
@@ -78,6 +79,15 @@ const Listitems = () => {
         <PeopleIcon />
       </ListItemIcon>
       <ListItemText primary="Viva Voce" />
+    </ListItemButton>
+    </Link>
+
+    <Link to={'/marks'}  sx={{textDecoration:'none'}}>
+    <ListItemButton>
+      <ListItemIcon>
+        <GradeIcon />
+      </ListItemIcon>
+      <ListItemText primary="Marks" />
     </ListItemButton>
     </Link>
     
