@@ -19,6 +19,9 @@ const userSchema = mongoose.Schema({
     },
     phone: {
         type: String
+    },
+    topic_status: {
+        type: Boolean
     }
 })
 

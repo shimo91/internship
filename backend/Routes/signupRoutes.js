@@ -6,13 +6,13 @@ const bcrypt = require("bcryptjs")
 
 router.post('/', async (req, res) => {
     try {
-        const { username, password, phone, first_name, last_name} = req.body;
+        const { username, password, phone, first_name, last_name, topic_status} = req.body;
         console.log(req.body)
         const student = await StudentData.findOne({username});
         console.log("student data",student)
         if (!student) {
             const hashedPwd = bcrypt.hashSync(password, 8)
-            const user = await UserData.create({username, password:hashedPwd, first_name, last_name, phone})
+            const user = await UserData.create({username, password:hashedPwd, first_name, last_name, phone, topic_status})
             res.status(200).json({success: true, message: "Successfully created the user"})
         } else {
             const score = student.exit_score ;

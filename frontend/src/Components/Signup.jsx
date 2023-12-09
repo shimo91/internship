@@ -27,6 +27,7 @@ export default function SignUp() {
     email: '',
     phoneNumber: '',
     password: '',
+    topic_status: 'null'
   });
 
   // State to manage form errors
@@ -93,7 +94,7 @@ export default function SignUp() {
       phone: data.get('number'),
       first_name: data.get('firstName'),
       last_name: data.get('lastName'),
-      topic_status:0
+      topic_status: data.get('topic_status')
     }
     if(!formErrors.email && !formErrors.password && !formErrors.phoneNumber && !formErrors.firstName && !formErrors.lastName ){
        try {   
