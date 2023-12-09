@@ -91,7 +91,7 @@ export default function SignUp() {
     const formData = {
       username: data.get('email'),
       password: data.get('password'),
-      phone: data.get('number'),
+      phone: data.get('phoneNumber'),
       first_name: data.get('firstName'),
       last_name: data.get('lastName'),
       topic_status: data.get('topic_status')
@@ -191,7 +191,7 @@ export default function SignUp() {
                 <TextField
                   required
                   fullWidth
-                  id="number"
+                  id="phoneNumber"
                   label="Phone Number"
                   name="phoneNumber"
                   autoComplete="phone-number"
