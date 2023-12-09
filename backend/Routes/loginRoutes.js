@@ -39,13 +39,14 @@ router.post('/', async (req, res) => {
             if (!matchPassword) {
                 res.status(401).send('Invalid credentials')
             }else{
+                var topicstatus = user.topic_status
                 const std_name=user.first_name+" "+user.last_name;
                 // Generate token with a unique identifier (e.g., user ID)
-                let payload = { username: username, password: password ,userid : user._id,stdname : std_name};
+                let payload = { username: username, password: password ,userid : user._id,stdname : std_name,topicstatus:topicstatus};
                 const token = jwt.sign(payload, 'yourSecretKey');
     
                 // Send success response with token
-             res.status(200).json({ message: 'success', token });
+             res.status(200).json({ message: 'success', token});
                 // res.status(200).json(user);
             }
 
