@@ -9,6 +9,7 @@ import { useData } from '../context/DataContext';
 import axios from 'axios';
 import { KeyboardArrowRight } from '@mui/icons-material';
 import { jwtDecode } from "jwt-decode";
+import axiosInstance from '../Components/axiosinterceptor'
 
 const Reference = () => {
 
@@ -21,7 +22,7 @@ const Reference = () => {
   var topic_id;
   var startDate;
   const currentDate = new Date();
-  console.log("todays date :"+currentDate);
+ // console.log("todays date :"+currentDate);
   //const [topic, setTopic] = useState('');
   const [list1, setList1] = useState([]);
   const [list2, setList2] = useState([]);
@@ -33,20 +34,20 @@ const Reference = () => {
 
   useEffect(() => {
 
-        axios.get('http://127.0.0.1:4000/login/gettopic/'+userId)
+    axiosInstance.get('/login/getuser/'+userId)
         .then(res => {
           //setTopic(res.data);
           topic_id=res.data.topic_id;
           startDate = new Date(res.data.start_date); 
-          console.log("start date "+startDate)
+          //console.log("start date "+startDate)
           // Clone the startDate and add 7 days
           
-          return axios.post('http://127.0.0.1:4000/ref/getData',{topic_Id:topic_id,refn:1} );
+          return axiosInstance.post('/ref/getData',{topic_Id:topic_id,refn:1} );
         })
         .then(res1 => {
           const week2 = new Date(startDate);
           week2.setDate(startDate.getDate() + 7);
-          console.log("week2 :"+week2);
+         // console.log("week2 :"+week2);
           if(currentDate >= week2)
           {
             setDisable2(false);
@@ -54,19 +55,19 @@ const Reference = () => {
           setList1(...list1, res1.data);
 
           //console.log(list1)
-          return axios.post('http://127.0.0.1:4000/ref/getData',{topic_Id:topic_id,refn:2} );
+          return axiosInstance.post('/ref/getData',{topic_Id:topic_id,refn:2} );
         })
         .then(res2 => {
           const week3 = new Date(startDate);
           week3.setDate(startDate.getDate() + 14);
-          console.log("week3 :"+week3);
+          //console.log("week3 :"+week3);
           if(currentDate >= week3)
           {
             setDisable3(false);
           }
           setList2(...list2, res2.data);
           //console.log(list1)
-          return axios.post('http://127.0.0.1:4000/ref/getData',{topic_Id:topic_id,refn:3} );
+          return axiosInstance.post('/ref/getData',{topic_Id:topic_id,refn:3} );
         })
         .then(res3 => {
           setList3(...list3, res3.data);

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Avatar, Divider, Grid, ListItem, ListItemAvatar, ListItemText, Typography } from '@mui/material';
+import axiosInstance from '../Components/axiosinterceptor'
 
 const Reply = ({ commId, count}) => {
 
@@ -13,7 +14,7 @@ const Reply = ({ commId, count}) => {
         try {
          
           
-            axios.get('http://127.0.0.1:4000/reply/get/'+commId).then((res)=>{
+          axiosInstance.get('/reply/get/'+commId).then((res)=>{
                 if(res.data!= undefined && res.data != null)
                 {
                     setReplies(res.data);

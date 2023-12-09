@@ -5,6 +5,7 @@ import ReactQuill from 'react-quill';
 import { useData } from '../context/DataContext';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import axiosInstance from '../Components/axiosinterceptor'
 
 const modules = {
     toolbar: [
@@ -34,7 +35,7 @@ const EditDiscussion = () => {
 
         //const did= discussionId;
 
-        axios.get('http://127.0.0.1:4000/discussion/get/' + discussionId).then((res) => {
+        axiosInstance.get('/discussion/get/' + discussionId).then((res) => {
             setlist(res.data);
             //console.log("list of discussion : "+res.data);
             setHtmlValue(res.data.description)
@@ -73,7 +74,7 @@ const EditDiscussion = () => {
         };
         console.log("data to send :"+dataToSend)
 
-        axios.put('http://127.0.0.1:4000/discussion/update/' + discussionId, dataToSend).then((res) => {
+        axiosInstance.put('/discussion/update/' + discussionId, dataToSend).then((res) => {
 
             if (res.data.message == "Updated successfully") {
                 setOpen(true);

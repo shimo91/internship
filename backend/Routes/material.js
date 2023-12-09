@@ -5,8 +5,22 @@ router.use(express.json());
 router.use(express.urlencoded({extended:true}))
 
 const MetData=require('../Models/MaterialData');
+const jwt = require('jsonwebtoken');
 
-router.post('/getData',async(req,res)=>{
+function verifytoken(req,res,next){
+    try {
+        const token = req.headers.token;
+       // console.log("token :"+token)
+        if(!token) throw 'Unauthorized';
+        let payload=jwt.verify(token,'yourSecretKey');
+        if(!payload) throw 'Unauthorized';
+        //res.status(200).send(payload);
+        next();
+    } catch (error) {
+        res.status(401).send('Error')
+    }
+}
+router.post('/getData',verifytoken,async(req,res)=>{
     try {
         const { topic_Id, refn } = req.body;
         console.log("topicid is:"+topic_Id+" ref:"+refn)
@@ -20,7 +34,7 @@ router.post('/getData',async(req,res)=>{
 })
 
 
-router.post('/add',async(req,res)=>{
+router.post('/add',verifytoken,async(req,res)=>{
     try {
         var item=req.body;
         const Data = new MetData(item);

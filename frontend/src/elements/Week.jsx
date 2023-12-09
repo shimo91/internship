@@ -4,6 +4,7 @@ import CloudUploadIcon from '@mui/icons-material/CloudUpload';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import axios from 'axios';
+import axiosInstance from '../Components/axiosinterceptor'
 
 const WeeklyReport = () => {
   const [fileUploaded, setFileUploaded] = useState(false);
@@ -45,7 +46,7 @@ const [uploadedFileWeek3, setUploadedFileWeek3] = useState(null);
       formData.append('file', selectedFile);
 
       
-      const fileResponse = await axios.post('http://localhost:4000/week/upload', formData);
+      const fileResponse = await axiosInstance.post('/week/upload', formData);
       
       // For demonstration purposes, set file upload success directly
       // Replace this with actual response handling from your server
@@ -77,7 +78,7 @@ const [uploadedFileWeek3, setUploadedFileWeek3] = useState(null);
       const formData = new FormData();
       formData.append('file', selectedFile);
   
-      const fileResponse = await axios.post('http://localhost:4000/week/upload', formData);
+      const fileResponse = await axiosInstance.post('/week/upload', formData);
   
       if (fileResponse.data === 'File uploaded successfully and processed.') {
         if (selectedFile) {
@@ -116,7 +117,7 @@ const [uploadedFileWeek3, setUploadedFileWeek3] = useState(null);
       };
   
       // Send Week 3 data to the server using Axios POST request
-      const week3Response = await axios.post('http://localhost:4000/week3/submit', week3Data);
+      const week3Response = await axiosInstance.post('/week3/submit', week3Data);
   
       // Check the response from the server
       if (week3Response.status === 200) {

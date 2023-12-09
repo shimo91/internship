@@ -2,7 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { Container, Typography, TextField, TextareaAutosize, Button, Snackbar } from '@mui/material';
 import axios from 'axios';
 import { Box} from '@mui/material';
-import { Grid} from '@mui/material'
+import { Grid} from '@mui/material';
+import axiosInstance from '../Components/axiosinterceptor';
 import { jwtDecode } from "jwt-decode";
 
 
@@ -52,14 +53,14 @@ const FinalReport = () => {
     if (userReports.length > 0) {
       const filename = userReports[0].filename;
       alert(filename);
-      window.open(`http://localhost:4000/report/file/${filename}`, '_blank', 'noreferrer');
+      window.open(`http://127.0.0.1:4000/report/file/${filename}`, '_blank', 'noreferrer');
     } else {
       alert('No report found for the logged-in user.');
     }
   };
 
   const handledownload = async () => {
-    const result = await axios.get('http://localhost:4000/report/filedata');
+    const result = await axiosInstance.get('/report/filedata');
     console.log(result.data.data);
     setDownloadfile(result.data.data);
   };
@@ -91,7 +92,7 @@ const FinalReport = () => {
     formData.append('username', username);
 
     try {
-      const result = await axios.post('http://localhost:4000/report/upload', formData, {
+      const result = await axiosInstance.post('/report/upload', formData, {
         headers: { 'Content-Type': 'multipart/form-data' },
       });
 

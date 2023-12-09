@@ -14,7 +14,6 @@ import Listitems, { mainListItems, secondaryListItems } from '../elements/Listit
 import Divider from '@mui/material/Divider';
 import List from '@mui/material/List';
 import { jwtDecode } from "jwt-decode";
-import axios from 'axios';
 
 
 const drawerWidth = 240;

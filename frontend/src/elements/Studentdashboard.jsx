@@ -19,7 +19,7 @@ import ExitToAppIcon from '@mui/icons-material/ExitToApp';
 import MenuBookIcon from '@mui/icons-material/MenuBook';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
-
+import axiosInstance from '../Components/axiosinterceptor'
 
 const Studentdashboard = () => {
   const [topics, setTopics] = useState([]);
@@ -27,7 +27,7 @@ const Studentdashboard = () => {
   const [confirmationOpen, setConfirmationOpen] = useState(false);
 
   useEffect(() => {
-    axios.get('http://localhost:4000/sdashboard/')
+    axiosInstance.get('/sdashboard/')
       .then((response) => {
         setTopics(response.data);
       })
@@ -50,7 +50,7 @@ const Studentdashboard = () => {
 
   const handleConfirm = () => {
     // Make a POST request to store the selected topic
-    axios.post('http://localhost:4000/sdashboard/topic', { projectId: selectedTopic._id })
+    axiosInstance.post('/sdashboard/topic', { projectId: selectedTopic._id })
       .then((response) => {
         // Handle success, maybe show a success message
         console.log('Topic stored successfully:', response.data);

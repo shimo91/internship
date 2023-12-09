@@ -10,6 +10,20 @@ router.use(express.json())
 router.use(express.urlencoded({extended:true}))
 router.use(cors())
 
+function verifytoken(req,res,next){
+    try {
+        const token = req.headers.token;
+       // console.log("token :"+token)
+        if(!token) throw 'Unauthorized';
+        let payload=jwt.verify(token,'yourSecretKey');
+        if(!payload) throw 'Unauthorized';
+        //res.status(200).send(payload);
+        next();
+    } catch (error) {
+        res.status(401).send('Error')
+    }
+}
+
 router.get('/',async (req, res) => {
     try{
         const data = await userData.find()
@@ -64,7 +78,7 @@ router.post('/', async (req, res) => {
 })
 
 
-router.get('/getuser/:id',async(req,res)=>{
+router.get('/getuser/:id',verifytoken,async(req,res)=>{
     try {
         const id=req.params.id;
         console.log('id is '+id)
@@ -77,17 +91,7 @@ router.get('/getuser/:id',async(req,res)=>{
     }
 })
 
-router.get('/gettopic/:id',async(req,res)=>{
-    try {
-        const id=req.params.id;
-        //console.log('userid is '+id)
-        const data = await userData.findById(id);
-        res.status(200).send(data);
-    } catch (error) {
-        console.log("error is :"+error)
-        res.status(400).send(error);
-    }
-})
+
 
 
 module.exports = router;

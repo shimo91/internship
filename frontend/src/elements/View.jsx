@@ -1,12 +1,13 @@
 // TopicDetails.js
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import axiosInstance from '../Components/axiosinterceptor'
 
 const View = ({ topicId }) => {
   const [topicDetails, setTopicDetails] = useState(null);
 
   useEffect(() => {
-    axios.get(`http://localhost:4000/sdashboard/topic/topic/${topicId}`)
+    axiosInstance.get(`http://localhost:4000/sdashboard/topic/topic/${topicId}`)
       .then((response) => {
         setTopicDetails(response.data);
       })

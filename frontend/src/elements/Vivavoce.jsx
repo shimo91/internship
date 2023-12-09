@@ -3,6 +3,7 @@ import { Button, TextField, Container, Typography } from '@mui/material';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 
 import axios from 'axios'
+import axiosInstance from '../Components/axiosinterceptor'
 
 const theme = createTheme();
 
@@ -46,7 +47,7 @@ function Vivavoce() {
 
   const checkSubmission = async () => {
     try {
-      const response = await axios.post('http://localhost:4000/getvivavoce', {email})
+      const response = await axiosInstance.post('/getvivavoce', {email})
       const {submitted, finalreport} = response.data
 
       if (submitted === true){
@@ -68,7 +69,7 @@ function Vivavoce() {
   const handleSubmission = async () => {
     try {
       if (docLink.trim() !== '' && reportName.trim() !== '') {
-        const response = await axios.post('http://localhost:4000/googledoclinksubmit', { docLink, reportName, email });
+        const response = await axiosInstance.post('/googledoclinksubmit', { docLink, reportName, email });
         setSubmissionStatus('submitted');
         console.log(response.data.message);
       } else {

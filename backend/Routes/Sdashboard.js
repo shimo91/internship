@@ -7,12 +7,27 @@ const student=require('../Models/StudentTopic');
 const app=new express();
 const jwt = require('jsonwebtoken');
 
+function verifytoken(req,res,next){
+    try {
+        const token = req.headers.token;
+       // console.log("token :"+token)
+        if(!token) throw 'Unauthorized';
+        let payload=jwt.verify(token,'yourSecretKey');
+        if(!payload) throw 'Unauthorized';
+        //res.status(200).send(payload);
+        next();
+    } catch (error) {
+        res.status(401).send('Error')
+    }
+}
+
+
 
 router.use(express.json());
 router.use(express.urlencoded({ extended: true }));
 router.use(cors()); // Should be under express.json always
 
-router.get('/', async (req, res) => {
+router.get('/', verifytoken,async (req, res) => {
   try {
     const data = await student.find();
     if (!data || data.length === 0) {
@@ -25,7 +40,7 @@ router.get('/', async (req, res) => {
   }
 });
 
-router.post('/topic', async (req, res) => {
+router.post('/topic',verifytoken, async (req, res) => {
   try {
     const { projectId } = req.body; // Assuming projectId is used to identify the selected topic
 
@@ -49,7 +64,7 @@ router.post('/topic', async (req, res) => {
   }
 });
 
-router.get('/getData/:id',async(req,res)=>{
+router.get('/getData/:id',verifytoken,async(req,res)=>{
   try {
       const id=req.params.id;
       //console.log('topicid is '+id)

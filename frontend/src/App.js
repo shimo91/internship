@@ -22,6 +22,8 @@ import Topicdetails from './elements/Topicdetails';
 
 import EditDiscussion from './elements/EditDiscussion';
 import { DiscussionProvider } from './context/DiscussionContext';
+import { RequireStudentDashAuth } from './Components/StudentDashAuth';
+import { RequireAuth } from './Components/Auth';
 
 
 function App() {
@@ -31,19 +33,19 @@ function App() {
       <Routes>
         <Route path='/' element={<Home />}></Route>
         <Route path='/login' element={<Main child = {<Login/>}/>}/>
-        <Route path='/report' element={<Dashboard child={<DataProvider><FinalReport/></DataProvider>} title={'FinalReport'}/>}/>
+        <Route path='/report' element={<RequireAuth><Dashboard child={<DataProvider><FinalReport/></DataProvider>} title={'FinalReport'}/></RequireAuth>}/>
         <Route path='/signup' element={<Main child = {<Signup/>}/>}></Route>
         <Route path="/logout" element={<Logout/>}/>
-        <Route path='/dashboard' element={<Dashboard child={<DataProvider><Overview /></DataProvider>} title={'Project Overview'} />} />
-        <Route path='/reference' element={<Dashboard child={<DataProvider><Reference /></DataProvider>} title={'Reference Material'} />} />
-        <Route path='/forum' element={<Dashboard child={<DataProvider><Forum /></DataProvider>} title={'Discussion Forum'} />} />
-        <Route path='/discussion' element={<Dashboard child={<DataProvider><Discussion /></DataProvider>} title={'Discussion Forum'} />} />
-        <Route path='/viewdiscussion/:id' element={<Dashboard child={<DataProvider><ViewDiscussion /></DataProvider>} title={'Discussion Forum'} />} />
-        <Route path="/sdashboard" element={<DataProvider><Studentdashboard /></DataProvider>} />
-        <Route path='/week' element={<Dashboard child={<DataProvider><Week /></DataProvider>} title={'Weekly reports'}/>}/>
-        <Route path='/vivavoce' element={<Dashboard child={<DataProvider><Vivavoce /></DataProvider>} title={'Viva Voce'}/>}/>
-        <Route path="/topic/:topicId" element={<Topicdetails />} />
-        <Route path='/editdiscussion' element={<Dashboard child={<DataProvider><EditDiscussion /></DataProvider>} title={'Edit Discussion'} />} />
+        <Route path='/dashboard' element={<RequireAuth><Dashboard child={<DataProvider><Overview /></DataProvider>} title={'Project Overview'} /></RequireAuth>} />
+        <Route path='/reference' element={<RequireAuth><Dashboard child={<DataProvider><Reference /></DataProvider>} title={'Reference Material'} /></RequireAuth>} />
+        <Route path='/forum' element={<RequireAuth><Dashboard child={<DataProvider><Forum /></DataProvider>} title={'Discussion Forum'} /></RequireAuth>} />
+        <Route path='/discussion' element={<RequireAuth><Dashboard child={<DataProvider><Discussion /></DataProvider>} title={'Discussion Forum'} /></RequireAuth>} />
+        <Route path='/viewdiscussion/:id' element={<RequireAuth><Dashboard child={<DataProvider><ViewDiscussion /></DataProvider>} title={'Discussion Forum'} /></RequireAuth>} />
+        <Route path="/sdashboard" element={<RequireStudentDashAuth><DataProvider><Studentdashboard /></DataProvider></RequireStudentDashAuth>} />
+        <Route path='/week' element={<RequireAuth><Dashboard child={<DataProvider><Week /></DataProvider>} title={'Weekly reports'}/></RequireAuth>}/>
+        <Route path='/vivavoce' element={<RequireAuth><Dashboard child={<DataProvider><Vivavoce /></DataProvider>} title={'Viva Voce'}/></RequireAuth>}/>
+        <Route path="/topic/:topicId" element={<RequireAuth><Topicdetails /></RequireAuth>} />
+        <Route path='/editdiscussion' element={<RequireAuth><Dashboard child={<DataProvider><EditDiscussion /></DataProvider>} title={'Edit Discussion'} /></RequireAuth>} />
 
         
       </Routes>

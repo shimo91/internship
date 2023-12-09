@@ -10,6 +10,7 @@ import { Link } from 'react-router-dom';
 import { useData } from '../context/DataContext';
 import axios from 'axios';
 import { jwtDecode } from "jwt-decode";
+import axiosInstance from '../Components/axiosinterceptor'
 
 const Overview = () => {
 
@@ -26,14 +27,14 @@ const Overview = () => {
     useEffect(() => {
         console.log("sdsdsdsd")
        
-        axios.get('http://127.0.0.1:4000/discussion/total/'+userId).then((res) => {
+        axiosInstance.get('/discussion/total/'+userId).then((res) => {
             if (res.data.message === 'total') {
                 setDtoatl(res.data.total);
                
               }
         })
 
-        axios.get('http://127.0.0.1:4000/week/submission/'+userId).then((res) => {
+        axiosInstance.get('/week/submission/'+userId).then((res) => {
             if (res.data.message === 'total') {
                 setDonesub(res.data.total);
                 setPending(total_pending-res.data.total);

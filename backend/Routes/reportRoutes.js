@@ -7,6 +7,21 @@ require('../Models/FinalReport')
 router.use("/file",express.static("fileuploaded"))
 const fileSchema = mongoose.model("reportdatas")
 
+const jwt = require('jsonwebtoken');
+
+function verifytoken(req,res,next){
+    try {
+        const token = req.headers.token;
+       // console.log("token :"+token)
+        if(!token) throw 'Unauthorized';
+        let payload=jwt.verify(token,'yourSecretKey');
+        if(!payload) throw 'Unauthorized';
+        //res.status(200).send(payload);
+        next();
+    } catch (error) {
+        res.status(401).send('Error')
+    }
+}
 
 
 const storage = multer.diskStorage({
@@ -21,7 +36,7 @@ const storage = multer.diskStorage({
   
   const upload = multer({ storage: storage })
 
-router.post('/upload', upload.single('file'), async function (req, res, next) {
+router.post('/upload',verifytoken, upload.single('file'), async function (req, res, next) {
 	
 	const filename=req.file.filename
 	const username=req.body.username
@@ -42,7 +57,7 @@ router.post('/upload', upload.single('file'), async function (req, res, next) {
 	}
   })
 
-  router.get('/filedata',async(req,res)=>{
+  router.get('/filedata',verifytoken,async(req,res)=>{
 	try{
 		fileSchema.find({}).then((data)=>{
 			res.send({status: "ok",data:data})
@@ -56,7 +71,7 @@ router.post('/upload', upload.single('file'), async function (req, res, next) {
 
  
 
-router.get('/',async(req,res)=>
+router.get('/',verifytoken,async(req,res)=>
 {
 	res.send('sucess!!!!')
 })

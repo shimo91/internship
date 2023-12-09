@@ -3,10 +3,26 @@ const router=express.Router();
 
 router.use(express.json());
 router.use(express.urlencoded({extended:true}))
-
 const DisData=require('../Models/DiscussionData');
 
-router.get('/get/:id',async(req,res)=>{
+const jwt = require('jsonwebtoken');
+
+function verifytoken(req,res,next){
+    try {
+        const token = req.headers.token;
+       // console.log("token :"+token)
+        if(!token) throw 'Unauthorized';
+        let payload=jwt.verify(token,'yourSecretKey');
+        if(!payload) throw 'Unauthorized';
+        //res.status(200).send(payload);
+        next();
+    } catch (error) {
+        res.status(401).send('Error')
+    }
+}
+
+
+router.get('/get/:id',verifytoken,async(req,res)=>{
     try {
         const id=req.params.id;
         const data = await DisData.findById(id);
@@ -19,7 +35,7 @@ router.get('/get/:id',async(req,res)=>{
 
 
 
-router.get('/getUserlist/:id',async(req,res)=>{
+router.get('/getUserlist/:id',verifytoken,async(req,res)=>{
     try {
         const id=req.params.id;
        // console.log("userlist id :"+id);
@@ -31,7 +47,7 @@ router.get('/getUserlist/:id',async(req,res)=>{
     }
 })
  
-router.get('/getmylist/:id',async(req,res)=>{
+router.get('/getmylist/:id',verifytoken,async(req,res)=>{
     try {
         const id=req.params.id;
         //console.log("get my list id is : "+id)
@@ -44,7 +60,7 @@ router.get('/getmylist/:id',async(req,res)=>{
 })
 
 
-router.post('/add',async(req,res)=>{
+router.post('/add',verifytoken,async(req,res)=>{
     try {
         var item=req.body;
         const Data = new DisData(item);
@@ -60,7 +76,7 @@ router.post('/add',async(req,res)=>{
     }
 })
 
-router.put('/update/:id',async(req,res)=>{
+router.put('/update/:id',verifytoken,async(req,res)=>{
     try {
         var item=req.body;
         //console.log("item for update"+item);
@@ -72,7 +88,7 @@ router.put('/update/:id',async(req,res)=>{
 })
 
 
-router.delete('/remove/:id',async(req,res)=>{
+router.delete('/remove/:id',verifytoken,async(req,res)=>{
     try {
         const id=req.params.id;
         console.log("inside remove");
@@ -84,12 +100,12 @@ router.delete('/remove/:id',async(req,res)=>{
     }
 })
 
-router.get('/total/:id', async (req, res) => {
+router.get('/total/:id',verifytoken, async (req, res) => {
     try 
     {
         const id=req.params.id;
         const totalDocuments  = await DisData.countDocuments({"userid": id});
-        //console.log("total :"+totalDocuments)
+       // console.log("total :"+totalDocuments)
         res.status(200).send({message:'total',total:totalDocuments});
     }
     catch (error) 
