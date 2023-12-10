@@ -91,7 +91,7 @@ const Listitems = () => {
       <ListItemIcon>
         <GradeIcon />
       </ListItemIcon>
-      <ListItemText primary="Marks" />
+      <ListItemText primary="Marks & Comments" />
     </ListItemButton>
     </Link>
     

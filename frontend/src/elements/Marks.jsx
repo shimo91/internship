@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Box, Typography, Accordion, AccordionDetails, AccordionSummary } from '@mui/material';
+import { Box, Typography, Accordion, AccordionDetails, AccordionSummary, Grid } from '@mui/material';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 
 import { jwtDecode } from "jwt-decode";
@@ -13,6 +13,12 @@ const Marks = () => {
   const [final, setFinal] = useState(null)
   const [viva, setViva] = useState(null)
 
+  const [cmnts1, setCmnts1] = useState('')
+  const [cmnts2, setCmnts2] = useState('')
+  const [cmnts3, setCmnts3] = useState('')
+  const [cmntsfinal, setCmntsFinal] = useState('')
+  const [cmntsviva, setCmntsViva] = useState('')
+
 
   const token = sessionStorage.getItem("userToken");
   const decodeToken = jwtDecode(token);
@@ -25,13 +31,19 @@ const Marks = () => {
     const response = await axiosInstance.get(`http://localhost:4000/marks/${userId}`);
     console.log(response)
 
-    const {week_1_marks, week_2_marks, week_3_marks, finalreport_marks, vivavoce_marks} = response.data.marks
+    const {week_1_marks, week_2_marks, week_3_marks, finalreport_marks, vivavoce_marks, week_1_cmnts, week_2_cmnts, week_3_cmnts, final_cmnts, viva_cmnts} = response.data.marks
 
     setWeek1(week_1_marks)
     setWeek2(week_2_marks)
     setWeek3(week_3_marks)
     setFinal(finalreport_marks)
     setViva(vivavoce_marks)
+
+    setCmnts1(week_1_cmnts)
+    setCmnts2(week_2_cmnts)
+    setCmnts3(week_3_cmnts)
+    setCmntsFinal(final_cmnts)
+    setCmntsViva(viva_cmnts)
 
     console.log(week1)
   }
@@ -52,7 +64,10 @@ const Marks = () => {
           Marks not uploaded
           </Typography>}
           {week1 && <Typography >
-            <h3> {week1} Marks </h3>
+          <Grid container >
+          <Grid item xs={12} > <h2> {week1} Marks </h2> </Grid>
+          <Grid item xs={12}> <p> Comments: {cmnts1}</p></Grid>
+          </Grid>
           </Typography>}
         </AccordionDetails>
       </Accordion>
@@ -69,7 +84,10 @@ const Marks = () => {
         Marks not uploaded
           </Typography>}
           {week2 && <Typography>
-            <h3> {week2} Marks </h3>
+            <Grid container >
+          <Grid item xs={12} > <h2> {week2} Marks </h2> </Grid>
+          <Grid item xs={12}> <p> Comments: {cmnts2}</p></Grid>
+          </Grid>
           </Typography>}
         </AccordionDetails>
         </Accordion>
@@ -86,7 +104,10 @@ const Marks = () => {
         Marks not uploaded
           </Typography>}
           {week3 && <Typography>
-            <h3> {week3} Marks</h3>
+            <Grid container >
+          <Grid item xs={12} > <h2> {week3} Marks </h2> </Grid>
+          <Grid item xs={12}> <p> Comments: {cmnts3}</p></Grid>
+          </Grid>
           </Typography>}
         </AccordionDetails>
       </Accordion>
@@ -103,7 +124,10 @@ const Marks = () => {
         Marks not uploaded
           </Typography>}
           {final && <Typography>
-            <h3> {final} Marks</h3>
+            <Grid container >
+          <Grid item xs={12} > <h1> {final} Marks </h1> </Grid>
+          <Grid item xs={12}> <p> Comments: {cmntsfinal}</p></Grid>
+          </Grid>
           </Typography>}
         </AccordionDetails>
       </Accordion>
@@ -120,7 +144,10 @@ const Marks = () => {
         Marks not uploaded
           </Typography>}
           {viva && <Typography>
-            <h3> {viva} Marks</h3>
+            <Grid container >
+          <Grid item xs={12} > <h1> {viva} Marks </h1> </Grid>
+          <Grid item xs={12}> <p> Comments: {cmntsviva}</p></Grid>
+          </Grid>
           </Typography>}
         </AccordionDetails>
       </Accordion>
