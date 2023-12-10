@@ -135,7 +135,7 @@ const defaultTheme = createTheme();
         
 </div>
 
-        <h1 className='alumini'>Our Proud Alumini</h1>
+        <h1 className='alumini'>Our Proud Alumni</h1>
         <Container sx={{ py: 8 }} maxWidth="md">
           {/* End hero unit */}
           <Grid container spacing={4}>
