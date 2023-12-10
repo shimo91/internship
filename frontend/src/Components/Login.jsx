@@ -1,4 +1,4 @@
-import { Box, Button, TextField } from '@mui/material';
+import { Box, Button, TextField, Typography } from '@mui/material';
 import axios from 'axios';
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
@@ -122,6 +122,19 @@ const Login = () => {
    <div className="bg-img"></div>
    </Grid>
    </Grid>
+   <Box style={{ background: '#146e87' }} component="footer">
+        <Typography variant="h6" align="center" gutterBottom color="#f9fbe7" p={2} style={{fontSize:'14px'}}>
+        {'Copyright © '} 2023 ICT_Internship,Inc.
+        </Typography>
+        <Typography
+          variant="subtitle1"
+          align="center"
+          color="#f9fbe7"
+          component="p"
+        >
+        </Typography>
+       
+      </Box>
       
         </Box>
       </div>
