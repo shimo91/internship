@@ -23,7 +23,7 @@ const FinalReport = () => {
   const currentDate = new Date();
 
   useEffect(() => {
-    axios.get('http://127.0.0.1:4000/login/getuser/' + userId)
+    axiosInstance.get('/login/getuser/' + userId)
       .then(res => {
         const start_date = res.data.start_date;
         const formatedcompleteddate = new Date(start_date);

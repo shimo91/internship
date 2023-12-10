@@ -45,7 +45,7 @@ function App() {
         <Route path="/sdashboard" element={<RequireStudentDashAuth><DataProvider><Studentdashboard /></DataProvider></RequireStudentDashAuth>} />
         <Route path='/week' element={<RequireAuth><Dashboard child={<DataProvider><Week /></DataProvider>} title={'Weekly reports'}/></RequireAuth>}/>
         <Route path='/vivavoce' element={<RequireAuth><Dashboard child={<DataProvider><Vivavoce /></DataProvider>} title={'Viva Voce'}/></RequireAuth>}/>
-        <Route path='/marks' element={<Dashboard child={<DataProvider><Marks /></DataProvider>} title={'Marks'}/>}/>
+        <Route path='/marks' element={<RequireAuth><Dashboard child={<DataProvider><Marks /></DataProvider>} title={'Marks'}/></RequireAuth>}/>
         <Route path="/topic/:topicId" element={<RequireAuth><Topicdetails /></RequireAuth>} />
         <Route path='/editdiscussion' element={<RequireAuth><Dashboard child={<DataProvider><EditDiscussion /></DataProvider>} title={'Edit Discussion'} /></RequireAuth>} />
 
