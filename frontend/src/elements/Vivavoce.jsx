@@ -50,7 +50,7 @@ function Vivavoce() {
     // Return true if there are no errors, false otherwise
     return Object.values(errors).every((error) => error === '');
   };
-  
+
 
   const checkSubmission = async () => {
     try {
