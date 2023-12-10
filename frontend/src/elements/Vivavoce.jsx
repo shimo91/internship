@@ -2,7 +2,8 @@ import React, { useState, useEffect} from 'react';
 import { Button, TextField, Container, Typography } from '@mui/material';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 
-import axios from 'axios'
+
+import { jwtDecode } from "jwt-decode";
 import axiosInstance from '../Components/axiosinterceptor'
 
 const theme = createTheme();
@@ -14,7 +15,10 @@ function Vivavoce() {
   const [submissionStatus, setSubmissionStatus] = useState('pending');
   const [submitted, setSubmitted] = useState(null)
   const [finalReport, setFinalReport] = useState(null)
-  const email = sessionStorage.getItem('username');
+
+  const token = sessionStorage.getItem("userToken");
+  const decodeToken = jwtDecode(token);
+  const email = decodeToken.username;
 
   const [formErrors, setFormErrors] = useState({
     reportName: '',

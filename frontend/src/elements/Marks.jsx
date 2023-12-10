@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { Box, Typography, Accordion, AccordionDetails, AccordionSummary } from '@mui/material';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
-import axios from 'axios';
+
+import { jwtDecode } from "jwt-decode";
+import axiosInstance from '../Components/axiosinterceptor'
 
 const Marks = () => {
 
@@ -11,12 +13,16 @@ const Marks = () => {
   const [final, setFinal] = useState(null)
   const [viva, setViva] = useState(null)
 
+
+  const token = sessionStorage.getItem("userToken");
+  const decodeToken = jwtDecode(token);
+  const userId = decodeToken.username;
+
   useEffect(() => {
     getMarks()
   })
   const getMarks = async () => {
-    const id = sessionStorage.getItem('username');
-    const response = await axios.get(`http://localhost:4000/marks/${id}`);
+    const response = await axiosInstance.get(`http://localhost:4000/marks/${userId}`);
     console.log(response)
 
     const {week_1_marks, week_2_marks, week_3_marks, finalreport_marks, vivavoce_marks} = response.data.marks
