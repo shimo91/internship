@@ -98,6 +98,7 @@ const Login = () => {
               required
               error={!!usernameError}
               helperText={usernameError}
+              placeholder="Enter your username"
             />
             <br /><br /><br />
 
@@ -112,6 +113,7 @@ const Login = () => {
               required
               error={!!passwordError}
               helperText={passwordError}
+              placeholder="Enter your password"
             />
       <br /><br /><br /> 
    <div style={{paddingLeft:"4%"}}>
