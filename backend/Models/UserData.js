@@ -1,5 +1,7 @@
 const mongoose = require('mongoose')
+const Schema = mongoose.Schema; 
 const userSchema = mongoose.Schema({
+    
     username: {
         type:String,
         required: true,
@@ -19,13 +21,12 @@ const userSchema = mongoose.Schema({
     },
     phone: {
         type: String
+    
     },
-    topic_status: {
-        type: Boolean
-    },
-    topic_id: {
-        type: String
-    },
+    topicId: {
+        type: Schema.Types.ObjectId,
+        ref: 'students' // Reference the 'students' collection
+      },
     start_date: {
         type: Date
     },

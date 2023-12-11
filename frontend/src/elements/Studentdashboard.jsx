@@ -1,10 +1,6 @@
 import React, { useEffect, useState } from 'react';
 
-import {
-  Box,
-  CssBaseline,
-  AppBar,
-  Toolbar,
+import {Box,CssBaseline,AppBar,Toolbar,
   Typography,
   IconButton,
   Card,
@@ -48,22 +44,28 @@ const Studentdashboard = () => {
     }
   };
 
+
+  
   const handleConfirm = () => {
-    // Make a POST request to store the selected topic
+   
     axiosInstance.post('/sdashboard/topic', { projectId: selectedTopic._id })
       .then((response) => {
         // Handle success, maybe show a success message
         console.log('Topic stored successfully:', response.data);
+  
+        // Optionally, you can update the UI or perform additional actions upon successful selection
       })
       .catch((error) => {
         // Handle error, maybe show an error message
         console.error('Error storing topic:', error);
       });
-
+  
     // Close the confirmation modal
     setConfirmationOpen(false);
+    // Redirect or perform any other necessary action
     window.location.href = '/dashboard'
   };
+  
  
   const handleViewMore = (topicId) => {
 
