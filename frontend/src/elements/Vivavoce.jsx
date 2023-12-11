@@ -3,7 +3,8 @@ import { Button, TextField, Container, Typography } from '@mui/material';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 
 import axios from 'axios'
-import axiosInstance from '../Components/axiosinterceptor'
+// import { jwtDecode } from "jwt-decode";
+// import axiosInstance from '../Components/axiosinterceptor'
 
 const theme = createTheme();
 
@@ -14,7 +15,12 @@ function Vivavoce() {
   const [submissionStatus, setSubmissionStatus] = useState('pending');
   const [submitted, setSubmitted] = useState(null)
   const [finalReport, setFinalReport] = useState(null)
-  const email = sessionStorage.getItem('username');
+
+  // const token = sessionStorage.getItem("userToken");
+  // const decodeToken = jwtDecode(token);
+  // const username = decodeToken.username;
+
+  const email = sessionStorage.getItem('username')
 
   const [formErrors, setFormErrors] = useState({
     reportName: '',
@@ -45,9 +51,10 @@ function Vivavoce() {
     return Object.values(errors).every((error) => error === '');
   };
 
+
   const checkSubmission = async () => {
     try {
-      const response = await axiosInstance.post('/getvivavoce', {email})
+      const response = await axios.post('http://127.0.0.1:4000/getvivavoce', {email})
       const {submitted, finalreport} = response.data
 
       if (submitted === true){
@@ -69,7 +76,7 @@ function Vivavoce() {
   const handleSubmission = async () => {
     try {
       if (docLink.trim() !== '' && reportName.trim() !== '') {
-        const response = await axiosInstance.post('/googledoclinksubmit', { docLink, reportName, email });
+        const response = await axios.post('http://127.0.0.1:4000/googledoclinksubmit', { docLink, reportName, email });
         setSubmissionStatus('submitted');
         console.log(response.data.message);
       } else {
@@ -117,7 +124,7 @@ function Vivavoce() {
             fullWidth
             variant="contained"
             sx={{ mt: 3, mb: 2, bgcolor: '#146e87', color: (255,255,255) }}
-            onClick={() => validateForm() && handleSubmission}
+            onClick={() => validateForm() && handleSubmission()}
           >
             Submit
           </Button>

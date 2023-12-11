@@ -12,7 +12,7 @@ import GradeIcon from '@mui/icons-material/Grade';
 import '../css/Dashboard.css'
 import { Link, matchPath, useLocation } from 'react-router-dom';
 import { Divider } from '@mui/material';
-
+import LogoutIcon from '@mui/icons-material/Logout';
 
 
 const Listitems = () => {
@@ -74,7 +74,9 @@ const Listitems = () => {
     </ListItemButton>
     </Link>
     <Link to={'/vivavoce'}  sx={{textDecoration:'none'}}>
-    <ListItemButton>
+    <ListItemButton
+    className={path === '/vivavoce' ? 'activatedLink' : ''}
+    >
       <ListItemIcon>
         <PeopleIcon />
       </ListItemIcon>
@@ -83,11 +85,13 @@ const Listitems = () => {
     </Link>
 
     <Link to={'/marks'}  sx={{textDecoration:'none'}}>
-    <ListItemButton>
+    <ListItemButton
+    className={path === '/marks' ? 'activatedLink' : ''}
+    >
       <ListItemIcon>
         <GradeIcon />
       </ListItemIcon>
-      <ListItemText primary="Marks" />
+      <ListItemText primary="Marks & Comments" />
     </ListItemButton>
     </Link>
     
@@ -100,6 +104,14 @@ const Listitems = () => {
         <ForumIcon />
       </ListItemIcon>
       <ListItemText primary="Discussion Forum" />
+    </ListItemButton>
+    </Link>
+    <Link to={'/logout'}  sx={{textDecoration:'none'}}>
+    <ListItemButton>
+      <ListItemIcon>
+        <LogoutIcon />
+      </ListItemIcon>
+      <ListItemText primary="Logout" />
     </ListItemButton>
     </Link>
   </React.Fragment>

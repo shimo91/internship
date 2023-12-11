@@ -23,14 +23,14 @@ const FinalReport = () => {
   const currentDate = new Date();
 
   useEffect(() => {
-    axios.get('http://127.0.0.1:4000/login/getuser/' + userId)
+    axiosInstance.get('/login/getuser/' + userId)
       .then(res => {
         const start_date = res.data.start_date;
         const formatedcompleteddate = new Date(start_date);
         setCompletionDate(formatedcompleteddate);
 
         const futureDateValue = new Date(formatedcompleteddate);
-        futureDateValue.setDate(formatedcompleteddate.getDate() + 20);
+        futureDateValue.setDate(formatedcompleteddate.getDate() + 28);
         setFutureDate(futureDateValue);
 
         console.log("completiondate", formatedcompleteddate);
@@ -139,11 +139,11 @@ const FinalReport = () => {
    <form onSubmit={handleUpload}>
    {warning}
       {completionDate && (
-        <p>Last date to submit Report: {completionDate.toLocaleDateString()}</p>
+        <p>Report submission starts from: {futureDate.toLocaleDateString()}</p>
 
       )}
         <input type="file" className="formcontrol" name="file" accept="application/pdf" onChange={handleFile} required />
-        <input type="text" className="formcontrol" name="username" value={username} onChange={handleFile} required />
+        {/* <input type="text" className="formcontrol" name="username" value={username} onChange={handleFile} required /> */}
         <button type="submit" disabled={hasUploaded} >
           Upload
         </button>

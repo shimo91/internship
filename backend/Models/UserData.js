@@ -45,6 +45,21 @@ const userSchema = mongoose.Schema({
     vivavoce_marks: {
         type: Number
     },
+    week_1_cmnts:{
+        type: String
+    },
+    week_2_cmnts:{
+        type: String
+    },
+    week_3_cmnts:{
+        type: String
+    },
+    final_cmnts:{
+        type: String
+    },
+    viva_cmnts:{
+        type: String
+    }
 })
 
 const UserData = mongoose.model('userdatas',userSchema)

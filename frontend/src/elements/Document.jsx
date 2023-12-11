@@ -35,7 +35,7 @@ useEffect(() => {
             console.error('Error:', error);
           });
         } catch (error) {
-          console.error('Error fetching replies:', error);
+          console.error('Error fetching :', error);
         }
       };
   

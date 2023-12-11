@@ -90,9 +90,7 @@ const Studentdashboard = () => {
           <Typography align="left" variant="h6" component="div" sx={{ flexGrow: 1 }}>
             ICT Internship Portal
           </Typography>
-          <IconButton color="inherit" aria-label="Logout">
-            Exit<ExitToAppIcon />
-          </IconButton>
+          
         </Toolbar>
       </AppBar>
       <Container  sx={{
