@@ -8,6 +8,11 @@ const UserData = require('../Models/UserData');
 const app=new express();
 const jwt = require('jsonwebtoken');
 
+
+router.use(express.json());
+router.use(express.urlencoded({ extended: true }));
+router.use(cors()); // Should be under express.json always
+
 function verifytoken(req, res, next) {
   try {
     const token = req.headers.token;
@@ -26,24 +31,35 @@ function verifytoken(req, res, next) {
 
 
 
-router.use(express.json());
-router.use(express.urlencoded({ extended: true }));
-router.use(cors()); // Should be under express.json always
 
-router.get('/', verifytoken,async (req, res) => {
+
+router.get('/', verifytoken, async (req, res) => {
   try {
-    const data = await student.find();
-    if (!data || data.length === 0) {
-      return res.status(404).json({ message: 'Data not found' });
+    const userEmail = req.authUser ? req.authUser.username : null;
+
+    if (!userEmail) {
+      // No authenticated user, send all topics
+      const data = await student.find();
+      return res.json(data);
     }
-    res.json(data);
+
+    const user = await UserData.findOne({ username: userEmail });
+    
+    if (user && user.topicId) {
+      // Returning user with a selected topic, send only the selected topic
+      const selectedTopic = await student.findById(user.topicId);
+      return res.json(selectedTopic ? [selectedTopic] : []);
+    }
+
+    // Returning user with no selected topic
+    // You might want to handle this scenario, possibly by sending all topics
+    const allTopics = await student.find();
+    return res.json(allTopics);
   } catch (error) {
     console.error('Error occurred while fetching data:', error);
     res.status(500).json({ error: 'Error occurred while fetching data' });
   }
 });
-
-
 
 
 

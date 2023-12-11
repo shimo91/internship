@@ -21,29 +21,32 @@ const Studentdashboard = () => {
   const [topics, setTopics] = useState([]);
   const [selectedTopic, setSelectedTopic] = useState(null);
   const [confirmationOpen, setConfirmationOpen] = useState(false);
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [hasSelectedTopic, setHasSelectedTopic] = useState(false);
 
   useEffect(() => {
     axiosInstance.get('/sdashboard/')
       .then((response) => {
         setTopics(response.data);
       })
+      
       .catch((error) => {
         console.error('Error fetching topics:', error);
       });
   }, []);
 
-  const handleSelectTopic = (topic) => {
-    // Check if the project_status is already true
-    if (!topic.project_status) {
-      setSelectedTopic(topic);
-      setConfirmationOpen(true);
-    } else {
-      // If project_status is already true, do not allow selecting it
-      // You might show a message or handle this case accordingly
-      console.log('This topic has already been selected');
-    }
-  };
+  
 
+
+  const handleSelectTopic = (topic) => {
+    setSelectedTopic(topic);
+    setConfirmationOpen(true);
+  };
+  
+
+
+
+  
 
   
   const handleConfirm = () => {
@@ -65,6 +68,12 @@ const Studentdashboard = () => {
     // Redirect or perform any other necessary action
     window.location.href = '/dashboard'
   };
+
+
+
+
+
+  
   
  
   const handleViewMore = (topicId) => {
@@ -79,6 +88,10 @@ const Studentdashboard = () => {
     setConfirmationOpen(false);
   };
 
+
+
+  
+
   return (
     <Box sx={{ display: 'flex', minHeight: '100vh', position: 'relative' }}>
       <CssBaseline />
@@ -90,8 +103,11 @@ const Studentdashboard = () => {
           <Typography align="left" variant="h6" component="div" sx={{ flexGrow: 1 }}>
             ICT Internship Portal
           </Typography>
+          <IconButton component={Link} to="/dashboard" size="large" edge="start" color="inherit" aria-label="menu" sx={{ mr: 2 }}>
+   Go to dashboard
+</IconButton>
+          </Toolbar>
           
-        </Toolbar>
       </AppBar>
       <Container  sx={{
   flexGrow: 1,
@@ -126,17 +142,14 @@ const Studentdashboard = () => {
                     {topic.project_description}
                   </Typography>
                   
+                 
                   <Button
-  disabled={topic.project_status ? true : false}
+  disabled={isAuthenticated ? selectedTopic?._id !== topic._id : false}
   onClick={() => handleSelectTopic(topic)}
-  sx={{
-    backgroundColor: '#146e87',
-    color: 'white',
-    '&:hover': {
-      backgroundColor: '#0e4c62',
-    },
-    mb: 1,
-  }}>Select Topic </Button>
+>
+  {selectedTopic?._id === topic._id ? 'Topic Selected' : 'Select Topic'}
+</Button>
+
                   <Link to={`/topic/${topic._id}`}>
                     <Button variant="outlined"
         sx={{

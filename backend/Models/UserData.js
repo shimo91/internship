@@ -25,7 +25,8 @@ const userSchema = mongoose.Schema({
     },
     topicId: {
         type: Schema.Types.ObjectId,
-        ref: 'students' // Reference the 'students' collection
+        ref: 'students', 
+        unique: true// Reference the 'students' collection
       },
     start_date: {
         type: Date

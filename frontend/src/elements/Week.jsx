@@ -78,7 +78,7 @@ const [uploadedFileWeek3, setUploadedFileWeek3] = useState(null);
       const formData = new FormData();
       formData.append('file', selectedFile);
   
-      const fileResponse = await axiosInstance.post('/week/upload', formData);
+      const fileResponse = await axiosInstance.post('/week/week2', formData);
   
       if (fileResponse.data === 'File uploaded successfully and processed.') {
         if (selectedFile) {
@@ -117,7 +117,7 @@ const [uploadedFileWeek3, setUploadedFileWeek3] = useState(null);
       };
   
       // Send Week 3 data to the server using Axios POST request
-      const week3Response = await axiosInstance.post('/week3/submit', week3Data);
+      const week3Response = await axiosInstance.post('/week/week3', week3Data);
   
       // Check the response from the server
       if (week3Response.status === 200) {
@@ -276,7 +276,7 @@ const [uploadedFileWeek3, setUploadedFileWeek3] = useState(null);
                   component="span"
                   startIcon={<CloudUploadIcon />}
                 >
-                  Upload File for Week 2
+                 Submit week 2
                 </Button>
               </label>
               {/* Display file upload status for Week 2 if needed */}
