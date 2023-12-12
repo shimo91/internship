@@ -28,7 +28,7 @@ const Marks = () => {
     getMarks()
   })
   const getMarks = async () => {
-    const response = await axiosInstance.get(`/marks/${userId}`);
+    const response = await axiosInstance.get(`http://localhost:4000/marks/${userId}`);
     console.log(response)
 
     const {week_1_marks, week_2_marks, week_3_marks, finalreport_marks, vivavoce_marks, week_1_cmnts, week_2_cmnts, week_3_cmnts, final_cmnts, viva_cmnts} = response.data.marks

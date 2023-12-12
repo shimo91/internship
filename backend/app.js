@@ -15,51 +15,43 @@ require('./config/dbConnection')
 
 // signup route
 const signupRoutes = require('./Routes/signupRoutes')
-app.use('/api/signup', signupRoutes)
+app.use('/signup', signupRoutes)
 
 const submissionRoutes = require('./Routes/googledocSubmissionRoutes');
 app.use(submissionRoutes);
 
 
 const loginRoutes = require('./Routes/loginRoutes')
-app.use('/api/login',loginRoutes)
+app.use('/login',loginRoutes)
 
 const marks = require('./Routes/markRoutes');
-app.use('/api/marks', marks)
+app.use('/marks', marks)
 
 const reprotRoutes = require('./Routes/reportRoutes')
-app.use('/api/report',reprotRoutes)
+app.use('/report',reprotRoutes)
 
 
 const routerFile = require('./Routes/forum');
-app.use('/api/discussion',routerFile);
+app.use('/discussion',routerFile);
 
 const routerCommentFile = require('./Routes/comment');
-app.use('/api/comment',routerCommentFile);
+app.use('/comment',routerCommentFile);
 
 const routerstudent = require('./Routes/Sdashboard');
-app.use('/api/sdashboard',routerstudent);
+app.use('/sdashboard',routerstudent);
 
 
 const routerweek = require('./Routes/Week');
-app.use('/api/week',routerweek);
+app.use('/week',routerweek);
 
 const routertopic = require('./Routes/topic');
-app.use('/api/topic', routertopic);
+app.use('/topic', routertopic);
 
 const routerReplyFile = require('./Routes/reply');
-app.use('/api/reply',routerReplyFile);
+app.use('/reply',routerReplyFile);
 
 const routerMetFile = require('./Routes/material');
-app.use('/api/ref',routerMetFile);
-
-const path = require('path');
-app.use(express.static(path.join(__dirname,'/build'))); 
-app.get('/*', function(req, res) {
-    res.sendFile(path.join(__dirname
-    ,'/build/index.html')); });
-
+app.use('/ref',routerMetFile);
 app.listen(PORT,()=>{
     console.log('Listening to '+ PORT)
-    
 })
