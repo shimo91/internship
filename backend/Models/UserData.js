@@ -23,7 +23,7 @@ const userSchema = mongoose.Schema({
         type: String
     
     },
-    topicId: {
+    topic_id: {
         type: Schema.Types.ObjectId,
         ref: 'students', 
         unique: true// Reference the 'students' collection

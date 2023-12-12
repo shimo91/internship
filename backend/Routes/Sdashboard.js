@@ -45,9 +45,9 @@ router.get('/', verifytoken, async (req, res) => {
 
     const user = await UserData.findOne({ username: userEmail });
     
-    if (user && user.topicId) {
+    if (user && user.topic_id) {
       // Returning user with a selected topic, send only the selected topic
-      const selectedTopic = await student.findById(user.topicId);
+      const selectedTopic = await student.findById(user.topic_id);
       return res.json(selectedTopic ? [selectedTopic] : []);
     }
 
@@ -81,12 +81,12 @@ router.post('/topic', verifytoken, async (req, res) => {
     const userEmail = req.authUser.username; // Assuming you have user's email in the payload
 
     console.log("auth user email", userEmail);
-    console.log('Updating User Data with topicId:', projectId);
+    console.log('Updating User Data with topic_id:', projectId);
 
-    // Find the user by their email and update the topicId
+    // Find the user by their email and update the topic_id
     const updatedUser = await UserData.findOneAndUpdate(
       {  username : userEmail }, // Assuming email is a field in your UserData model
-      { $set: { topicId: projectId, topic_status: true } },
+      { $set: { topic_id: projectId, topic_status: true } },
     
       { new: true } // To return the updated document
     );
@@ -111,7 +111,7 @@ router.post('/topic', verifytoken, async (req, res) => {
 // router.get('/getData/:id',verifytoken,async(req,res)=>{
 //   try {
 //       const id=req.params.id;
-//       //console.log('topicid is '+id)
+//       //console.log('topic_id is '+id)
 //       const data = await student.findById(id);
 //       //console.log("topic data is:"+data)
 //       res.status(200).send(data);
