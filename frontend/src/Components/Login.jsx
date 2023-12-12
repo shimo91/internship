@@ -4,6 +4,7 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Grid} from '@mui/material'
 import { jwtDecode } from "jwt-decode";
+import axiosInstance from '../Components/axiosinterceptor';
 
 
 const Login = () => {
@@ -38,7 +39,7 @@ const Login = () => {
         console.log('Entered Username:', username);
         console.log('Entered Password:', password);
   
-        axios.post('http://localhost:4000/login', { username, password })
+        axios.post('/api/login', { username, password })
           .then((res) => {
             // alert(res.data.message);
             if (res.data.message === 'success') {

@@ -98,7 +98,7 @@ export default function SignUp() {
     }
     if(!formErrors.email && !formErrors.password && !formErrors.phoneNumber && !formErrors.firstName && !formErrors.lastName ){
        try {   
-         await axios.post('http://localhost:4000/signup', formData)
+         await axios.post('/api/signup', formData)
         // alert(response.data.message)
         navigate('/login')
       } catch (error) {
