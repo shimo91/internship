@@ -60,11 +60,7 @@ const userSchema = mongoose.Schema({
     },
     viva_cmnts:{
         type: String
-    },
-    topic_status: {
-        type: Boolean,
-        default: false, 
-      },
+    }
 })
 
 const UserData = mongoose.model('userdatas',userSchema)

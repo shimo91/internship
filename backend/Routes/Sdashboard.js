@@ -86,8 +86,7 @@ router.post('/topic', verifytoken, async (req, res) => {
     // Find the user by their email and update the topicId
     const updatedUser = await UserData.findOneAndUpdate(
       {  username : userEmail }, // Assuming email is a field in your UserData model
-      { $set: { topicId: projectId, topic_status: true } },
-    
+      { topicId: projectId },
       { new: true } // To return the updated document
     );
 

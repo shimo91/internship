@@ -26,16 +26,13 @@ const [uploadedFileWeek3, setUploadedFileWeek3] = useState(null);
   const [week2Disabled, setWeek2Disabled] = useState(true);
   const [week3Disabled, setWeek3Disabled] = useState(true);
 
-  const handleFileUpload = async (e, week) => {
+  const handleFileUpload = async (e) => {
     const uploadedFile = e.target.files[0];
-    if (week === 1) {
-      setSelectedFile(uploadedFile);
-      setUploadedFileWeek1(uploadedFile);
-    } else if (week === 2) {
-      setSelectedFileWeek2(uploadedFile);
-      setUploadedFileWeek2(uploadedFile);
-    }
+    setSelectedFile(uploadedFile);
+
+    setUploadedFileWeek1(uploadedFile);
   };
+
   const handleInputChange = (e) => {
     const { id, value } = e.target;
     setReportData({ ...reportData, [id]: value });
@@ -79,17 +76,20 @@ const [uploadedFileWeek3, setUploadedFileWeek3] = useState(null);
   
     try {
       const formData = new FormData();
-      formData.append('file', selectedFileWeek2);
+      formData.append('file', selectedFile);
   
       const fileResponse = await axiosInstance.post('/week/week2', formData);
   
       if (fileResponse.data === 'File uploaded successfully and processed.') {
-        if (selectedFileWeek2) {
+        if (selectedFile) {
           setFileUploaded(true);
           setWeek2Submitted(true);
+         
           setExpandedWeek2(false); // Collapse Week 2 after submission
-          setExpandedWeek3(true); // Expand Week 3 after Week 2 submission
-          setWeek3Disabled(false);
+    setExpandedWeek3(true); // Expand Week 3 after Week 2 submission
+    setWeek3Disabled(false);
+          setUploadedFileWeek1(selectedFile);
+          setUploadedFileWeek2(selectedFile);
           alert('File uploaded successfully!');
         } else {
           // Handle other file upload messages or cases
@@ -102,7 +102,7 @@ const [uploadedFileWeek3, setUploadedFileWeek3] = useState(null);
       // Error handling remains the same
     }
   };
-  
+
   const handleSubmitWeek3 = async (e) => {
     e.preventDefault();
   
@@ -215,7 +215,7 @@ const [uploadedFileWeek3, setUploadedFileWeek3] = useState(null);
     </Box>
 
     {/* Submit button for Week 1 */}
-    <Button type="submit"  variant="contained" color="primary" >
+    <Button type="submit" variant="contained" color="primary">
       Submit Week 1
     </Button>
   </Box>

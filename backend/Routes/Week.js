@@ -11,7 +11,7 @@ const storage = multer.memoryStorage();
 const upload = multer({
   storage: storage,
   limits: {
-    fileSize: 1024 * 1024 * 9, // Limit file size to 5 MB
+    fileSize: 1024 * 1024 * 5, // Limit file size to 5 MB
   },
 });
 
@@ -33,45 +33,45 @@ function verifytoken(req,res,next){
 }
 
 router.post('/upload', verifytoken, upload.single('file'), async (req, res) => {
-    if (!req.file) {
+  if (!req.file) {
       return res.status(400).send('No file uploaded');
-    }
-  
-    try {
+  }
+
+  try {
+      // Extract the user email from the authenticated user's data
       const userEmail = req.authUser.username;
+       // Assuming email is stored in 'username' field of authUser
+console.log(userEmail);
+      // Find the user based on the extracted email or username
       const user = await UserData.findOne({ username: userEmail });
-  
+
+      console.log("fetched user",user);
       if (!user) {
-        return res.status(404).send('User not found');
+          return res.status(404).send('User not found');
       }
-  
-      const existingSubmission = await Weekdata.findOne({ userid: user._id, week1Submitted: true });
-  
-      if (existingSubmission) {
-        return res.status(403).send('Week 1 already submitted');
-      }
-  
+
       const newFile = new Weekdata({
-        file: {
-          data: req.file.buffer,
-          contentType: req.file.mimetype,
-          originalName: req.file.originalname,
-        },
-        userid: user._id,
-        week1Submitted: true,
-        // Add other fields related to the uploaded file or report if needed
-        // ...
+          file: {
+              data: req.file.buffer,
+              contentType: req.file.mimetype,
+              originalName: req.file.originalname,
+          },
+          userid: user._id, 
+          week1Submitted: true,// Assign the user's ID to the 'userid' field
+          // Add other fields related to the uploaded file or report if needed
+          // ...
       });
-  
+
       await newFile.save();
-  
+      
       return res.status(200).send('File uploaded successfully and processed.');
-    } catch (error) {
+  } catch (error) {
       console.error('Error:', error);
       return res.status(500).send('Failed to upload file.');
-    }
-  });
-  
+  }
+});
+// Assuming you have already set up your routes and necessary imports
+// Add this route to handle Week 2 submission
 
 router.post('/week2', verifytoken, upload.single('file'), async (req, res) => {
   if (!req.file) {
@@ -91,8 +91,6 @@ console.log(userEmail);
           return res.status(404).send('User not found');
       }
 
-     
-
       const newFile = new Weekdata({
           file: {
               data: req.file.buffer,
@@ -100,8 +98,9 @@ console.log(userEmail);
               originalName: req.file.originalname,
           },
           userid: user._id, 
-        
-          week2Submitted: true,
+          week2Submitted: true,// Assign the user's ID to the 'userid' field
+          // Add other fields related to the uploaded file or report if needed
+          // ...
       });
 
       await newFile.save();
@@ -138,7 +137,9 @@ console.log(userEmail);
               originalName: req.file.originalname,
           },
           userid: user._id, 
-          week3Submitted: true,
+          week3Submitted: true,// Assign the user's ID to the 'userid' field
+          // Add other fields related to the uploaded file or report if needed
+          // ...
       });
 
       await newFile.save();
@@ -167,7 +168,6 @@ router.get('/submission/:id',verifytoken, async (req, res) => {
       res.status(404).send('Error!!');
   }
 })
-
 
 
 
