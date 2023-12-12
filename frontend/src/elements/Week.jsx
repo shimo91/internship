@@ -26,13 +26,16 @@ const [uploadedFileWeek3, setUploadedFileWeek3] = useState(null);
   const [week2Disabled, setWeek2Disabled] = useState(true);
   const [week3Disabled, setWeek3Disabled] = useState(true);
 
-  const handleFileUpload = async (e) => {
+  const handleFileUpload = async (e, week) => {
     const uploadedFile = e.target.files[0];
-    setSelectedFile(uploadedFile);
-
-    setUploadedFileWeek1(uploadedFile);
+    if (week === 1) {
+      setSelectedFile(uploadedFile);
+      setUploadedFileWeek1(uploadedFile);
+    } else if (week === 2) {
+      setSelectedFileWeek2(uploadedFile);
+      setUploadedFileWeek2(uploadedFile);
+    }
   };
-
   const handleInputChange = (e) => {
     const { id, value } = e.target;
     setReportData({ ...reportData, [id]: value });
@@ -76,20 +79,17 @@ const [uploadedFileWeek3, setUploadedFileWeek3] = useState(null);
   
     try {
       const formData = new FormData();
-      formData.append('file', selectedFile);
+      formData.append('file', selectedFileWeek2);
   
-      const fileResponse = await axiosInstance.post('/week/upload', formData);
+      const fileResponse = await axiosInstance.post('/week/week2', formData);
   
       if (fileResponse.data === 'File uploaded successfully and processed.') {
-        if (selectedFile) {
+        if (selectedFileWeek2) {
           setFileUploaded(true);
           setWeek2Submitted(true);
-         
           setExpandedWeek2(false); // Collapse Week 2 after submission
-    setExpandedWeek3(true); // Expand Week 3 after Week 2 submission
-    setWeek3Disabled(false);
-          setUploadedFileWeek1(selectedFile);
-          setUploadedFileWeek2(selectedFile);
+          setExpandedWeek3(true); // Expand Week 3 after Week 2 submission
+          setWeek3Disabled(false);
           alert('File uploaded successfully!');
         } else {
           // Handle other file upload messages or cases
@@ -102,7 +102,7 @@ const [uploadedFileWeek3, setUploadedFileWeek3] = useState(null);
       // Error handling remains the same
     }
   };
-
+  
   const handleSubmitWeek3 = async (e) => {
     e.preventDefault();
   
@@ -117,7 +117,7 @@ const [uploadedFileWeek3, setUploadedFileWeek3] = useState(null);
       };
   
       // Send Week 3 data to the server using Axios POST request
-      const week3Response = await axiosInstance.post('/week3/submit', week3Data);
+      const week3Response = await axiosInstance.post('/week/week3', week3Data);
   
       // Check the response from the server
       if (week3Response.status === 200) {
@@ -215,7 +215,7 @@ const [uploadedFileWeek3, setUploadedFileWeek3] = useState(null);
     </Box>
 
     {/* Submit button for Week 1 */}
-    <Button type="submit" variant="contained" color="primary">
+    <Button type="submit"  variant="contained" color="primary" >
       Submit Week 1
     </Button>
   </Box>
@@ -276,7 +276,7 @@ const [uploadedFileWeek3, setUploadedFileWeek3] = useState(null);
                   component="span"
                   startIcon={<CloudUploadIcon />}
                 >
-                  Upload File for Week 2
+                 Submit week 2
                 </Button>
               </label>
               {/* Display file upload status for Week 2 if needed */}
