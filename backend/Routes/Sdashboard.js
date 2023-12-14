@@ -108,17 +108,17 @@ router.post('/topic', verifytoken, async (req, res) => {
 
     
 
-// router.get('/getData/:id',verifytoken,async(req,res)=>{
-//   try {
-//       const id=req.params.id;
-//       //console.log('topic_id is '+id)
-//       const data = await student.findById(id);
-//       //console.log("topic data is:"+data)
-//       res.status(200).send(data);
-//   } catch (error) {
-//       console.log("error is :"+error)
-//       res.status(400).send(error);
-//   }
-// })
+router.get('/getData/:id',verifytoken,async(req,res)=>{
+  try {
+      const id=req.params.id;
+      //console.log('topic_id is '+id)
+      const data = await student.findById(id);
+      //console.log("topic data is:"+data)
+      res.status(200).send(data);
+  } catch (error) {
+      console.log("error is :"+error)
+      res.status(400).send(error);
+  }
+})
 
 module.exports = router;
