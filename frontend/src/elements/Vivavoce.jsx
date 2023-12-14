@@ -4,7 +4,7 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 
 import axios from 'axios'
 // import { jwtDecode } from "jwt-decode";
-// import axiosInstance from '../Components/axiosinterceptor'
+import axiosInstance from '../Components/axiosinterceptor'
 
 const theme = createTheme();
 
@@ -54,7 +54,7 @@ function Vivavoce() {
 
   const checkSubmission = async () => {
     try {
-      const response = await axios.post('http://127.0.0.1:4000/getvivavoce', {email})
+      const response = await axiosInstance.post('/getvivavoce', {email})
       const {submitted, finalreport} = response.data
 
       if (submitted === true){
@@ -76,7 +76,7 @@ function Vivavoce() {
   const handleSubmission = async () => {
     try {
       if (docLink.trim() !== '' && reportName.trim() !== '') {
-        const response = await axios.post('http://127.0.0.1:4000/googledoclinksubmit', { docLink, reportName, email });
+        const response = await axiosInstance.post('/googledoclinksubmit', { docLink, reportName, email });
         setSubmissionStatus('submitted');
         console.log(response.data.message);
       } else {
