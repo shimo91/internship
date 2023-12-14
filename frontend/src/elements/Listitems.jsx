@@ -70,7 +70,7 @@ const Listitems = () => {
       <ListItemIcon>
         <AssessmentIcon />
       </ListItemIcon>
-      <ListItemText primary="Final Reports" />
+      <ListItemText primary="Final Report" />
     </ListItemButton>
     </Link>
     <Link to={'/vivavoce'}  sx={{textDecoration:'none'}}>
