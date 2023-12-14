@@ -82,11 +82,12 @@ router.post('/topic', verifytoken, async (req, res) => {
 
     console.log("auth user email", userEmail);
     console.log('Updating User Data with topic_id:', projectId);
+    const currentDate = new Date();
 
     // Find the user by their email and update the topic_id
     const updatedUser = await UserData.findOneAndUpdate(
       {  username : userEmail }, // Assuming email is a field in your UserData model
-      { $set: { topic_id: projectId, topic_status: true } },
+      { $set: { topic_id: projectId, topic_status: true, start_date : currentDate } },
     
       { new: true } // To return the updated document
     );
