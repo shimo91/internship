@@ -103,8 +103,8 @@ const Studentdashboard = () => {
           <Typography align="left" variant="h6" component="div" sx={{ flexGrow: 1 }}>
             ICT Internship Portal
           </Typography>
-          <IconButton component={Link} to="/dashboard" size="large" edge="start" color="inherit" aria-label="menu" sx={{ mr: 2 }}>
-   Go to dashboard
+          <IconButton component={Link} to="/logout" size="small" edge="start" color="inherit" aria-label="menu" sx={{ mr: 2 }}>
+   Logout
 </IconButton>
           </Toolbar>
           
