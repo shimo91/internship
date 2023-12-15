@@ -38,7 +38,7 @@ const Login = () => {
         console.log('Entered Username:', username);
         console.log('Entered Password:', password);
   
-        axios.post('http://localhost:4000/login', { username, password })
+        axios.post('http://127.0.0.1:4000/login', { username, password })
           .then((res) => {
             // alert(res.data.message);
             if (res.data.message === 'success') {
@@ -124,7 +124,10 @@ const Login = () => {
    <div className="bg-img"></div>
    </Grid>
    </Grid>
-   <Box style={{ background: '#146e87' }} component="footer">
+   
+      
+        </Box>
+        <Box style={{ background: '#146e87' }} component="footer">
         <Typography variant="h6" align="center" gutterBottom color="#f9fbe7" p={2} style={{fontSize:'14px'}}>
         {'Copyright © '} 2023 ICT_Internship,Inc.
         </Typography>
@@ -137,8 +140,6 @@ const Login = () => {
         </Typography>
        
       </Box>
-      
-        </Box>
       </div>
     );
   }
