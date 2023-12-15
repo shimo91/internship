@@ -15,7 +15,7 @@ export const RequireAuth = ({children})=>{
         console.log("topicselected :"+topicSelected)
         if(topicSelected===false || topicSelected===undefined)
         {
-           // return <Navigate to='/' state={{from:location}}/>
+            return <Navigate to='/' state={{from:location}}/>
         }
         
     }
