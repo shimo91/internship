@@ -75,7 +75,7 @@ const Studentdashboard = () => {
        // console.log("data to send "+dataToSend.topicstatus)
 
 
-        return axiosInstance.post('/login/getStatus', dataToSend)
+        return axiosInstance.post('/login/updateStatus', dataToSend)
         })
         .then(res => {
           if (res.data.message === 'success') {
