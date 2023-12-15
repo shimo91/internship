@@ -92,7 +92,19 @@ router.get('/getuser/:id',verifytoken,async(req,res)=>{
     }
 })
 
-
+router.post('/updateStatus',verifytoken,async(req,res)=>{
+    try {
+        const tokenChange = req.body;
+        console.log("token change :"+tokenChange.topicstatus);
+        console.log("user change :"+tokenChange.username);
+        let payload = tokenChange ;
+        const token = jwt.sign(payload, 'yourSecretKey');
+        res.status(200).json({ message: 'success', token});
+    } catch (error) {
+        console.log("error is :"+error)
+        res.status(400).send(error);
+    }
+})
 
 
 module.exports = router;
