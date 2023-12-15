@@ -16,6 +16,7 @@ import MenuBookIcon from '@mui/icons-material/MenuBook';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 import axiosInstance from '../Components/axiosinterceptor'
+import { jwtDecode } from "jwt-decode";
 
 const Studentdashboard = () => {
   const [topics, setTopics] = useState([]);
@@ -35,7 +36,6 @@ const Studentdashboard = () => {
       });
   }, []);
 
-  
 
 
   const handleSelectTopic = (topic) => {
@@ -53,15 +53,45 @@ const Studentdashboard = () => {
    
     axiosInstance.post('/sdashboard/topic', { projectId: selectedTopic._id })
       .then((response) => {
-        // Handle success, maybe show a success message
+        //Handle success, maybe show a success message
         console.log('Topic stored successfully:', response.data);
-  
-        // Optionally, you can update the UI or perform additional actions upon successful selection
-      })
-      .catch((error) => {
-        // Handle error, maybe show an error message
-        console.error('Error storing topic:', error);
-      });
+
+
+        const newTopicStatus = response.data.topic_status;
+        //console.log("new topic status :"+newTopicStatus)
+        
+        // Decode the token
+        const userToken = sessionStorage.getItem('userToken');
+        const decodedToken = jwtDecode(userToken);
+       // console.log("session 2 topic status :"+decodedToken.topicstatus)
+        // Update the necessary field in the decoded token
+        decodedToken.topicstatus = true;
+
+        // Encode the updated token
+//
+
+        const dataToSend = decodedToken;
+
+       // console.log("data to send "+dataToSend.topicstatus)
+
+
+        return axiosInstance.post('/login/getStatus', dataToSend)
+        })
+        .then(res => {
+          if (res.data.message === 'success') {
+            const updatedToken= res.data.token;
+            sessionStorage.setItem('userToken', updatedToken);
+            
+          }
+        })
+        .catch(error => {
+          // Handle errors for both requests
+          console.error('Error:', error);
+        });
+
+       // Optionally, you can update the UI or perform additional actions upon successful selection
+   
+     
   
     // Close the confirmation modal
     setConfirmationOpen(false);
@@ -69,12 +99,7 @@ const Studentdashboard = () => {
     window.location.href = '/dashboard'
   };
 
-
-
-
-
-  
-  
+ 
  
   const handleViewMore = (topicId) => {
 
